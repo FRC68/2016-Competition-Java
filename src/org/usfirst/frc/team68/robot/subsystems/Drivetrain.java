@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DriveTrain extends Subsystem {
+public class Drivetrain extends Subsystem {
     
 	private CANTalon leftFront;
 	private CANTalon leftRear;
@@ -19,16 +19,16 @@ public class DriveTrain extends Subsystem {
 	private CANTalon rightRear;
 	private RobotDrive drive;
 	private static boolean useSquaredInputs = true;
-	private static DriveTrain driveTrain;
+	private static Drivetrain driveTrain;
 	
-	public static DriveTrain getDrive () {
+	public static Drivetrain getDrive () {
 		if (driveTrain == null) {
-			driveTrain = new DriveTrain();
+			driveTrain = new Drivetrain();
 		}
 		return driveTrain;
 	}
     // Constructor
-	private DriveTrain() {
+	private Drivetrain() {
 		
 		// Instantiate Drive Motors
 		leftFront = new CANTalon(RobotMap.DRIVE_LEFT_FRONT);
