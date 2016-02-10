@@ -1,6 +1,9 @@
 package org.usfirst.frc.team68.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team68.robot.commands.ExampleCommand;
 
 /**
@@ -34,5 +37,38 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
+	private Joystick leftJoy;
+	private Joystick rightJoy;
+	
+	private static OI oi;
+	
+	public static OI getOI(){
+		if (oi == null) {
+			oi = new OI();
+		}
+		return oi;	
+	}
+	
+	private OI(){
+		leftJoy = new Joystick(RobotMap.LEFT_JOYSTICK);
+		rightJoy = new Joystick(RobotMap.RIGHT_JOYSTICK);
+	}
+	
+    public double getLeftJoystickValue() {
+		double leftAxis;
+		leftAxis = leftJoy.getY();
+		// Allow for up to 10% of joystick noise
+		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
+    	return leftAxis;
+    }
+    
+    public double getRightJoystickValue() {
+		double rightAxis;
+		rightAxis = rightJoy.getY();
+		// Allow for up to 10% of joystick noise
+		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
+    	return rightAxis;
+    }
 }
 
