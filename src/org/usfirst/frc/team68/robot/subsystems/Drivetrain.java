@@ -19,13 +19,14 @@ public class Drivetrain extends Subsystem {
 	private CANTalon rightRear;
 	private RobotDrive drive;
 	private static boolean useSquaredInputs = true;
-	private static Drivetrain driveTrain;
+
+	private static Drivetrain drivetrain;
 	
 	public static Drivetrain getDrive () {
-		if (driveTrain == null) {
-			driveTrain = new Drivetrain();
+		if (drivetrain == null) {
+			drivetrain = new Drivetrain();
 		}
-		return driveTrain;
+		return drivetrain;
 	}
     // Constructor
 	private Drivetrain() {
