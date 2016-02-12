@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team68.robot.subsystems;
 
+import org.usfirst.frc.team68.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 /**
@@ -22,9 +24,9 @@ public class Arm extends Subsystem {
 	
 	private Arm(){
 		//Initialize motors
-		motorBase = new CANTalon(RobotMap.motorBase);
-		motorShoulder = new CANTalon(RobotMap.motorShoulder);
-		motorElbow = new CANTalon(RobotMap.motorElbow);
+		motorBase = new CANTalon(RobotMap.ARM_BASE_MOTOR);
+		motorShoulder = new CANTalon(RobotMap.ARM_SHOULDER_MOTOR);
+		motorElbow = new CANTalon(RobotMap.ARM_ELBOW_MOTOR);
 	}
 
     public void initDefaultCommand() {
