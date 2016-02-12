@@ -19,6 +19,7 @@ public class Arm extends Subsystem {
 		}
 		return arm;
 	}
+	
 	private Arm(){
 		//Initialize motors
 		motorBase = new CANTalon(RobotMap.motorBase);
