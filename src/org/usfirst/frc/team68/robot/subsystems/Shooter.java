@@ -28,7 +28,7 @@ public class Shooter extends Subsystem {
     	primaryMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
     	followerMotor = new CANTalon(RobotMap.SHOOTER_FOLLOWER_MOTOR);
     	followerMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
-    	followerMotor.set(primaryMotor.getDeviceID(RobotMap.SHOOTER_PRIMARY_MOTOR));
+    	followerMotor.set(primaryMotor.getDeviceID());
     	primaryMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
     }
     
