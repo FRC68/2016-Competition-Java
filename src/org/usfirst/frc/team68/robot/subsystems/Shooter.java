@@ -42,7 +42,7 @@ public class Shooter extends Subsystem {
     	primaryMotor.setP(0.22);
     	primaryMotor.setI(0);
     	primaryMotor.setD(0);
-    	hood = new DoubleSolenoid(RobotMap.HOOD_FORWARD,HOOD_REVERSE);
+    	hood = new DoubleSolenoid(RobotMap.HOOD_FORWARD, RobotMap.HOOD_REVERSE);
     	this.openHood();
     }
     public void setSpeed(double speed) {
