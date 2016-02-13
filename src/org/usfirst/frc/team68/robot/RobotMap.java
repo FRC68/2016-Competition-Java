@@ -17,6 +17,9 @@ public class RobotMap {
     public static final int SHOOTER_PRIMARY_MOTOR = 5;  // CAN bus ID 5
     public static final int SHOOTER_FOLLOWER_MOTOR = 6; // CAN bus ID 6
     
+    //Shooter RPM values
+    public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
+    
     //Arm Port Mapping Constants
     public static final int ARM_BASE_MOTOR = 7;  // CAN bus ID 7
     public static final int ARM_SHOULDER_MOTOR = 8; // CAN bus ID 8
