@@ -29,6 +29,7 @@ public class Shooter extends Subsystem {
     private Shooter() {
     	primaryMotor = new CANTalon(RobotMap.SHOOTER_PRIMARY_MOTOR);
     	primaryMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
+    	this.setSpeed(0);
     	followerMotor = new CANTalon(RobotMap.SHOOTER_FOLLOWER_MOTOR);
     	followerMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
     	followerMotor.set(primaryMotor.getDeviceID());
@@ -36,8 +37,8 @@ public class Shooter extends Subsystem {
     	primaryMotor.reverseSensor(false);
     	primaryMotor.configNominalOutputVoltage(+0.0F,-0.0F);
     	primaryMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-    	// set closed loop gains in slot0
-    	primaryMotor.setProfile(0);
+    	// set closed loop gains for primary motor
+    	primaryMotor.setProfile(RobotMap.SHOOTER_PRIMARY_MOTOR);
     	primaryMotor.setF(0.1097);
     	primaryMotor.setP(0.22);
     	primaryMotor.setI(0);
@@ -45,6 +46,13 @@ public class Shooter extends Subsystem {
     	hood = new DoubleSolenoid(RobotMap.HOOD_FORWARD, RobotMap.HOOD_REVERSE);
     	this.openHood();
     }
+    
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    	
+    }
+
     public void setSpeed(double speed) {
     	primaryMotor.set(speed);
     }
@@ -64,11 +72,6 @@ public class Shooter extends Subsystem {
     		this.openHood();
     	
     	}
-    }
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	
     }
 }
 
