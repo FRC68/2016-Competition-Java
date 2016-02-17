@@ -12,7 +12,7 @@ public class PointPath {
 	private List<Point> points = new ArrayList<Point>();
 	
 	public Point getPointAtPercent(double percent){
-		int index = (int) Math.round((points.size()/100)*percent) -1; //Minus one b/c array index starts at and size is the number of elements
+		int index = (int) Math.round(((double)points.size()/100)*percent);
 		if(index > points.size())
 			index = points.size();
 		
