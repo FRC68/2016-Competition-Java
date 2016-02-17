@@ -1,10 +1,14 @@
 package org.usfirst.frc.team68.robot;
 
+import org.simpleframework.xml.*;
+
 import java.awt.PointerInfo;
 import java.util.ArrayList;
 import java.util.List;
 
+@Root
 public class PointPath {
+	@Element
 	private List<Point> points = new ArrayList<Point>();
 	
 	public Point getPointAtPercent(double percent){
