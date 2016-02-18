@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 	
-	private CANTalon intakeMotor;
+	private CANTalon intakeRoller;
 	private CANTalon intakeArm;
+
 	
 	private static Intake intake;
 	
@@ -24,8 +25,8 @@ public class Intake extends Subsystem {
 	}
 	
 	private Intake() {
-    	intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
-    	//intakeArm = new CANTalon(RobotMap.INTAKE_ARM);
+    	intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
+    	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
     }
 
     public void initDefaultCommand() {
@@ -34,7 +35,7 @@ public class Intake extends Subsystem {
     }
     
     public void setIntakeSpeed(double speed) {
-    	intakeMotor.set(speed);
+    	intakeRoller.set(speed);
     }
     
     public double getIntakeSpeed() {
