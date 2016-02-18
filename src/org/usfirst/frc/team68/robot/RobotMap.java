@@ -12,6 +12,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_FRONT = 2;		// CAN bus ID 2
     public static final int DRIVE_LEFT_REAR = 3;		// CAN bus ID 3
     public static final int DRIVE_RIGHT_REAR = 4;		// CAN bus ID 4
+    public static final int DRIVE_SHIFT_LOW = 2;		// PCM ID 2
+    public static final int DRIVE_SHIFT_HIGH = 3;		// PCM ID 3
     
     //Shooter Port Mapping Constants
     public static final int SHOOTER_PRIMARY_MOTOR = 5;  // CAN bus ID 5
@@ -21,12 +23,13 @@ public class RobotMap {
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
     
     //Arm Port Mapping Constants
-    public static final int ARM_BASE_MOTOR = 7;  // CAN bus ID 7
-    public static final int ARM_SHOULDER_MOTOR = 8; // CAN bus ID 8
-    public static final int ARM_ELBOW_MOTOR = 9; // CAN bus ID 9
+    public static final int ARM_BASE_MOTOR = 7;  		// CAN bus ID 7
+    public static final int ARM_SHOULDER_MOTOR = 8; 	// CAN bus ID 8
+    public static final int ARM_ELBOW_MOTOR = 9; 		// CAN bus ID 9
     
     //Intake Port Mapping Constants
-    public static final int INTAKE_MOTOR = 10;  // CAN bus ID 10
+    public static final int INTAKE_ROLLER_MOTOR = 10;  	// CAN bus ID 10
+    public static final int INTAKE_ARM_MOTOR = 11;		// CAN bus ID 11
     
     // Can Holder Port Mapping Constants
     public static final int HOOD_FORWARD = 0;
