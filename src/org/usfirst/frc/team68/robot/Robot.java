@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static RobotMap robotMap;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	robotMap = RobotMap.getRobotMap();
     	drivetrain = Drivetrain.getDrive();
     	shooter = Shooter.getShooter();
         chooser = new SendableChooser();

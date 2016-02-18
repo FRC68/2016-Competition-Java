@@ -37,12 +37,12 @@ public class Shooter extends Subsystem {
     	primaryMotor.reverseSensor(false);
     	primaryMotor.configNominalOutputVoltage(+0.0F,-0.0F);
     	primaryMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-    	// set closed loop gains for primary motor
-    	primaryMotor.setProfile(RobotMap.SHOOTER_PRIMARY_MOTOR);
-    	primaryMotor.setF(0.1097);
-    	primaryMotor.setP(0.22);
-    	primaryMotor.setI(0);
-    	primaryMotor.setD(0);
+    	// set closed loop gains for slot 0
+    	primaryMotor.setProfile(RobotMap.shooterPID.slot);
+    	primaryMotor.setF(RobotMap.shooterPID.f);
+    	primaryMotor.setP(RobotMap.shooterPID.p);
+    	primaryMotor.setI(RobotMap.shooterPID.i);
+    	primaryMotor.setD(RobotMap.shooterPID.d);
     	hood = new DoubleSolenoid(RobotMap.HOOD_FORWARD, RobotMap.HOOD_REVERSE);
     	this.openHood();
     }
