@@ -32,8 +32,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_FRONT = 2;		// CAN bus ID 2
     public static final int DRIVE_LEFT_REAR = 3;		// CAN bus ID 3
     public static final int DRIVE_RIGHT_REAR = 4;		// CAN bus ID 4
-    public static final int DRIVE_SHIFT_LOW = 2;		// PCM ID 2
-    public static final int DRIVE_SHIFT_HIGH = 3;		// PCM ID 3
+    public static final int DRIVE_SHIFTER_PCM_A = 2;	// PCM ID 2
+    public static final int DRIVE_SHIFTER_PCM_B = 3;	// PCM ID 3
     
     //Shooter Constants
     public static final int SHOOTER_PRIMARY_MOTOR = 5;  // CAN bus ID 5

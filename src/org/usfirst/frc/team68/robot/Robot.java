@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static Drivetrain drivetrain;
+	public static Drivetrain driveTrain;
 	public static Shooter shooter;
 	
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	robotMap = RobotMap.getRobotMap();
-    	drivetrain = Drivetrain.getDrive();
+    	driveTrain = Drivetrain.getDrive();
     	shooter = Shooter.getShooter();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new ExampleCommand());
