@@ -123,19 +123,76 @@ public class Arm extends Subsystem {
 			//TODO!!!!! HANDLE FAILURE!! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		}
 		
-		
+		//TODO -=- I've not even started thinking about making sure the intake is in position -+-
 		
 		//Set joints to angles
-		while(!(
+		int iterations = 0;
+		while(
+				!(
 				MathUtil.withinThresh(this.getElbow(), elbowAngle, threshold) && 
 				MathUtil.withinThresh(this.getShoulder(), shoulderAngle, threshold) && 
-				MathUtil.withinThresh(this.getBase(), baseAngle, threshold))) {
-		
+				MathUtil.withinThresh(this.getBase(), baseAngle, threshold)
+				) &&
+				iterations < RobotMap.ARM_SETARMPOINT_ITERATION_MAX //Timeout! iteration ceiling reached!
+				) {
+
+			iterations++; 
 			
-			//TODO!! Determine order and delay joints until clearences are met.
-			this.setElbow(elbowAngle);
-			this.setShoulder(shoulderAngle);
-			this.setBase(baseAngle);
+			if(MathUtil.withinRange(RobotMap.SHOULDER_CLEARENCE_F_BASE, -1, shoulderAngle)){ //N.B. -1, this is 0 inclusive 
+				/*
+				 * If this is the case, then the base needs to move before anything else. Because moving the shoulder before the base would
+				 * cause the shoulder to move into a self-damaging position.
+				 */
+				this.setBase(0); //because of checks earlier, base must be 0 here
+				if(MathUtil.withinThresh(this.getBase(), 0, threshold)){
+					//Okay!, Shoulder will clear chassis. (base is at 0)
+					
+					
+					if(MathUtil.withinRange(RobotMap.ELBOW_CLEARENCE_F_SHOULDER, -1, elbowAngle)){ //N.B. -1, this is 0 inclusive
+						// In this case, we are going down, so the shoulder must move before the elbow, and the shoulder angle must be 0
+						
+						this.setShoulder(0);
+						if(MathUtil.withinThresh(this.getShoulder(), 0, threshold)){
+							//Okay! safe to move Elbow!
+							this.setElbow(elbowAngle);
+						}
+						
+					}else{
+						//in this case, we are going up, so the elbow must move 
+						//Normal operation for the last two joints
+						this.setElbow(elbowAngle);
+						if(this.getShoulder() >= RobotMap.ELBOW_CLEARENCE_F_SHOULDER) //shoulder is safe to move
+							this.setShoulder(shoulderAngle);
+						
+					}
+				}
+				
+				
+			} else if(MathUtil.withinRange(RobotMap.ELBOW_CLEARENCE_F_SHOULDER, -1, elbowAngle)){
+					/*
+					 * In this case, since the only time the elbow is allowed to be below ELBOW_CLEARENCE_F_SHOULDER is when the shoulder is 
+					 * at 0, the base must already be at 0 (don't worry, we'll make sure anyway), and the shoulder must be moving to
+					 * 0. So the shoulder must move before the elbow to avoid being trapped.
+					 */
+					this.setBase(0);
+					if(MathUtil.withinThresh(this.getBase(), 0, threshold)){
+						//Okay!, Shoulder will clear chassis. (base is at 0)
+						this.setShoulder(0);
+						if(MathUtil.withinThresh(this.getShoulder(), 0, threshold)){
+							//Okay! safe to move Elbow!
+							this.setElbow(elbowAngle);
+						}	
+					}
+			} else {
+				//Here everything is going to a place where there are probably no clearance issues
+
+				this.setElbow(elbowAngle);
+				if(this.getElbow() >= RobotMap.ELBOW_CLEARENCE_F_SHOULDER){
+					this.setShoulder(shoulderAngle);
+					if(this.getShoulder() >= RobotMap.SHOULDER_CLEARENCE_F_BASE)
+						this.setBase(baseAngle);
+				}
+			}
 		}
 		
 		

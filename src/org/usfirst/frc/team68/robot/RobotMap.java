@@ -54,6 +54,8 @@ public class RobotMap {
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
     
+    public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
+    
     //IN DEGREES!
     public static final double ELBOW_CLEARENCE_F_SHOULDER = 15;
     public static final double SHOULDER_CLEARENCE_F_BASE = 80;
