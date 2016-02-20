@@ -1,11 +1,13 @@
 
 package org.usfirst.frc.team68.robot.subsystems;
 
+import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 /**
  *
  */
@@ -75,5 +77,13 @@ public class Arm extends Subsystem {
 		motorElbow.setPosition(position);
 	}
 	
-	
+	public void setArmPoint(Point xyz) {
+		double baseAngle;
+		double shoulderAngle;
+		double elbowAngle;
+		
+		baseAngle = Math.atan2(xyz.z,xyz.x);
+		shoulderAngle = ((Math.PI) - (Math.acos(Math.pow(RobotMap.ARM_SHOULDER_LENGTH,2) - (Math.pow(RobotMap.ARM_ELBOW_LENGTH,2)))));
+//		elbowAngle = Math.acos(((Math.pow(RobotMap.ARM_SHOULDER_LENGTH,2))+ (Math.pow(RobotMap.ARM_ELBOW_LENGTH,2)) - (Math.pow(RobotMap.ARM_BASE_TO_POINT_LENGTH,2)))/(2*RobotMap.ARM_SHOULDER_LENGTH*RobotMap.ARM_ELBOW_LENGTH));
+	}
 }

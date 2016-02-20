@@ -45,10 +45,18 @@ public class RobotMap {
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
     
     //Arm Constants
-    public static final int ARM_BASE_MOTOR = 7;  		// CAN bus ID 7
-    public static final int ARM_SHOULDER_MOTOR = 8; 	// CAN bus ID 8
-    public static final int ARM_ELBOW_MOTOR = 9; 		// CAN bus ID 9
-//    public static final int SHOULDER_SAFETY_ANGLE = 30; // 
+    public static final int ARM_BASE_MOTOR = 7;  			// CAN bus ID 7
+    public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
+    public static final int ARM_ELBOW_MOTOR = 9;			// CAN bus ID 9
+    public static final double ARM_SHOULDER_LENGTH = 24;
+    public static final double ARM_ELBOW_LENGTH = 21.5;
+    public static final double BASE_MIN_SAFETY_ANGLE = 15;
+    public static final double BASE_MAX_SAFETY_ANGLE = 90;
+    public static final double SHOULDER_MIN_SAFETY_ANGLE = 45;
+    public static final double SHOULDER_MAX_SAFETY_ANGLE = 145;
+    public static final double ELBOW_MIN_SAFETY_ANGLE = 45;
+    public static final double ELBOW_MAX_SAFETY_ANGLE = 260;
+
     
     //Intake Constants
     public static final int INTAKE_ROLLER_MOTOR = 10;  	// CAN bus ID 10
