@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team68.robot.commands.ExampleCommand;
+import org.usfirst.frc.team68.robot.subsystems.Arm;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team68.robot.subsystems.Intake;
+import org.usfirst.frc.team68.robot.subsystems.OffBoardCompressor;
 import org.usfirst.frc.team68.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -22,7 +25,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static Drivetrain driveTrain;
+	public static Intake intake;
 	public static Shooter shooter;
+	public static Arm arm;
+	public static OffBoardCompressor offBoardCompressor;
 	
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static RobotMap robotMap;
@@ -38,7 +44,10 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	robotMap = RobotMap.getRobotMap();
     	driveTrain = Drivetrain.getDrive();
+    	intake = Intake.getIntake();
     	shooter = Shooter.getShooter();
+    	arm = Arm.getArm();
+    	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
