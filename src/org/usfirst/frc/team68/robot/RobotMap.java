@@ -51,9 +51,12 @@ public class RobotMap {
     public static final double ARM_BASE_GEAR_RATIO = 1;
     public static final double ARM_SHOULDER_GEAR_RATIO = 1;
     public static final double ARM_ELBOW_GEAR_RATIO = 1; 
-    
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
+    
+    //IN DEGREES!
+    public static final double ELBOW_CLEARENCE_F_SHOULDER = 15;
+    public static final double SHOULDER_CLEARENCE_F_BASE = 80;
     public static final double BASE_MIN_SAFETY_ANGLE = -90;
     public static final double BASE_MAX_SAFETY_ANGLE = 90;
     public static final double SHOULDER_MIN_SAFETY_ANGLE = 45;

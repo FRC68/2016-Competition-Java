@@ -97,6 +97,33 @@ public class Arm extends Subsystem {
 		shoulderAngle = shoulderArcTan + shoulderArcCos;
 		elbowAngle = elbowArcCos;
 		
+		//Check to see that all angles are possible
+		if(!(
+				MathUtil.withinRange(RobotMap.BASE_MAX_SAFETY_ANGLE, RobotMap.BASE_MIN_SAFETY_ANGLE, baseAngle) &&
+				MathUtil.withinRange(RobotMap.SHOULDER_MAX_SAFETY_ANGLE, RobotMap.SHOULDER_MIN_SAFETY_ANGLE, baseAngle) &&
+				MathUtil.withinRange(RobotMap.ELBOW_MAX_SAFETY_ANGLE, RobotMap.ELBOW_MIN_SAFETY_ANGLE, elbowAngle)
+				)){
+			return;
+			//TODO!!!!! HANDLE FAILURE!! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		}
+		
+		
+		
+		//Check to see that secondary clearances are met!
+		
+		//Elbow angle allows shoulder angle?
+		if(MathUtil.withinRange(RobotMap.ELBOW_CLEARENCE_F_SHOULDER, 0, elbowAngle) && shoulderAngle != 0){
+			return;
+			//TODO!!!!! HANDLE FAILURE!! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		}
+		
+		//Shoulder angle allows base angle?
+		if(MathUtil.withinRange(RobotMap.SHOULDER_CLEARENCE_F_BASE, 0, shoulderAngle) && baseAngle != 0){
+			return;
+			//TODO!!!!! HANDLE FAILURE!! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		}
+		
+		
 		
 		//Set joints to angles
 		while(!(
@@ -104,6 +131,8 @@ public class Arm extends Subsystem {
 				MathUtil.withinThresh(this.getShoulder(), shoulderAngle, threshold) && 
 				MathUtil.withinThresh(this.getBase(), baseAngle, threshold))) {
 		
+			
+			//TODO!! Determine order and delay joints until clearences are met.
 			this.setElbow(elbowAngle);
 			this.setShoulder(shoulderAngle);
 			this.setBase(baseAngle);
