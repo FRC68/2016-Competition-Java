@@ -95,6 +95,15 @@ public class Arm extends Subsystem {
 		baseAngle = Math.atan2(xyz.z,xyz.x);
 		shoulderAngle = shoulderArcTan + shoulderArcCos;
 		elbowAngle = elbowArcCos;
+		
+		//Set joints to angles
+		while(!(this.getElbow() == elbowAngle && this.getShoulder() == shoulderAngle && this.getBase() == baseAngle)){
+			this.setElbow(elbowAngle);
+			this.setShoulder(shoulderAngle);
+			this.setBase(baseAngle);
+		}
+		
+		
 	}
 
 	public Point getArmPoint(){
