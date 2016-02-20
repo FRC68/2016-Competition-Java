@@ -11,5 +11,16 @@ public class MathUtil {
 			return false;
 		return true;
 	}
+	
+	public static boolean withinRange(double high, double low, double value){
+		if(value < high && value > low)
+			return true;
+		return false;		
+	}
+	public static boolean withinRange(int high, int low, int value){
+		if(value < high && value > low)
+			return true;
+		return false;		
+	}
 
 }
