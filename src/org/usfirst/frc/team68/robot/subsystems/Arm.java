@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team68.robot.subsystems;
 
+import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.RobotMap;
 
@@ -56,7 +57,7 @@ public class Arm extends Subsystem {
 	}
 	
 	private void setBase(double baseAngle){
-		motorBase.setPosition(baseAngle);
+		motorBase.setPosition(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO);
 	}
 	
 	private double getShoulder(){
@@ -65,7 +66,7 @@ public class Arm extends Subsystem {
 	}
 	
 	private void setShoulder(double shoulderAngle){
-		motorShoulder.setPosition(shoulderAngle);
+		motorShoulder.setPosition(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO);
 	}
 	
 	private double getElbow(){
@@ -74,10 +75,10 @@ public class Arm extends Subsystem {
 	}
 	
 	private void setElbow(double elbowAngle){
-		motorElbow.setPosition(elbowAngle);
+		motorElbow.setPosition(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO);
 	}
 	
-	public void setArmPoint(Point xyz) {
+	public void setArmPoint(Point xyz, double threshold) {
 		double baseAngle;
 		double shoulderAngle;
 		double elbowAngle;
@@ -96,8 +97,13 @@ public class Arm extends Subsystem {
 		shoulderAngle = shoulderArcTan + shoulderArcCos;
 		elbowAngle = elbowArcCos;
 		
+		
 		//Set joints to angles
-		while(!(this.getElbow() == elbowAngle && this.getShoulder() == shoulderAngle && this.getBase() == baseAngle)){
+		while(!(
+				MathUtil.withinThresh(this.getElbow(), elbowAngle, threshold) && 
+				MathUtil.withinThresh(this.getShoulder(), shoulderAngle, threshold) && 
+				MathUtil.withinThresh(this.getBase(), baseAngle, threshold))) {
+		
 			this.setElbow(elbowAngle);
 			this.setShoulder(shoulderAngle);
 			this.setBase(baseAngle);

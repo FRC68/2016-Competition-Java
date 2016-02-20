@@ -48,13 +48,17 @@ public class RobotMap {
     public static final int ARM_BASE_MOTOR = 7;  			// CAN bus ID 7
     public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
     public static final int ARM_ELBOW_MOTOR = 9;			// CAN bus ID 9
+    public static final double ARM_BASE_GEAR_RATIO = 1;
+    public static final double ARM_SHOULDER_GEAR_RATIO = 1;
+    public static final double ARM_ELBOW_GEAR_RATIO = 1; 
+    
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
-    public static final double BASE_MIN_SAFETY_ANGLE = 15;
+    public static final double BASE_MIN_SAFETY_ANGLE = -90;
     public static final double BASE_MAX_SAFETY_ANGLE = 90;
     public static final double SHOULDER_MIN_SAFETY_ANGLE = 45;
     public static final double SHOULDER_MAX_SAFETY_ANGLE = 145;
-    public static final double ELBOW_MIN_SAFETY_ANGLE = 45;
+    public static final double ELBOW_MIN_SAFETY_ANGLE = 0;
     public static final double ELBOW_MAX_SAFETY_ANGLE = 260;
 
     
