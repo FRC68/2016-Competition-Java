@@ -1,8 +1,13 @@
 package org.usfirst.frc.team68.robot;
 
+import org.usfirst.frc.team68.robot.commands.DriveShift;
+import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
+import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
+import org.usfirst.frc.team68.robot.commands.ReverseCurrentHoodPosition;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -38,6 +43,16 @@ public class OI {
 	
 	private Joystick leftJoy;
 	private Joystick rightJoy;
+	private Joystick xboxController;
+	
+	private Button leftTrigger;
+	private Button rightTrigger;
+	private Button xboxA;
+	private Button xboxB;
+	private Button xboxX;
+	private Button xboxY;
+	private Button xboxRB;
+	private Button xboxLB;
 	
 	private static OI oi;
 	
@@ -51,6 +66,16 @@ public class OI {
 	private OI(){
 		leftJoy = new Joystick(RobotMap.LEFT_JOYSTICK);
 		rightJoy = new Joystick(RobotMap.RIGHT_JOYSTICK);
+		xboxController = new Joystick(RobotMap.XBOX_CONTROLLER);
+		
+		leftTrigger = new JoystickButton(leftJoy, RobotMap.JOYSTICK_TRIGGER);
+		leftTrigger.whenPressed(new DriveShiftLow());
+		rightTrigger = new JoystickButton(leftJoy, RobotMap.JOYSTICK_TRIGGER);
+		rightTrigger.whenPressed(new DriveShiftHigh());
+		
+		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
+		xboxRB.whenPressed(new ReverseCurrentHoodPosition());
+
 	}
 	
     public double getLeftJoystickValue() {
