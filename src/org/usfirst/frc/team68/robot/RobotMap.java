@@ -53,6 +53,8 @@ public class RobotMap {
     //Shooter RPM values
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
     
+    // Shooter Hood Constants
+    
     //Arm Constants
     public static final int ARM_BASE_MOTOR = 7;  			// CAN bus ID 7
     public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
@@ -62,9 +64,8 @@ public class RobotMap {
     public static final double ARM_ELBOW_GEAR_RATIO = 1; 
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
-    
+    //Timeout
     public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
-    		
     //IN DEGREES!
     public static final double ELBOW_CLEARENCE_F_SHOULDER = 15;
     public static final double SHOULDER_CLEARENCE_F_BASE = 80;
@@ -79,8 +80,12 @@ public class RobotMap {
     //Intake Constants
     public static final int INTAKE_ROLLER_MOTOR = 10;  	// CAN bus ID 10
     public static final int INTAKE_ARM_MOTOR = 11;		// CAN bus ID 11
-    
-    // Shooter Hood Constants
+    //Intake position array (in degrees) these are the predefined points 
+    public static double[] intakePositions = {0, 20, 40, 90, 95};
+    //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually
+    //position will be incremented by the resulting number of degrees per iteration (approx 20ms)
+    public static double INTAKE_JOYSTICK_MULT = 0.5;
+
 
     // Joystick Port Mapping Constants
     public static final int LEFT_JOYSTICK = 0;			// USB port 0

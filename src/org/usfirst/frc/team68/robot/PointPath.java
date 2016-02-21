@@ -8,11 +8,11 @@ import java.util.List;
 
 @Root
 public class PointPath {
-	@Element
+	@ElementList
 	private List<Point> points = new ArrayList<Point>();
 	
 	public Point getPointAtPercent(double percent){
-		int index = (int) Math.round(((double)points.size()/100)*percent);
+		int index = (int) Math.round(((double)(points.size()-1)/100)*percent);
 		if(index > points.size())
 			index = points.size();
 		if(index < 0)
