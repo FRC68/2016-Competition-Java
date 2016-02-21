@@ -30,7 +30,7 @@ public class IntakePositionUpByArray extends Command {
     	if(index > RobotMap.intakePositions.length -1)
     		index = RobotMap.intakePositions.length -1;
     	
-    	Intake.getIntake().setIntakeArm(RobotMap.intakePositions[index]);
+    	Intake.getIntake().setIntakeArm(RobotMap.intakePositions[index++]);
     	
     	isDone = true;
     }
