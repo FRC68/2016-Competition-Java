@@ -15,6 +15,8 @@ public class PathLoader {
         	PointPath retval = serializer.read(PointPath.class, input);
         	return retval;
         }catch(Exception e){
+        	System.out.println("ERROR! PathLoader.loadPath failed to load path from" + filename);
+        	System.out.println("Please check to ensure that the  file exists and contains a vaild path in XML format\nStackTrace:");
         	e.printStackTrace();
         	return null;
         }
