@@ -10,6 +10,12 @@ public class RobotMap {
     private static RobotMap robotMap;
     public static PidProfile shooterPID;
     
+    public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
+    public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
+    
+    public static PointPath ArmDrawbridgePath;
+    public static PointPath ArmSallyportPath;
+    
     public static RobotMap getRobotMap() {
     	if( robotMap == null) {
     		robotMap = new RobotMap();
@@ -25,6 +31,9 @@ public class RobotMap {
 	    shooterPID.p = 0.22;
 	    shooterPID.i = 0;
 	    shooterPID.d = 0;
+	    
+	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
+	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);
 	}
 
     // DriveTrain Constants
@@ -55,9 +64,6 @@ public class RobotMap {
     public static final double ARM_ELBOW_LENGTH = 21.5;
     
     public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
-    
-    public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
-    public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
     		
     //IN DEGREES!
     public static final double ELBOW_CLEARENCE_F_SHOULDER = 15;

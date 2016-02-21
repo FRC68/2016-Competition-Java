@@ -3,6 +3,7 @@ package org.usfirst.frc.team68.robot.subsystems;
 
 import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Point;
+import org.usfirst.frc.team68.robot.PointPath;
 import org.usfirst.frc.team68.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
