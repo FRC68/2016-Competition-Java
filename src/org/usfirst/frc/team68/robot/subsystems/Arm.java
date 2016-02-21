@@ -33,18 +33,18 @@ public class Arm extends Subsystem {
 	private Arm(){
 		//Initialize motors
 		motorBase = new CANTalon(RobotMap.ARM_BASE_MOTOR);
+		motorBase.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorBase.changeControlMode(CANTalon.TalonControlMode.Position);
 		this.setBase(0);
-		motorBase.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorShoulder = new CANTalon(RobotMap.ARM_SHOULDER_MOTOR);
+		motorShoulder.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorShoulder.changeControlMode(CANTalon.TalonControlMode.Position);
 		this.setShoulder(0);
-		motorShoulder.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorElbow = new CANTalon(RobotMap.ARM_ELBOW_MOTOR);
+		motorElbow.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorElbow.changeControlMode(CANTalon.TalonControlMode.Position);
 		this.setElbow(0);
-		motorElbow.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-
+	
 	}
 	
     public void initDefaultCommand() {
