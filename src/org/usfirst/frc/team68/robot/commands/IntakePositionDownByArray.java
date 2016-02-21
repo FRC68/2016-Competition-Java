@@ -11,10 +11,10 @@ import org.usfirst.frc.team68.robot.subsystems.Intake;
 /**
  * Manual control of the intake
  */
-public class IntakePositionUpByArray extends Command {
+public class IntakePositionDownByArray extends Command {
 	private boolean isDone = false;
 	
-    public IntakePositionUpByArray() {
+    public IntakePositionDownByArray() {
         // Use requires() here to declare subsystem dependencies
 //        requires(Robot.exampleSubsystem);
     }
@@ -26,9 +26,11 @@ public class IntakePositionUpByArray extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	int index;
-    	index = MathUtil.findClosestIndex(RobotMap.intakePositions, Intake.getIntake().getIntakeArm()) + 1;
+    	index = MathUtil.findClosestIndex(RobotMap.intakePositions, Intake.getIntake().getIntakeArm()) - 1;
     	if(index > RobotMap.intakePositions.length -1)
     		index = RobotMap.intakePositions.length -1;
+    	if(index < 0)
+    		index = 0;
     	
     	Intake.getIntake().setIntakeArm(RobotMap.intakePositions[index]);
     	
