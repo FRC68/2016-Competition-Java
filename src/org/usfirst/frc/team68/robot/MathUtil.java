@@ -22,5 +22,16 @@ public class MathUtil {
 			return true;
 		return false;		
 	}
+	
+	public static double degreesToRot(double degrees){
+		return degrees/360;
+	}
+	public static double degreesToRot(int degrees){
+		return ((double)degrees)/360;
+	}
+	
+	public static double rotToDegrees(double rots){
+		return rots*360;
+	}
 
 }

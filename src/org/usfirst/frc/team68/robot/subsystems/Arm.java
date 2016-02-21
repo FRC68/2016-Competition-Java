@@ -58,7 +58,7 @@ public class Arm extends Subsystem {
 	}
 	
 	private void setBase(double baseAngle){
-		motorBase.setPosition(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO);
+		motorBase.setPosition(MathUtil.degreesToRot(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO));
 	}
 	
 	private double getShoulder(){
@@ -67,7 +67,7 @@ public class Arm extends Subsystem {
 	}
 	
 	private void setShoulder(double shoulderAngle){
-		motorShoulder.setPosition(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO);
+		motorShoulder.setPosition(MathUtil.degreesToRot(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO));
 	}
 	
 	private double getElbow(){
@@ -76,7 +76,7 @@ public class Arm extends Subsystem {
 	}
 	
 	private void setElbow(double elbowAngle){
-		motorElbow.setPosition(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO);
+		motorElbow.setPosition(MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO));
 	}
 	
 	public void setArmPoint(Point xyz, double threshold) {
