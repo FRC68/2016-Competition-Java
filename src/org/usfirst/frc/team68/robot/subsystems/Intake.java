@@ -1,9 +1,11 @@
 
 package org.usfirst.frc.team68.robot.subsystems;
 
+import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -26,6 +28,8 @@ public class Intake extends Subsystem {
 	private Intake() {
     	intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
     	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
+    	intakeArm.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	intakeArm.set(0);
     }
 
     public void initDefaultCommand() {
@@ -39,11 +43,11 @@ public class Intake extends Subsystem {
     
     public double getIntakeSpeed() {
     	return intakeRoller.get();
-    	
     }
     
     
-    public static void getSpeed() {
+    public double getSpeed() {
+    	return intakeRoller.get();
 	}
     
     public void intakeWithXboxJoysticks (double speedXboxJoystickValue) {
@@ -55,7 +59,11 @@ public class Intake extends Subsystem {
     	this.setIntakeSpeed(0) ;
     } 
     
-    public void setIntakeArm() {
-    	
+    public void setIntakeArm(double degrees) {
+    	intakeArm.set(MathUtil.degreesToRot(degrees));
+    }
+    
+    public double getIntakeArm(){
+    	return intakeArm.get();
     }
 }
