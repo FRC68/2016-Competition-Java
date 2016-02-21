@@ -82,7 +82,15 @@ public class OI {
 		leftAxis = xboxController.getRawAxis(RobotMap.XBOX_LY);
 		// Allow for up to 10% of joystick noise
 		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
-    	return leftAxis*-1;
+    	return leftAxis;
+	}
+	
+	public double getRightXboxJoystickValue() {
+		double rightAxis;
+		rightAxis = xboxController.getRawAxis(RobotMap.XBOX_RY);
+		// Allow for up to 10% of joystick noise
+		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
+    	return rightAxis;
 	}
 	
     public double getLeftJoystickValue() {
