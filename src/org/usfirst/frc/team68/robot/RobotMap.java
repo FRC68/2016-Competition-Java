@@ -56,6 +56,9 @@ public class RobotMap {
     
     public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
     
+    public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
+    public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
+    		
     //IN DEGREES!
     public static final double ELBOW_CLEARENCE_F_SHOULDER = 15;
     public static final double SHOULDER_CLEARENCE_F_BASE = 80;
