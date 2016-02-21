@@ -64,6 +64,6 @@ public class Intake extends Subsystem {
     }
     
     public double getIntakeArm(){
-    	return intakeArm.get();
+    	return MathUtil.rotToDegrees(intakeArm.get());
     }
 }

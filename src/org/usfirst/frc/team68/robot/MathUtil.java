@@ -33,5 +33,17 @@ public class MathUtil {
 	public static double rotToDegrees(double rots){
 		return rots*360;
 	}
+	
+	public static int findClosestIndex(double[] array, double val){
+		int retval = 0;
+		long retscore = Long.MAX_VALUE;
+		for(int i = 0; i < array.length; i++){
+			if(Math.abs(array[i] - val) < retscore){
+				retscore = Math.round(Math.abs(array[i] - val));
+				retval = i;
+			}
+		}
+		return retval;
+	}
 
 }
