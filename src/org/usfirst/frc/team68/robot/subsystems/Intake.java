@@ -50,9 +50,8 @@ public class Intake extends Subsystem {
     	return intakeRoller.get();
 	}
     
-    public void intakeWithXboxJoysticks (double speedXboxJoystickValue) {
+    public void intakeWithXboxJoystick (double speedXboxJoystickValue) {
     	this.setIntakeSpeed (speedXboxJoystickValue) ;
-    	
     }
     
     public void stopIntakeMotor (double speed) {

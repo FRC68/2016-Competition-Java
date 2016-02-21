@@ -75,7 +75,14 @@ public class OI {
 		
 		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
 		xboxRB.whenPressed(new ReverseCurrentHoodPosition());
-
+	}
+	
+	public double getLeftXboxJoystickValue() {
+		double leftAxis;
+		leftAxis = xboxController.getRawAxis(RobotMap.XBOX_LY);
+		// Allow for up to 10% of joystick noise
+		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
+    	return leftAxis*-1;
 	}
 	
     public double getLeftJoystickValue() {
