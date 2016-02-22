@@ -52,9 +52,7 @@ public class RobotMap {
         
     //Shooter RPM values
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
-    
-    // Shooter Hood Constants
-    
+        
     //Arm Constants
     public static final int ARM_BASE_MOTOR = 7;  			// CAN bus ID 7
     public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
@@ -64,6 +62,7 @@ public class RobotMap {
     public static final double ARM_ELBOW_GEAR_RATIO = 1; 
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
+    public static final int ARM_ENCODER_COUNTS_PER_REV = 360*4;
     //Timeout
     public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
     //IN DEGREES!
