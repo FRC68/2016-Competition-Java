@@ -62,6 +62,7 @@ public class RobotMap {
     public static final double ARM_ELBOW_GEAR_RATIO = 1; 
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
+    public static final int ARM_ENCODER_COUNTS_PER_REV = 360*4; //four counts a tick probably?
     
     public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
     		
