@@ -3,6 +3,7 @@ package org.usfirst.frc.team68.robot.subsystems;
 
 import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.RobotMap;
+import org.usfirst.frc.team68.robot.commands.IntakeWithXboxJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -34,7 +35,7 @@ public class Intake extends Subsystem {
 
     public void initDefaultCommand() {
         //Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new IntakeWithXboxJoystick());
     }
     
     public void setIntakeSpeed(double speed) {
