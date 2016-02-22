@@ -6,6 +6,7 @@ import org.usfirst.frc.team68.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -13,9 +14,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 	
+	//Declare variables
+	private DigitalInput beamBreak;
 	private CANTalon intakeRoller;
 	private CANTalon intakeArm;
-	
 	private static Intake intake;
 	
 	public static Intake getIntake() {
@@ -26,7 +28,8 @@ public class Intake extends Subsystem {
 	}
 	
 	private Intake() {
-    	intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
+		beamBreak = new DigitalInput(RobotMap.INTAKE_BEAM_BREAK);
+		intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
     	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
     	intakeArm.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	intakeArm.set(0);
@@ -51,7 +54,12 @@ public class Intake extends Subsystem {
 	}
     
     public void intakeWithXboxJoystick (double speedXboxJoystickValue) {
-    	this.setIntakeSpeed (speedXboxJoystickValue);
+    	if (beamBreak.get() == false){
+    		this.setIntakeSpeed (speedXboxJoystickValue);
+    	} else {
+    		this.stopIntakeMotor(0);
+    	}
+    	
     }
   
     public void manualIntakeArm (double rightXboxJoystickValue) {
@@ -59,7 +67,7 @@ public class Intake extends Subsystem {
     }
     
     public void stopIntakeMotor (double speed) {
-    	this.setIntakeSpeed(0) ;
+    	this.setIntakeSpeed(speed) ;
     } 
     
     public void setIntakeArm(double degrees) {
