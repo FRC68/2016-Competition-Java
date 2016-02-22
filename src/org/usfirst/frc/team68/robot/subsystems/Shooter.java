@@ -57,6 +57,18 @@ public class Shooter extends Subsystem {
     	primaryMotor.set(speed);
     }
     
+    public double getSpeed() {
+    	return primaryMotor.get();
+    }
+    
+    public boolean isHoodOpen() {
+    	if(hood.get() == Value.kForward) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
     public void openHood() {
     	hood.set(Value.kForward);
     }
