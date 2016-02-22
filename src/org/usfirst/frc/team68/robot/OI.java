@@ -1,8 +1,10 @@
 package org.usfirst.frc.team68.robot;
 
+import org.usfirst.frc.team68.robot.commands.CloseHood;
 import org.usfirst.frc.team68.robot.commands.DriveShift;
 import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
 import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
+import org.usfirst.frc.team68.robot.commands.OpenHood;
 import org.usfirst.frc.team68.robot.commands.ReverseCurrentHoodPosition;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -74,7 +76,10 @@ public class OI {
 		rightTrigger.whenPressed(new DriveShiftHigh());
 		
 		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
-		xboxRB.whenPressed(new ReverseCurrentHoodPosition());
+		xboxRB.whenPressed(new OpenHood());
+		
+		xboxLB = new JoystickButton(xboxController, RobotMap.XBOX_LB);
+		xboxLB.whenPressed(new CloseHood());
 	}
 	
 	public double getLeftXboxJoystickValue() {
