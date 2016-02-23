@@ -5,7 +5,11 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+import org.usfirst.frc.team68.robot.commands.ArmHome;
+import org.usfirst.frc.team68.robot.commands.ArmJointDown;
 import org.usfirst.frc.team68.robot.commands.ExampleCommand;
+import org.usfirst.frc.team68.robot.commands.SmartDashArmTester;
 import org.usfirst.frc.team68.robot.subsystems.Arm;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
@@ -53,6 +57,11 @@ public class Robot extends IterativeRobot {
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         oi = OI.getOI();
+        
+        SmartDashboard.putData("Arm Test", new SmartDashArmTester());
+        SmartDashboard.putData("Arm Home", new ArmHome());
+        SmartDashboard.putData("Elbow Down", new ArmJointDown());
+        SmartDashboard.putString("ArmStatus", "Okay");
     }
 	
 	/**
