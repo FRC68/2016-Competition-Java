@@ -3,13 +3,11 @@ package org.usfirst.frc.team68.robot.subsystems;
 
 import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Point;
-import org.usfirst.frc.team68.robot.PointPath;
 import org.usfirst.frc.team68.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -35,6 +33,7 @@ public class Arm extends Subsystem {
 		//Initialize motors
 		motorBase = new CANTalon(RobotMap.ARM_BASE_MOTOR);
 		motorBase.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		//motorShoulder.reverseSensor(true); //Maybe?
 		motorBase.changeControlMode(CANTalon.TalonControlMode.Position);
 		motorBase.configEncoderCodesPerRev(RobotMap.ARM_ENCODER_COUNTS_PER_REV);
 		this.setBase(0);
@@ -86,7 +85,7 @@ public class Arm extends Subsystem {
 	}
 	
 	private void setBase(double baseAngle){
-		motorBase.setPosition(MathUtil.degreesToRot(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO));
+		motorBase.setSetpoint(MathUtil.degreesToRot(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO));
 	}
 	
 	public double getShoulder(){
@@ -96,7 +95,6 @@ public class Arm extends Subsystem {
 	
 	public void setShoulder(double shoulderAngle){
 		motorShoulder.setSetpoint(MathUtil.degreesToRot(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO));
-		SmartDashboard.putNumber("Shoulder Angle in function", MathUtil.degreesToRot(shoulderAngle));
 	}
 	
 	public double getElbow(){
@@ -105,9 +103,7 @@ public class Arm extends Subsystem {
 	}
 	
 	public void setElbow(double elbowAngle){
-		motorElbow.setSetpoint(MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO));
-		SmartDashboard.putNumber("Elbow Angle in function", MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO));
-		
+		motorElbow.setSetpoint(MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO));		
 	}
 	
 	public void setArmPoint(Point xyz, double threshold) {
@@ -150,9 +146,6 @@ public class Arm extends Subsystem {
 			shoulderAngle = 0;
 		if(Double.isNaN(elbowAngle))
 			elbowAngle = 0;
-		
-		SmartDashboard.putNumber("Elbow", elbowAngle);
-		SmartDashboard.putNumber("Shoulder", shoulderAngle);
 		
 		//Check to see that all angles are possible
 		if(!(
@@ -252,11 +245,6 @@ public class Arm extends Subsystem {
 				}
 			}
 		}
-		SmartDashboard.putNumber("ElbowAngle", this.getElbow());
-		SmartDashboard.putNumber("ShoulderAngle", this.getShoulder());
-		
-		
-		
 	}
 
 	public Point getArmPoint(){
