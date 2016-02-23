@@ -87,19 +87,33 @@ public class Arm extends Subsystem {
 		double shoulderAngle;
 		double elbowAngle;
 		
-		//Calculation variables
-		double shoulderArcTan = ((Math.atan(xyz.y/(Math.sqrt(Math.pow(xyz.x,2))+Math.pow(xyz.z,2)))));
-		double shoulderArcCosNum = ((Math.pow(RobotMap.ARM_SHOULDER_LENGTH,2)) + (Math.pow((Math.pow(xyz.x,2)) + ((Math.pow(xyz.y,2)) + ((Math.pow(xyz.z,2)))),2) - (Math.pow(RobotMap.ARM_ELBOW_LENGTH, 2))));
-		double shoulderArcCosDen = ((2) * (RobotMap.ARM_SHOULDER_LENGTH) * ((Math.pow(xyz.x,2)) + (Math.pow(xyz.y,2)) + (Math.pow(xyz.z,2))));
-		double shoulderArcCos = (Math.acos((shoulderArcCosNum)/(shoulderArcCosDen)));
-		double elbowArcCosNum = ((Math.pow(RobotMap.ARM_SHOULDER_LENGTH,2)) - (Math.pow((Math.pow(xyz.x,2)) + ((Math.pow(xyz.y,2)) + ((Math.pow(xyz.z,2)))),2) + (Math.pow(RobotMap.ARM_ELBOW_LENGTH, 2))));
-		double elbowArcCosDen = ((2) * (RobotMap.ARM_SHOULDER_LENGTH) * (RobotMap.ARM_ELBOW_LENGTH));
-		double elbowArcCos = Math.acos(elbowArcCosNum/elbowArcCosDen);
+		//shorter names for arm limb lengths
+		double Ls = RobotMap.ARM_SHOULDER_LENGTH;
+		double Le = RobotMap.ARM_ELBOW_LENGTH;
 		
-		//Angle Calculations
-		baseAngle = Math.atan2(xyz.z,xyz.x);
-		shoulderAngle = shoulderArcTan + shoulderArcCos;
-		elbowAngle = elbowArcCos;
+		if(xyz.x == 0)
+			baseAngle = 0;
+		else if(xyz.z == 0)
+			baseAngle = 90;
+		else
+			baseAngle = Math.toDegrees(Math.atan(xyz.x/xyz.z));
+		
+		//The base length of the xz-y plane
+		double f = Math.sqrt(Math.pow(xyz.z, 2) + Math.pow(xyz.x, 2));
+		
+		//The length of the distance from the origin to the end point
+		double op = Math.sqrt(Math.pow(f, 2) + Math.pow(xyz.y, 2));
+		
+		//The component of shoulder angle that is between the line op and f
+		double thetaS0 = Math.atan(xyz.y/f);
+		//The other component of the shoulder angle
+		double thetaS1 = Math.acos((Math.pow(Ls, 2) + Math.pow(op, 2) - Math.pow(Le, 2))/(2*Ls*op));
+		shoulderAngle = thetaS0 + thetaS1;
+		
+		elbowAngle = Math.acos((Math.pow(Ls, 2) + Math.pow(Le, 2) - Math.pow(op, 2))/(2*Ls*Le));
+		
+		shoulderAngle = 180.0 - Math.toDegrees(shoulderAngle);		//elbowAngle = 360.0 - elbowAngle;
+		elbowAngle = 360 - Math.toDegrees(elbowAngle);
 		
 		//Check to see that all angles are possible
 		if(!(
