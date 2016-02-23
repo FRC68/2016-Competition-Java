@@ -1,11 +1,13 @@
 package org.usfirst.frc.team68.robot;
 
 import org.usfirst.frc.team68.robot.commands.CloseHood;
-import org.usfirst.frc.team68.robot.commands.DriveShift;
 import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
 import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
+import org.usfirst.frc.team68.robot.commands.ManualMoveElbowDown;
+import org.usfirst.frc.team68.robot.commands.ManualMoveElbowUp;
+import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderDown;
+import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
 import org.usfirst.frc.team68.robot.commands.OpenHood;
-import org.usfirst.frc.team68.robot.commands.ReverseCurrentHoodPosition;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -80,6 +82,19 @@ public class OI {
 		
 		xboxLB = new JoystickButton(xboxController, RobotMap.XBOX_LB);
 		xboxLB.whenPressed(new CloseHood());
+		
+		xboxA = new JoystickButton(xboxController, RobotMap.XBOX_A);
+		xboxA.whileHeld(new ManualMoveShoulderUp());
+		
+		xboxB = new JoystickButton(xboxController, RobotMap.XBOX_B);
+		xboxB.whileHeld(new ManualMoveShoulderDown());
+		
+		xboxX = new JoystickButton(xboxController, RobotMap.XBOX_X);
+		xboxX.whileHeld(new ManualMoveElbowUp());
+		
+		xboxY = new JoystickButton(xboxController, RobotMap.XBOX_Y);
+		xboxY.whileHeld(new ManualMoveElbowDown());
+		
 	}
 	
 	public double getLeftXboxJoystickValue() {

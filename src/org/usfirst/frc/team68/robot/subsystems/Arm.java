@@ -58,6 +58,27 @@ public class Arm extends Subsystem {
         //Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void manualMoveBase(double speed) {
+    	if(motorBase.getControlMode() != CANTalon.TalonControlMode.PercentVbus) {
+    		motorBase.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    	}
+		motorBase.set(speed);
+    }
+    
+    public void manualMoveShoulder(double speed) {
+    	if(motorShoulder.getControlMode() != CANTalon.TalonControlMode.PercentVbus) {
+    		motorShoulder.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    	}
+    	motorShoulder.set(speed);
+    }
+    
+    public void manualMoveElbow(double speed) {
+    	if(motorElbow.getControlMode() != CANTalon.TalonControlMode.PercentVbus) {
+    		motorElbow.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    	}
+		motorElbow.set(speed);
+    }
 
 	private double getBase(){
 		basePosition = motorBase.getPosition();
