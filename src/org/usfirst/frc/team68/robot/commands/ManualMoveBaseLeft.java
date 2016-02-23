@@ -24,7 +24,7 @@ public class ManualMoveBaseLeft extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.manualMoveBase(RobotMap.ARM_MANUAL_BASE_SPEED * -1);
+    	Robot.arm.setBase(Robot.arm.getBase()-5);
     	isFinished = true;
     }
 

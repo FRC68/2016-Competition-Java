@@ -9,6 +9,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team68.robot.commands.ArmHome;
 import org.usfirst.frc.team68.robot.commands.ArmPathTest;
 import org.usfirst.frc.team68.robot.commands.ExampleCommand;
+import org.usfirst.frc.team68.robot.commands.ManualMoveBaseLeft;
+import org.usfirst.frc.team68.robot.commands.ManualMoveBaseRight;
+import org.usfirst.frc.team68.robot.commands.ManualMoveElbowDown;
+import org.usfirst.frc.team68.robot.commands.ManualMoveElbowUp;
+import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderDown;
+import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
 import org.usfirst.frc.team68.robot.subsystems.Arm;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
@@ -59,6 +65,12 @@ public class Robot extends IterativeRobot {
         
         SmartDashboard.putData("Arm Home", new ArmHome());
         SmartDashboard.putData("Arm Path Test", new ArmPathTest());
+        SmartDashboard.putData("Base Left", new ManualMoveBaseLeft());
+        SmartDashboard.putData("Base Rigt", new ManualMoveBaseRight());
+        SmartDashboard.putData("Shoulder Up", new ManualMoveShoulderUp());
+        SmartDashboard.putData("Shoulder Down", new ManualMoveShoulderDown());
+        SmartDashboard.putData("Elbow Down", new ManualMoveElbowDown());
+        SmartDashboard.putData("Elbow Up", new ManualMoveElbowUp());
     }
 	
 	/**

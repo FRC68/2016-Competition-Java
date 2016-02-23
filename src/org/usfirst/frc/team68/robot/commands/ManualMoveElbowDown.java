@@ -24,7 +24,7 @@ public class ManualMoveElbowDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.manualMoveElbow(RobotMap.ARM_MANUAL_ELBOW_SPEED * -1);
+    	Robot.arm.setElbow(Robot.arm.getElbow()-5);
     	isFinished = true;
     }
 
