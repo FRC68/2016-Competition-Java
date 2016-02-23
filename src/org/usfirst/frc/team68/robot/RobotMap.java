@@ -58,22 +58,22 @@ public class RobotMap {
     public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
     public static final int ARM_ELBOW_MOTOR = 9;			// CAN bus ID 9
     public static final double ARM_BASE_GEAR_RATIO = 1;
-    public static final double ARM_SHOULDER_GEAR_RATIO = 1;
-    public static final double ARM_ELBOW_GEAR_RATIO = 1; 
+    public static final double ARM_SHOULDER_GEAR_RATIO = 2;
+    public static final double ARM_ELBOW_GEAR_RATIO = 2; 
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
-    public static final int ARM_ENCODER_COUNTS_PER_REV = 360*4;
+    public static final int ARM_ENCODER_COUNTS_PER_REV = 1440;
     //Timeout
     public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
     //IN DEGREES!
-    public static final double ELBOW_CLEARENCE_F_SHOULDER = 15;
+    public static final double ELBOW_CLEARENCE_F_SHOULDER = 5;
     public static final double SHOULDER_CLEARENCE_F_BASE = 80;
     public static final double BASE_MIN_SAFETY_ANGLE = -90;
     public static final double BASE_MAX_SAFETY_ANGLE = 90;
-    public static final double SHOULDER_MIN_SAFETY_ANGLE = 45;
-    public static final double SHOULDER_MAX_SAFETY_ANGLE = 145;
-    public static final double ELBOW_MIN_SAFETY_ANGLE = 0;
-    public static final double ELBOW_MAX_SAFETY_ANGLE = 260;
+    public static final double SHOULDER_MIN_SAFETY_ANGLE = -1;
+    public static final double SHOULDER_MAX_SAFETY_ANGLE = 120;
+    public static final double ELBOW_MIN_SAFETY_ANGLE = -1;
+    public static final double ELBOW_MAX_SAFETY_ANGLE = 360;
 
     
     //Intake Constants

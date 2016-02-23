@@ -9,6 +9,7 @@ import org.usfirst.frc.team68.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -40,13 +41,16 @@ public class Arm extends Subsystem {
 		
 		motorShoulder = new CANTalon(RobotMap.ARM_SHOULDER_MOTOR);
 		motorShoulder.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		motorShoulder.reverseSensor(true);
 		motorShoulder.changeControlMode(CANTalon.TalonControlMode.Position);
-		motorBase.configEncoderCodesPerRev(RobotMap.ARM_ENCODER_COUNTS_PER_REV);
+		motorShoulder.configEncoderCodesPerRev(RobotMap.ARM_ENCODER_COUNTS_PER_REV);
 		this.setShoulder(0);
 
 		motorElbow = new CANTalon(RobotMap.ARM_ELBOW_MOTOR);
 		motorElbow.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorElbow.changeControlMode(CANTalon.TalonControlMode.Position);
+		motorElbow.reverseOutput(true);
+		motorElbow.configEncoderCodesPerRev(RobotMap.ARM_ENCODER_COUNTS_PER_REV);
 		this.setElbow(0);
 	}
 	
@@ -64,22 +68,25 @@ public class Arm extends Subsystem {
 		motorBase.setPosition(MathUtil.degreesToRot(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO));
 	}
 	
-	private double getShoulder(){
-		shoulderPosition = motorShoulder.getPosition();
+	public double getShoulder(){
+		shoulderPosition = MathUtil.rotToDegrees(motorShoulder.getPosition()/RobotMap.ARM_SHOULDER_GEAR_RATIO);
 		return shoulderPosition;
 	}
 	
-	private void setShoulder(double shoulderAngle){
-		motorShoulder.setPosition(MathUtil.degreesToRot(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO));
+	public void setShoulder(double shoulderAngle){
+		motorShoulder.setSetpoint(MathUtil.degreesToRot(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO));
+		SmartDashboard.putNumber("Shoulder Angle in function", MathUtil.degreesToRot(shoulderAngle));
 	}
 	
-	private double getElbow(){
-		elbowPosition = motorElbow.getPosition();
+	public double getElbow(){
+		elbowPosition = MathUtil.rotToDegrees(motorElbow.getPosition()/RobotMap.ARM_ELBOW_GEAR_RATIO);
 		return elbowPosition;
 	}
 	
-	private void setElbow(double elbowAngle){
-		motorElbow.setPosition(MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO));
+	public void setElbow(double elbowAngle){
+		motorElbow.setSetpoint(MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO));
+		SmartDashboard.putNumber("Elbow Angle in function", MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO));
+		
 	}
 	
 	public void setArmPoint(Point xyz, double threshold) {
@@ -110,15 +117,26 @@ public class Arm extends Subsystem {
 		double thetaS1 = Math.acos((Math.pow(Ls, 2) + Math.pow(op, 2) - Math.pow(Le, 2))/(2*Ls*op));
 		shoulderAngle = thetaS0 + thetaS1;
 		
+		
+		
+		
 		elbowAngle = Math.acos((Math.pow(Ls, 2) + Math.pow(Le, 2) - Math.pow(op, 2))/(2*Ls*Le));
 		
-		shoulderAngle = 180.0 - Math.toDegrees(shoulderAngle);		//elbowAngle = 360.0 - elbowAngle;
-		elbowAngle = 360 - Math.toDegrees(elbowAngle);
+		shoulderAngle = 180.0 - Math.toDegrees(shoulderAngle);		
+		elbowAngle = Math.toDegrees(elbowAngle);
+		
+		if(Double.isNaN(shoulderAngle))
+			shoulderAngle = 0;
+		if(Double.isNaN(elbowAngle))
+			elbowAngle = 0;
+		
+		SmartDashboard.putNumber("Elbow", elbowAngle);
+		SmartDashboard.putNumber("Shoulder", shoulderAngle);
 		
 		//Check to see that all angles are possible
 		if(!(
 				MathUtil.withinRange(RobotMap.BASE_MAX_SAFETY_ANGLE, RobotMap.BASE_MIN_SAFETY_ANGLE, baseAngle) &&
-				MathUtil.withinRange(RobotMap.SHOULDER_MAX_SAFETY_ANGLE, RobotMap.SHOULDER_MIN_SAFETY_ANGLE, baseAngle) &&
+				MathUtil.withinRange(RobotMap.SHOULDER_MAX_SAFETY_ANGLE, RobotMap.SHOULDER_MIN_SAFETY_ANGLE, shoulderAngle) &&
 				MathUtil.withinRange(RobotMap.ELBOW_MAX_SAFETY_ANGLE, RobotMap.ELBOW_MIN_SAFETY_ANGLE, elbowAngle)
 				)){
 			return;
@@ -165,10 +183,8 @@ public class Arm extends Subsystem {
 				if(MathUtil.withinThresh(this.getBase(), 0, threshold)){
 					//Okay!, Shoulder will clear chassis. (base is at 0)
 					
-					
 					if(MathUtil.withinRange(RobotMap.ELBOW_CLEARENCE_F_SHOULDER, -1, elbowAngle)){ //N.B. -1, this is 0 inclusive
 						// In this case, we are going down, so the shoulder must move before the elbow, and the shoulder angle must be 0
-						
 						this.setShoulder(0);
 						if(MathUtil.withinThresh(this.getShoulder(), 0, threshold)){
 							//Okay! safe to move Elbow!
@@ -176,10 +192,11 @@ public class Arm extends Subsystem {
 						}
 						
 					}else{
+
 						//in this case, we are going up, so the elbow must move 
 						//Normal operation for the last two joints
 						this.setElbow(elbowAngle);
-						if(this.getShoulder() >= RobotMap.ELBOW_CLEARENCE_F_SHOULDER) //shoulder is safe to move
+						if(this.getElbow() >= RobotMap.ELBOW_CLEARENCE_F_SHOULDER) //shoulder is safe to move
 							this.setShoulder(shoulderAngle);
 						
 					}
@@ -203,8 +220,10 @@ public class Arm extends Subsystem {
 					}
 			} else {
 				//Here everything is going to a place where there are probably no clearance issues
-
 				this.setElbow(elbowAngle);
+				if(this.getElbow() > 10 && this.getShoulder() < 20){
+					this.setElbow(this.getElbow());
+				}
 				if(this.getElbow() >= RobotMap.ELBOW_CLEARENCE_F_SHOULDER){
 					this.setShoulder(shoulderAngle);
 					if(this.getShoulder() >= RobotMap.SHOULDER_CLEARENCE_F_BASE)
@@ -212,6 +231,9 @@ public class Arm extends Subsystem {
 				}
 			}
 		}
+		SmartDashboard.putNumber("ElbowAngle", this.getElbow());
+		SmartDashboard.putNumber("ShoulderAngle", this.getShoulder());
+		
 		
 		
 	}

@@ -11,10 +11,10 @@ import org.usfirst.frc.team68.robot.Robot;
 /**
  *
  */
-public class SmartDashArmTester extends Command {
+public class ArmJointDown extends Command {
 
 	private boolean isDone = false;
-    public SmartDashArmTester() {
+    public ArmJointDown() {
         // Use requires() here to declare subsystem dependencies
 //        requires(Robot.exampleSubsystem);
     }
@@ -28,12 +28,9 @@ public class SmartDashArmTester extends Command {
     protected void execute() {
     	
     	
-    	Point xyz = new Point();
-    	xyz.x = 0;
-    	xyz.y = 30;
-    	xyz.z = 20;
-    	Robot.arm.setArmPoint(xyz, 5);
+    	Robot.arm.setElbow(Robot.arm.getElbow()-10);
     	isDone=true;
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

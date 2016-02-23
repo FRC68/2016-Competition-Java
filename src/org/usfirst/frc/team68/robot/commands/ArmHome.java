@@ -11,27 +11,24 @@ import org.usfirst.frc.team68.robot.Robot;
 /**
  *
  */
-public class SmartDashArmTester extends Command {
+public class ArmHome extends Command {
 
 	private boolean isDone = false;
-    public SmartDashArmTester() {
+    public ArmHome() {
         // Use requires() here to declare subsystem dependencies
 //        requires(Robot.exampleSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	
     	Point xyz = new Point();
     	xyz.x = 0;
-    	xyz.y = 30;
-    	xyz.z = 20;
+    	xyz.y = 1;
+    	xyz.z = 0;
     	Robot.arm.setArmPoint(xyz, 5);
     	isDone=true;
     }
