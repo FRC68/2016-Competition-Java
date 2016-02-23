@@ -80,7 +80,7 @@ public class Arm extends Subsystem {
     }
 
 	private double getBase(){
-		basePosition = motorBase.getPosition();
+		basePosition = MathUtil.rotToDegrees(motorBase.getPosition());
 		return basePosition;
 	}
 	
