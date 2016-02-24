@@ -10,6 +10,7 @@ import org.usfirst.frc.team68.robot.commands.ArmHome;
 import org.usfirst.frc.team68.robot.commands.ArmPathTest;
 import org.usfirst.frc.team68.robot.commands.ExampleCommand;
 import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
+import org.usfirst.frc.team68.robot.commands.IntakeZero;
 import org.usfirst.frc.team68.robot.commands.ManualMoveBaseLeft;
 import org.usfirst.frc.team68.robot.commands.ManualMoveBaseRight;
 import org.usfirst.frc.team68.robot.commands.ManualMoveElbowDown;
@@ -75,6 +76,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Elbow Down", new ManualMoveElbowDown());
         SmartDashboard.putData("Elbow Up", new ManualMoveElbowUp());
         SmartDashboard.putData("Intake Down", new IntakeManualDown());
+        SmartDashboard.putData("Zero Intake", new IntakeZero());
     }
 	
 	/**

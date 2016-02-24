@@ -32,6 +32,7 @@ public class Intake extends Subsystem {
 		beamBreak = new DigitalInput(RobotMap.INTAKE_BEAM_BREAK);
 		intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
     	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
+    	intakeArm.reverseSensor(true);
     	intakeArm.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	intakeArm.changeControlMode(CANTalon.TalonControlMode.Position);
     	intakeArm.configEncoderCodesPerRev(RobotMap.INTAKE_ARM_ENCODER_COUNTS_PER_REV);
@@ -62,7 +63,7 @@ public class Intake extends Subsystem {
     	} else {
     		this.stopIntakeMotor(0);
     	}
-    	if(MathUtil.withinRange(1.0, -1.0, rightXboxJoystickValue))
+    	if(MathUtil.withinRange(0.1, -0.1, rightXboxJoystickValue))
     		this.setIntakeArm(this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT)) ;
     	
     }
