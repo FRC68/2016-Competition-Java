@@ -59,7 +59,7 @@ public class Arm extends Subsystem {
     }
 
 	public double getBase(){
-		basePosition = MathUtil.rotToDegrees(motorBase.getPosition());
+		basePosition = MathUtil.rotToDegrees(motorBase.getPosition()/RobotMap.ARM_BASE_GEAR_RATIO);
 		return basePosition;
 	}
 	

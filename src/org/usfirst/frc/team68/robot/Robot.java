@@ -64,6 +64,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         oi = OI.getOI();
         
+         //Wally was here
+        
         SmartDashboard.putData("Arm Home", new ArmHome());
         SmartDashboard.putData("Arm Path Test", new ArmPathTest());
         SmartDashboard.putData("Base Left", new ManualMoveBaseLeft());
