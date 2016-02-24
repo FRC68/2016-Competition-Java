@@ -33,6 +33,7 @@ public class Intake extends Subsystem {
 		intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
     	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
     	intakeArm.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	intakeArm.changeControlMode(CANTalon.TalonControlMode.Position);
     	intakeArm.configEncoderCodesPerRev(RobotMap.INTAKE_ARM_ENCODER_COUNTS_PER_REV);
     	intakeArm.set(0);
     }
