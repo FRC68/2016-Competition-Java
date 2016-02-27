@@ -37,18 +37,20 @@ public class RobotMap {
 	}
 
     // DriveTrain Constants
-    public static final int DRIVE_LEFT_FRONT = 1;		// CAN bus ID 1
-    public static final int DRIVE_RIGHT_FRONT = 2;		// CAN bus ID 2
-    public static final int DRIVE_LEFT_REAR = 3;		// CAN bus ID 3
-    public static final int DRIVE_RIGHT_REAR = 4;		// CAN bus ID 4
-    public static final int DRIVE_SHIFTER_PCM_A = 2;	// PCM ID 2
-    public static final int DRIVE_SHIFTER_PCM_B = 3;	// PCM ID 3
+    public static final int DRIVE_LEFT_FRONT = 1;			// CAN bus ID 1
+    public static final int DRIVE_RIGHT_FRONT = 2;			// CAN bus ID 2
+    public static final int DRIVE_LEFT_REAR = 3;			// CAN bus ID 3
+    public static final int DRIVE_RIGHT_REAR = 4;			// CAN bus ID 4
+    public static final int DRIVE_SHIFTER_PCM_A = 2;		// PCM ID 2
+    public static final int DRIVE_SHIFTER_PCM_B = 3;		// PCM ID 3
     
     //Shooter Constants
-    public static final int SHOOTER_PRIMARY_MOTOR = 5;  // CAN bus ID 5
-    public static final int SHOOTER_FOLLOWER_MOTOR = 6; // CAN bus ID 6
+    public static final int SHOOTER_PRIMARY_MOTOR = 5;  	// CAN bus ID 5
+    public static final int SHOOTER_FOLLOWER_MOTOR = 6; 	// CAN bus ID 6
     public static final int HOOD_FORWARD = 0;
     public static final int HOOD_REVERSE = 1;    
+    public static final double SHOOTER_SHOOTING_SPEED = 9500;
+    public static final double SHOOTER_THRESHOLD = .2;
         
     //Shooter RPM values
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
@@ -85,6 +87,7 @@ public class RobotMap {
     public static final int INTAKE_BEAM_BREAK = 0;		// DIO port 0
     public static final int INTAKE_ARM_ENCODER_COUNTS_PER_REV = 1440;
     public static final int INTAKE_ARM_GEAR_RATIO = 300;
+    public static final int INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
     //Intake position array (in degrees) these are the predefined points 
     public static double[] intakePositions = {0, 20, 40, 90, 95};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually

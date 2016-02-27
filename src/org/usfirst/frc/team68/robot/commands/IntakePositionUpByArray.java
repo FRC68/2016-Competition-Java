@@ -16,7 +16,7 @@ public class IntakePositionUpByArray extends Command {
 	
     public IntakePositionUpByArray() {
         // Use requires() here to declare subsystem dependencies
-//        requires(Robot.exampleSubsystem);
+        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time

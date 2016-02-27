@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team68.robot.commands.ArmHome;
 import org.usfirst.frc.team68.robot.commands.ArmPathTest;
-import org.usfirst.frc.team68.robot.commands.ExampleCommand;
 import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
 import org.usfirst.frc.team68.robot.commands.IntakeZero;
 import org.usfirst.frc.team68.robot.commands.ManualMoveBaseLeft;
@@ -60,7 +59,7 @@ public class Robot extends IterativeRobot {
     	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
         chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new ExampleCommand());
+//       chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         oi = OI.getOI();
