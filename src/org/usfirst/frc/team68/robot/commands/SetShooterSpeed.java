@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.Robot;
+import org.usfirst.frc.team68.robot.RobotMap;
 
 /**
  *
@@ -32,7 +33,7 @@ public class SetShooterSpeed extends Command {
     	//temporary shooting speed threshold is 2% 
     	//maybe add a RobotMap constant?
     	currentSpeed = Robot.shooter.getSpeed();
-    	if(currentSpeed <= RobotMap.SHOOTER_SHOOTING_SPEED * (100 - RobotMap.SHOOTER_THRESHOLD) || currentSpeed >= RobotMap.SHOOTER_SHOOTING_SPEED * (100 + RobotMap.SHOOTER_THRESHOLD)) {
+    	if(currentSpeed <= shootingSpeed * (1 - RobotMap.SHOOTER_THRESHOLD) || currentSpeed >= shootingSpeed * (1 + RobotMap.SHOOTER_THRESHOLD)) {
     		Robot.shooter.setSpeed(shootingSpeed);
     	}
     	else{
