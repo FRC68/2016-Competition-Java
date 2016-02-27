@@ -16,7 +16,7 @@ public class ArmHome extends Command {
 	private boolean isDone = false;
     public ArmHome() {
         // Use requires() here to declare subsystem dependencies
-//        requires(Robot.exampleSubsystem);
+        requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
