@@ -10,10 +10,6 @@ public class ShootBoulder extends CommandGroup {
     public ShootBoulder() {
     	// Assumes there is a boulder in the staged position in the intake
     	// 
-    	// The following commented lines of code are a potential solution
-    	// that still needs review
-    	
-
         addSequential(new SetArmSafeForShooting()); 
         addSequential(new SetIntakeSafeForShooting());
         addSequential(new OpenHood());
