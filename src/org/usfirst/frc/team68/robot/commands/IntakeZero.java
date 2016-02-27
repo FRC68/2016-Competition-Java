@@ -16,7 +16,7 @@ public class IntakeZero extends Command {
 	
     public IntakeZero() {
         // Use requires() here to declare subsystem dependencies
-//        requires(Robot.exampleSubsystem);
+        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
