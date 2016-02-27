@@ -27,10 +27,10 @@ public class RobotMap {
 	    //Shooter PID
 	    shooterPID = new PidProfile();
 	    shooterPID.slot = 0;
-	    shooterPID.f = 0.1097;
-	    shooterPID.p = 0.22;
-	    shooterPID.i = 0;
-	    shooterPID.d = 0;
+	    shooterPID.f = 0.0;
+	    shooterPID.p = .2;
+	    shooterPID.i = 0.0001;
+	    shooterPID.d = 0.0001;
 	    
 	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
 	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);

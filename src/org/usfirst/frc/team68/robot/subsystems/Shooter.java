@@ -2,6 +2,7 @@
 package org.usfirst.frc.team68.robot.subsystems;
 
 import org.usfirst.frc.team68.robot.RobotMap;
+import org.usfirst.frc.team68.robot.commands.ShooterPostRPMValue;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -37,6 +38,7 @@ public class Shooter extends Subsystem {
     	primaryMotor.reverseSensor(false);
     	primaryMotor.configNominalOutputVoltage(+0.0F,-0.0F);
     	primaryMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+    	primaryMotor.setVoltageRampRate(3);
     	// set closed loop gains for slot 0
     	primaryMotor.setProfile(RobotMap.shooterPID.slot);
     	primaryMotor.setF(RobotMap.shooterPID.f);
@@ -49,7 +51,7 @@ public class Shooter extends Subsystem {
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ShooterPostRPMValue());
     	
     }
 
@@ -61,6 +63,15 @@ public class Shooter extends Subsystem {
     	return primaryMotor.get();
     }
     
+    public double getVoltage() {
+    	return primaryMotor.getOutputVoltage();
+    }
+    
+    public double getWattage() {
+    	return primaryMotor.getOutputVoltage() * primaryMotor.getOutputCurrent();
+    }
+
+
     public boolean isHoodOpen() {
     	if(hood.get() == Value.kForward) {
     		return true;
