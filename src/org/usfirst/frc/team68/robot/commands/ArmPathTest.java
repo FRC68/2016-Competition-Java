@@ -14,7 +14,7 @@ public class ArmPathTest extends Command {
 	private static boolean isDone = false;
     public ArmPathTest() {
         // Use requires() here to declare subsystem dependencies
-//        requires(Robot.exampleSubsystem);
+        requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
