@@ -83,6 +83,8 @@ public class RobotMap {
     public static final int INTAKE_ROLLER_MOTOR = 10;  	// CAN bus ID 10
     public static final int INTAKE_ARM_MOTOR = 11;		// CAN bus ID 11
     public static final int INTAKE_BEAM_BREAK = 0;		// DIO port 0
+    public static final int INTAKE_ARM_ENCODER_COUNTS_PER_REV = 1440;
+    public static final int INTAKE_ARM_GEAR_RATIO = 300;
     //Intake position array (in degrees) these are the predefined points 
     public static double[] intakePositions = {0, 20, 40, 90, 95};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually

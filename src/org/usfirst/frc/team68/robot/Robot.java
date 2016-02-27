@@ -7,9 +7,16 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team68.robot.commands.ArmHome;
-import org.usfirst.frc.team68.robot.commands.ArmJointDown;
+import org.usfirst.frc.team68.robot.commands.ArmPathTest;
 import org.usfirst.frc.team68.robot.commands.ExampleCommand;
-import org.usfirst.frc.team68.robot.commands.SmartDashArmTester;
+import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
+import org.usfirst.frc.team68.robot.commands.IntakeZero;
+import org.usfirst.frc.team68.robot.commands.ManualMoveBaseLeft;
+import org.usfirst.frc.team68.robot.commands.ManualMoveBaseRight;
+import org.usfirst.frc.team68.robot.commands.ManualMoveElbowDown;
+import org.usfirst.frc.team68.robot.commands.ManualMoveElbowUp;
+import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderDown;
+import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
 import org.usfirst.frc.team68.robot.subsystems.Arm;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
@@ -58,10 +65,18 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         oi = OI.getOI();
         
-        SmartDashboard.putData("Arm Test", new SmartDashArmTester());
+         //Wally was here
+        
         SmartDashboard.putData("Arm Home", new ArmHome());
-        SmartDashboard.putData("Elbow Down", new ArmJointDown());
-        SmartDashboard.putString("ArmStatus", "Okay");
+        SmartDashboard.putData("Arm Path Test", new ArmPathTest());
+        SmartDashboard.putData("Base Left", new ManualMoveBaseLeft());
+        SmartDashboard.putData("Base Rigt", new ManualMoveBaseRight());
+        SmartDashboard.putData("Shoulder Up", new ManualMoveShoulderUp());
+        SmartDashboard.putData("Shoulder Down", new ManualMoveShoulderDown());
+        SmartDashboard.putData("Elbow Down", new ManualMoveElbowDown());
+        SmartDashboard.putData("Elbow Up", new ManualMoveElbowUp());
+        SmartDashboard.putData("Intake Down", new IntakeManualDown());
+        SmartDashboard.putData("Zero Intake", new IntakeZero());
     }
 	
 	/**

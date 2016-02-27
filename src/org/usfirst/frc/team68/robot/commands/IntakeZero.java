@@ -3,17 +3,20 @@ package org.usfirst.frc.team68.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Robot;
+import org.usfirst.frc.team68.robot.RobotMap;
+import org.usfirst.frc.team68.robot.subsystems.Intake;
 
 /**
- *
+ * Manual control of the intake
  */
-public class ReverseCurrentHoodPosition extends Command {
-	boolean isFinished = false;
-
-    public ReverseCurrentHoodPosition() {
+public class IntakeZero extends Command {
+	private boolean isDone = false;
+	
+    public IntakeZero() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.shooter);
+//        requires(Robot.exampleSubsystem);
     }
 
     // Called just before this Command runs the first time
@@ -22,13 +25,13 @@ public class ReverseCurrentHoodPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.reverseCurrentHoodPosition();
-    	isFinished = true;
+    	Robot.intake.zeroIntakeArm();
+    	isDone = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isFinished;
+        return isDone;
     }
 
     // Called once after isFinished returns true

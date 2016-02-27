@@ -24,7 +24,7 @@ public class ManualMoveShoulderDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.manualMoveShoulder(RobotMap.ARM_MANUAL_SHOULDER_SPEED * -1);
+    	Robot.arm.setShoulder(Robot.arm.getShoulder()-1);
     	isFinished = true;
     }
 

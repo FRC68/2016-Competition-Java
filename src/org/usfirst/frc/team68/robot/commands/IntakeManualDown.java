@@ -8,12 +8,12 @@ import org.usfirst.frc.team68.robot.Robot;
 /**
  *
  */
-public class ReverseCurrentHoodPosition extends Command {
-	boolean isFinished = false;
+public class IntakeManualDown extends Command {
 
-    public ReverseCurrentHoodPosition() {
+	private boolean isDone = false;
+    public IntakeManualDown() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.shooter);
+//        requires(Robot.exampleSubsystem);
     }
 
     // Called just before this Command runs the first time
@@ -22,13 +22,14 @@ public class ReverseCurrentHoodPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.reverseCurrentHoodPosition();
-    	isFinished = true;
+    	Robot.intake.setIntakeArm(Robot.intake.getIntakeArm()-10);
+    	Robot.intake.zeroIntakeArm();
+    	isDone = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isFinished;
+        return isDone;
     }
 
     // Called once after isFinished returns true
