@@ -12,7 +12,7 @@ public class ShootBoulder extends CommandGroup {
     	// that still needs review
     	
 /*
-        addSequential(new RetractArmForShooting()); 
+        addSequential(new SetArmSafeForShooting()); 
         addSequential(new OpenHood());
         addSequential(new SetShooterSpeed(double shootingSpeed));
         addSequential(new VisionCommand());

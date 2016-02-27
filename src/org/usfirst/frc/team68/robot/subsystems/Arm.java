@@ -80,12 +80,12 @@ public class Arm extends Subsystem {
 		motorElbow.set(speed);
     }
 
-	private double getBase(){
+	public double getBase(){
 		basePosition = motorBase.getPosition();
 		return basePosition;
 	}
 	
-	private void setBase(double baseAngle){
+	public void setBase(double baseAngle){
 		motorBase.setPosition(MathUtil.degreesToRot(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO));
 	}
 	
