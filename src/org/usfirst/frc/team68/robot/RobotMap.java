@@ -119,7 +119,7 @@ public class RobotMap {
     public static final int LEFT_JOYSTICK = 0;			// USB port 0
     public static final int RIGHT_JOYSTICK = 1;			// USB port 1
     public static final int JOYSTICK_Y = 1;				// This works for both joysticks
-    public static final int JOYSTICK_TRIGGER = 1;		// This works for both joysticks
+    public static final int JOYSTICK_TRIGGER = 2;		// This works for both joysticks
     
     // xBoxController Button & Axis Mapping Constants
     // Buttons

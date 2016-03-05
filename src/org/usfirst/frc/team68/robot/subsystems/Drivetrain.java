@@ -40,7 +40,7 @@ public class Drivetrain extends Subsystem {
 		// Instantiate Drive Motors
 		leftRear = new CANTalon(RobotMap.DRIVE_LEFT_REAR);
 		rightRear = new CANTalon(RobotMap.DRIVE_RIGHT_REAR);
-		this.setAbsoluteEncoders();
+//		this.setAbsoluteEncoders();
 		
 		leftRear.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		leftRear.reverseSensor(false);
