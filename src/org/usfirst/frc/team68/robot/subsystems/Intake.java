@@ -57,23 +57,18 @@ public class Intake extends Subsystem {
     	return intakeRoller.get();
 	}
     
-    public void intakeWithXboxJoystick (double speedXboxJoystickValue, double rightXboxJoystickValue) {
+    public void intakeWithXboxJoysticks (double leftXboxJoystickValue, double rightXboxJoystickValue) {
     	if (true/*beamBreak.get() == false*/){
-    		this.setIntakeSpeed (speedXboxJoystickValue);
+    		this.setIntakeSpeed(leftXboxJoystickValue);
     	} else {
-    		this.stopIntakeMotor(0);
+    		this.setIntakeSpeed(0);
     	}
-    	this.setIntakeArm(this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT)) ;
-    	
+    	this.setIntakeArm(this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT));
     }
   
     public void manualIntakeArm (double rightXboxJoystickValue) {
     	
     }
-    
-    public void stopIntakeMotor (double speed) {
-    	this.setIntakeSpeed(speed) ;
-    } 
     
     public void setIntakeArm(double degrees) {
     	intakeArm.setSetpoint(MathUtil.degreesToRot(degrees)*RobotMap.INTAKE_ARM_GEAR_RATIO);
