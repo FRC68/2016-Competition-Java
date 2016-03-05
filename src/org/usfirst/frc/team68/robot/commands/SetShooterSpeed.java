@@ -1,13 +1,11 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team68.robot.MathUtil;
-import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
@@ -29,15 +27,12 @@ public class SetShooterSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
-    	double currentSpeed;
-    	//temporary shooting speed threshold is 2% 
-    	//maybe add a RobotMap constant?
-    	currentSpeed = Robot.shooter.getSpeed();
-    	if(currentSpeed <= shootingSpeed * (1 - RobotMap.SHOOTER_THRESHOLD) || currentSpeed >= shootingSpeed * (1 + RobotMap.SHOOTER_THRESHOLD)) {
-    		Robot.shooter.setSpeed(shootingSpeed);
+    	double currentSpeed = Robot.shooter.getSpeed();
+    	if(MathUtil.withinPercentThresh(currentSpeed, shootingSpeed, RobotMap.SHOOTER_SPEED_THRESHOLD)){
+       		isFinished = true;
     	}
     	else{
-    		isFinished = true;
+    		Robot.shooter.setSpeed(shootingSpeed);
     	}
     }
     // Make this return true when this Command no longer needs to run execute()

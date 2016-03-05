@@ -6,10 +6,31 @@ public class MathUtil {
 			return false;
 		return true;
 	}
+
 	public static boolean withinThresh(int value, int target, int thresh){
 		if(Math.abs(value-target) > thresh)
 			return false;
 		return true;
+	}
+	
+	public static boolean withinPercentThresh(double value, double target, double thresh){
+    	double actualDiff = Math.abs(value - target);
+    	double allowableDiff = target * (1 - thresh);
+    	boolean isWithinThresh = false;
+		if(actualDiff <= allowableDiff){
+			isWithinThresh = true;
+		}
+		return isWithinThresh;
+	}
+	
+	public static boolean withinPercentThresh(int value, int target, int thresh){
+    	double actualDiff = Math.abs(value - target);
+    	double allowableDiff = target * (1 - thresh);
+    	boolean isWithinThresh = false;
+		if(actualDiff <= allowableDiff){
+			isWithinThresh = true;
+		}
+		return isWithinThresh;
 	}
 	
 	public static boolean withinRange(double high, double low, double value){

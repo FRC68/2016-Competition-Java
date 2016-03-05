@@ -65,8 +65,8 @@ public class RobotMap {
     public static final int SHOOTER_FOLLOWER_MOTOR = 6; 	// CAN bus ID 6
     public static final int HOOD_FORWARD = 0;
     public static final int HOOD_REVERSE = 1;    
-    public static final double SHOOTER_SHOOTING_SPEED = 9500;
-    public static final double SHOOTER_THRESHOLD = .2;
+    public static final double SHOOTER_SHOOTING_SPEED = 5800;
+    public static final double SHOOTER_SPEED_THRESHOLD = .02;  // 2% Threshold
         
     //Shooter RPM values
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
