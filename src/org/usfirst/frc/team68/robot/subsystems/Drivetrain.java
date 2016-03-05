@@ -23,6 +23,8 @@ public class Drivetrain extends Subsystem {
 	private RobotDrive drive;
 	private DoubleSolenoid driveShifter;
 	private static boolean useSquaredInputs = true;
+	private int absolutePositionLeftRear;
+	private int absolutePositionRightRear;
 
 	private static Drivetrain driveTrain;
 	
@@ -37,20 +39,42 @@ public class Drivetrain extends Subsystem {
 		
 		// Instantiate Drive Motors
 		leftRear = new CANTalon(RobotMap.DRIVE_LEFT_REAR);
+		rightRear = new CANTalon(RobotMap.DRIVE_RIGHT_REAR);
+		this.setAbsoluteEncoders();
+		
 		leftRear.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		leftRear.reverseSensor(false);
+		leftRear.configNominalOutputVoltage(+0.0F,-0.0F);
+		leftRear.configPeakOutputVoltage(+12.0f, 0.0f);
+		leftRear.setAllowableClosedLoopErr(0);  // always servo
+    	// set closed loop gains for slot 0
+		leftRear.setProfile(RobotMap.driveLeftPID.slot);
+    	leftRear.setF(RobotMap.driveLeftPID.f);
+    	leftRear.setP(RobotMap.driveLeftPID.p);
+    	leftRear.setI(RobotMap.driveLeftPID.i);
+    	leftRear.setD(RobotMap.driveLeftPID.d);
+    	
+		rightRear.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		rightRear.reverseSensor(false);
+		rightRear.configNominalOutputVoltage(+0.0F,-0.0F);
+		rightRear.configPeakOutputVoltage(+12.0f, 0.0f);
+		rightRear.setAllowableClosedLoopErr(0);  // always servo
+    	// set closed loop gains for slot 0
+		rightRear.setProfile(RobotMap.driveRightPID.slot);
+		rightRear.setF(RobotMap.driveRightPID.f);
+		rightRear.setP(RobotMap.driveRightPID.p);
+		rightRear.setI(RobotMap.driveRightPID.i);
+		rightRear.setD(RobotMap.driveRightPID.d);
 		
 		leftFront = new CANTalon(RobotMap.DRIVE_LEFT_FRONT);
 		leftFront.changeControlMode(CANTalon.TalonControlMode.Follower);
     	leftFront.set(leftRear.getDeviceID());
     	
-		rightRear = new CANTalon(RobotMap.DRIVE_RIGHT_REAR);
-		rightRear.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		
 		rightFront = new CANTalon(RobotMap.DRIVE_RIGHT_FRONT);
 		rightFront.changeControlMode(CANTalon.TalonControlMode.Follower);
     	rightFront.set(rightRear.getDeviceID());
 
-		// Create the drive train. The config on each side is Master/Follower
+		// Create the drive train. The configuration on each side is Master/Follower
     	// so we will create the drive with only the master speed controllers
 		drive = new RobotDrive(leftRear, rightRear);
 		
@@ -98,4 +122,26 @@ public class Drivetrain extends Subsystem {
     public DoubleSolenoid.Value getShifter() {
     	return driveShifter.get();
     }
+    
+    private void setAbsoluteEncoders() {
+		absolutePositionLeftRear = leftRear.getPulseWidthPosition() & 0xFFF;
+		leftRear.setEncPosition(absolutePositionLeftRear);
+		absolutePositionRightRear = rightRear.getPulseWidthPosition() & 0xFFF;
+		rightRear.setEncPosition(absolutePositionRightRear);
+    }
+    
+    public void setModePercentVbus() {
+		leftRear.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
+    	leftRear.set(0);
+		rightRear.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
+    	rightRear.set(0);
+    }
+    
+    public void setModePosition() {
+		leftRear.changeControlMode(CANTalon.TalonControlMode.Position);
+    	leftRear.set(0);
+		rightRear.changeControlMode(CANTalon.TalonControlMode.Position);
+    	rightRear.set(0);
+    }
+
 }

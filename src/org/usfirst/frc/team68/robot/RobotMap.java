@@ -9,6 +9,8 @@ public class RobotMap {
 	
     private static RobotMap robotMap;
     public static PidProfile shooterPID;
+    public static PidProfile driveLeftPID;
+    public static PidProfile driveRightPID;
     
     public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
     public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
@@ -31,6 +33,20 @@ public class RobotMap {
 	    shooterPID.p = .2;
 	    shooterPID.i = 0.0001;
 	    shooterPID.d = 0.0001;
+	    
+	    driveLeftPID = new PidProfile();
+	    driveLeftPID.slot = 0;
+	    driveLeftPID.f = 0.0;
+	    driveLeftPID.p = 0.0;
+	    driveLeftPID.i = 0.0;
+	    driveLeftPID.d = 0.0;
+	    
+	    driveRightPID = new PidProfile();
+	    driveRightPID.slot = 0;
+	    driveRightPID.f = 0.0;
+	    driveRightPID.p = 0.0;
+	    driveRightPID.i = 0.0;
+	    driveRightPID.d = 0.0;
 	    
 	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
 	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);
