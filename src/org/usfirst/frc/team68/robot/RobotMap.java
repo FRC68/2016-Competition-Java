@@ -65,9 +65,9 @@ public class RobotMap {
     public static final double ARM_SHOULDER_LENGTH = 24;
     public static final double ARM_ELBOW_LENGTH = 21.5;
     public static final int ARM_ENCODER_COUNTS_PER_REV = 1440;
-    public static final double ARM_MANUAL_BASE_SPEED = .5;		// Multiply by -1 to reverse
-    public static final double ARM_MANUAL_SHOULDER_SPEED = .5;
-    public static final double ARM_MANUAL_ELBOW_SPEED = .5;
+    public static final double ARM_BASE_HOME = 0;
+    public static final double ARM_BASE_HOME_THRESHOLD = 1;
+
     //Timeout
     public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
     //IN DEGREES!

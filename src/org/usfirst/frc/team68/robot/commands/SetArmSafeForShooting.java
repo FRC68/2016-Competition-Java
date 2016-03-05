@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.Robot;
+import org.usfirst.frc.team68.robot.RobotMap;
 
 /**
  *
@@ -27,10 +28,10 @@ public class SetArmSafeForShooting extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double currentPosition = Robot.arm.getBase();
-        if( currentPosition <= -2 || currentPosition >= 2 ) {
-        	Robot.arm.setBase(0);
-        } else {
+        if( MathUtil.withinThresh(currentPosition, RobotMap.ARM_BASE_HOME, RobotMap.ARM_BASE_HOME_THRESHOLD)) {
         	isFinished = true;
+        } else {
+        	Robot.arm.setBase(RobotMap.ARM_BASE_HOME);
         }
     }
 
