@@ -11,6 +11,7 @@ import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderDown;
 import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
 import org.usfirst.frc.team68.robot.commands.OpenHood;
 import org.usfirst.frc.team68.robot.commands.SetShooterSpeed;
+import org.usfirst.frc.team68.robot.commands.ShootBoulder;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -96,7 +97,7 @@ public class OI {
 		xboxX.whenPressed(new SetShooterSpeed(5800));
 		
 		xboxY = new JoystickButton(xboxController, RobotMap.XBOX_Y);
-		xboxY.whenPressed(new SetShooterSpeed(300));
+		xboxY.whenPressed(new ShootBoulder());
 
 	}
 	

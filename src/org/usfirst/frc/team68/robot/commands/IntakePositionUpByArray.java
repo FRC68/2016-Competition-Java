@@ -12,7 +12,7 @@ import org.usfirst.frc.team68.robot.subsystems.Intake;
  * Manual control of the intake
  */
 public class IntakePositionUpByArray extends Command {
-	private boolean isDone = false;
+	private boolean isFinished = false;
 	
     public IntakePositionUpByArray() {
         // Use requires() here to declare subsystem dependencies
@@ -26,18 +26,18 @@ public class IntakePositionUpByArray extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	int index;
-    	index = MathUtil.findClosestIndex(RobotMap.intakePositions, Intake.getIntake().getIntakeArm()) + 1;
+    	index = MathUtil.findClosestIndex(RobotMap.intakePositions, Robot.intake.getIntakeArm()) + 1;
     	if(index > RobotMap.intakePositions.length -1)
     		index = RobotMap.intakePositions.length -1;
     	
-    	Intake.getIntake().setIntakeArm(RobotMap.intakePositions[index]);
+    	Robot.intake.setIntakeArm(RobotMap.intakePositions[index]);
     	
-    	isDone = true;
+    	isFinished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isDone;
+        return isFinished;
     }
 
     // Called once after isFinished returns true

@@ -1,21 +1,19 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
-import org.usfirst.frc.team68.robot.MathUtil;
-import org.usfirst.frc.team68.robot.Robot;
-import org.usfirst.frc.team68.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team68.robot.Robot;
+
 /**
- * Manual control of the intake
+ *
  */
-public class IntakePositionDownByArray extends Command {
-	private boolean isFinished = false;
-	
-    public IntakePositionDownByArray() {
+public class CancelCommand extends Command {
+	boolean isFinished = false;
+
+    public CancelCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -24,15 +22,7 @@ public class IntakePositionDownByArray extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	int index;
-    	index = MathUtil.findClosestIndex(RobotMap.intakePositions, Robot.intake.getIntakeArm()) - 1;
-    	if(index > RobotMap.intakePositions.length -1)
-    		index = RobotMap.intakePositions.length -1;
-    	if(index < 0)
-    		index = 0;
-    	
-    	Robot.intake.setIntakeArm(RobotMap.intakePositions[index]);
-    	
+    	Robot.shooter.openHood();
     	isFinished = true;
     }
 

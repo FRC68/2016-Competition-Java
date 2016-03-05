@@ -10,7 +10,7 @@ import org.usfirst.frc.team68.robot.Robot;
  */
 public class IntakeManualDown extends Command {
 
-	private boolean isDone = false;
+	private boolean isFinished = false;
     public IntakeManualDown() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.intake);
@@ -24,12 +24,12 @@ public class IntakeManualDown extends Command {
     protected void execute() {
     	Robot.intake.setIntakeArm(Robot.intake.getIntakeArm()-10);
     	Robot.intake.zeroIntakeArm();
-    	isDone = true;
+    	isFinished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isDone;
+        return isFinished;
     }
 
     // Called once after isFinished returns true
