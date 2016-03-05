@@ -64,7 +64,8 @@ public class RobotMap {
     public static final int SHOOTER_PRIMARY_MOTOR = 5;  	// CAN bus ID 5
     public static final int SHOOTER_FOLLOWER_MOTOR = 6; 	// CAN bus ID 6
     public static final int HOOD_FORWARD = 0;
-    public static final int HOOD_REVERSE = 1;    
+    public static final int HOOD_REVERSE = 1;
+    public static final int SHOOTER_FEED_DELAY = 2;
     public static final double SHOOTER_SHOOTING_SPEED = 5800;
     public static final double SHOOTER_SPEED_THRESHOLD = .02;  // 2% Threshold
         
@@ -106,6 +107,7 @@ public class RobotMap {
     public static final double INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
     public static final double INTAKE_ARM_HOME = 0;
     public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
+    public static final int INTAKE_BOULDER_FEED_SPEED = 1;
     //Intake position array (in degrees) these are the predefined points 
     public static double[] intakePositions = {0, 20, 40, 90, 95};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually

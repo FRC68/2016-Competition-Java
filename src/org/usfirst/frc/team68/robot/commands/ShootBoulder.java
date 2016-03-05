@@ -14,8 +14,9 @@ public class ShootBoulder extends CommandGroup {
         addSequential(new SetIntakeSafeForShooting());
         addSequential(new OpenHood());
         addSequential(new SetShooterSpeed(RobotMap.SHOOTER_SHOOTING_SPEED));
-        addSequential(new FeedBoulderToShooter());
-        addSequential(new WaitCommand(3));
+        addSequential(new SetIntakeSpeed(RobotMap.INTAKE_BOULDER_FEED_SPEED));
+        addSequential(new WaitCommand(RobotMap.SHOOTER_FEED_DELAY));
+        addSequential(new SetIntakeSpeed(0));
         addSequential(new SetShooterSpeed(0));        
         addSequential(new CloseHood());
     } 
