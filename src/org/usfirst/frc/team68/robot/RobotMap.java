@@ -103,7 +103,9 @@ public class RobotMap {
     public static final int INTAKE_BEAM_BREAK = 0;		// DIO port 0
     public static final int INTAKE_ARM_ENCODER_COUNTS_PER_REV = 1440;
     public static final int INTAKE_ARM_GEAR_RATIO = 300;
-    public static final int INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
+    public static final double INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
+    public static final double INTAKE_ARM_HOME = 0;
+    public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
     //Intake position array (in degrees) these are the predefined points 
     public static double[] intakePositions = {0, 20, 40, 90, 95};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually

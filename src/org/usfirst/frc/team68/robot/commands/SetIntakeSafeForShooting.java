@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
+import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
 
@@ -25,11 +26,10 @@ public class SetIntakeSafeForShooting extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double currentPosition = Robot.intake.getIntakeArm();
-    	// !!! TO DO add constant for threshold
-        if( currentPosition <= -2 || currentPosition >= 2 ) {
-        	Robot.intake.setIntakeArm(RobotMap.INTAKE_ARM_SHOOTING_SAFETY_ANGLE);
-        } else {
+        if( MathUtil.withinThresh(currentPosition, RobotMap.INTAKE_ARM_HOME, RobotMap.INTAKE_ARM_HOME_THRESHOLD)) {
         	isFinished = true;
+        } else {
+        	Robot.intake.setIntakeArm(RobotMap.INTAKE_ARM_SHOOTING_SAFETY_ANGLE);
         }
     }
 
