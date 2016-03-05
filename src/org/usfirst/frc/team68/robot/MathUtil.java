@@ -15,7 +15,7 @@ public class MathUtil {
 	
 	public static boolean withinPercentThresh(double value, double target, double thresh){
     	double actualDiff = Math.abs(value - target);
-    	double allowableDiff = target * (1 - thresh);
+    	double allowableDiff = Math.abs(target * (1 - thresh));
     	boolean isWithinThresh = false;
 		if(actualDiff <= allowableDiff){
 			isWithinThresh = true;
@@ -25,7 +25,7 @@ public class MathUtil {
 	
 	public static boolean withinPercentThresh(int value, int target, int thresh){
     	double actualDiff = Math.abs(value - target);
-    	double allowableDiff = target * (1 - thresh);
+    	double allowableDiff = Math.abs(target * (1 - thresh));
     	boolean isWithinThresh = false;
 		if(actualDiff <= allowableDiff){
 			isWithinThresh = true;
