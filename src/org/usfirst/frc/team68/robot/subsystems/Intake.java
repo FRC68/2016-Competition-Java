@@ -71,7 +71,7 @@ public class Intake extends Subsystem {
     }
     
     public void setIntakeArm(double degrees) {
-    	intakeArm.setSetpoint(MathUtil.degreesToRot(degrees)*RobotMap.INTAKE_ARM_GEAR_RATIO);
+        intakeArm.setSetpoint(MathUtil.degreesToRot(degrees)*RobotMap.INTAKE_ARM_GEAR_RATIO);
     }
     
     public double getIntakeArm(){

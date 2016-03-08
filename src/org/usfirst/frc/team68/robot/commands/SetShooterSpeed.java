@@ -6,6 +6,7 @@ import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -14,6 +15,7 @@ public class SetShooterSpeed extends Command {
 
 	private boolean isFinished = false;
 	private double shootingSpeed;
+	private double currentSpeed = 0;
 	
     public SetShooterSpeed(double speed) {
     	shootingSpeed = speed;
@@ -27,7 +29,8 @@ public class SetShooterSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
-    	double currentSpeed = Robot.shooter.getSpeed();
+    	currentSpeed = Robot.shooter.getSpeed();
+    	SmartDashboard.putNumber("Shooter Current Speed: ",currentSpeed);
     	if(MathUtil.withinPercentThresh(currentSpeed, shootingSpeed, RobotMap.SHOOTER_SPEED_THRESHOLD)){
        		isFinished = true;
     	}
@@ -42,6 +45,7 @@ public class SetShooterSpeed extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	SmartDashboard.putNumber("Shooter Current Speed: ",currentSpeed);
     }
 
     // Called when another command which requires one or more of the same

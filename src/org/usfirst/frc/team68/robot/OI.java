@@ -78,7 +78,7 @@ public class OI {
 		
 		leftTrigger = new JoystickButton(leftJoy, RobotMap.JOYSTICK_TRIGGER);
 		leftTrigger.whenPressed(new DriveShiftLow());
-		rightTrigger = new JoystickButton(leftJoy, RobotMap.JOYSTICK_TRIGGER);
+		rightTrigger = new JoystickButton(rightJoy, RobotMap.JOYSTICK_TRIGGER);
 		rightTrigger.whenPressed(new DriveShiftHigh());
 		
 		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
