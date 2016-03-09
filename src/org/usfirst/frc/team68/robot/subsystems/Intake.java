@@ -45,25 +45,31 @@ public class Intake extends Subsystem {
     }
     
     public void setIntakeSpeed(double speed) {
-    	intakeRoller.set(speed);
+    		intakeRoller.set(speed);
     }
     
     public double getIntakeSpeed() {
     	return intakeRoller.get();
     }
     
-    
     public double getSpeed() {
     	return intakeRoller.get();
 	}
     
     public void intakeWithXboxJoysticks (double leftXboxJoystickValue, double rightXboxJoystickValue) {
+    	double currentPosition;
+    	double position;
     	if (beamBreak.get() == false){
     		this.setIntakeSpeed(leftXboxJoystickValue);
     	} else {
     		this.setIntakeSpeed(0);
     	}
-    	this.setIntakeArm(this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT));
+    	currentPosition = this.getIntakeArm();
+    	position = currentPosition + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
+    	if(!intakeArm.isFwdLimitSwitchClosed() || position <= currentPosition ) {
+        	this.setIntakeArm(position);
+    	}
+
     }
   
     public void manualIntakeArm (double rightXboxJoystickValue) {

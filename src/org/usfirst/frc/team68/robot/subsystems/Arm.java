@@ -4,6 +4,7 @@ package org.usfirst.frc.team68.robot.subsystems;
 import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.RobotMap;
+import org.usfirst.frc.team68.robot.commands.ArmWriteAnglestoDash;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -15,9 +16,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Arm extends Subsystem {
 	//Declare Variables
 	private static Arm arm;
-	private CANTalon motorBase;
-	private CANTalon motorShoulder;
-	private CANTalon motorElbow;
+	public CANTalon motorBase;
+	public CANTalon motorShoulder;
+	public CANTalon motorElbow;
 	private double basePosition;
 	private double shoulderPosition;
 	private double elbowPosition;
@@ -55,7 +56,7 @@ public class Arm extends Subsystem {
 	
     public void initDefaultCommand() {
         //Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ArmWriteAnglestoDash());
     }
 
 	public double getBase(){
@@ -64,7 +65,13 @@ public class Arm extends Subsystem {
 	}
 	
 	public void setBase(double baseAngle){
-		motorBase.setSetpoint(MathUtil.degreesToRot(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO));
+		double currentPosition;
+		double position;
+		currentPosition = this.getBase();
+		position = MathUtil.degreesToRot(baseAngle*RobotMap.ARM_BASE_GEAR_RATIO);
+//		if(!motorBase.isFwdLimitSwitchClosed() || position <= currentPosition) {
+			motorBase.setSetpoint(position);
+//		}
 	}
 	
 	public double getShoulder(){
@@ -73,7 +80,13 @@ public class Arm extends Subsystem {
 	}
 	
 	public void setShoulder(double shoulderAngle){
-		motorShoulder.setSetpoint(MathUtil.degreesToRot(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO));
+		double currentPosition;
+		double position;
+		currentPosition = this.getShoulder();
+		position = MathUtil.degreesToRot(shoulderAngle*RobotMap.ARM_SHOULDER_GEAR_RATIO);
+//		if(!motorBase.isFwdLimitSwitchClosed() || position <= currentPosition) {
+			motorShoulder.setSetpoint(position);
+//		}
 	}
 	
 	public double getElbow(){
@@ -82,7 +95,13 @@ public class Arm extends Subsystem {
 	}
 	
 	public void setElbow(double elbowAngle){
-		motorElbow.setSetpoint(MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO));		
+		double currentPosition;
+		double position;
+		currentPosition = this.getElbow();
+		position = MathUtil.degreesToRot(elbowAngle*RobotMap.ARM_ELBOW_GEAR_RATIO);
+//		if(!motorBase.isFwdLimitSwitchClosed() || position <= currentPosition) {
+			motorElbow.setSetpoint(position);
+//		}
 	}
 	
 	public void setArmPoint(Point xyz, double threshold) {

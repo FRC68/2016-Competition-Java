@@ -28,7 +28,7 @@ public class ArmPathTest extends Command {
     	
     	Robot.arm.setArmPoint(RobotMap.ArmDrawbridgePath.getPointAtPercent(percent), 2);
     	
-    	percent += 0.5;
+    	percent += 5;
     	if(percent >= 100)
     		isDone = true;
     }
