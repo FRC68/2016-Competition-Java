@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team68.robot.subsystems;
 
+import org.usfirst.frc.team68.robot.RobotMap;
+
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.DrawMode;
 import com.ni.vision.NIVision.Image;
@@ -30,7 +32,7 @@ public class Vision extends Subsystem {
 	
 	private Vision(){
         frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-        camera = new AxisCamera("10.1.91.100");
+        camera = new AxisCamera(RobotMap.AXIS_CAMERA_IP);
 	}
     
 	public void setImage() {

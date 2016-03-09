@@ -15,8 +15,14 @@ public class RobotMap {
     public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
     public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
     
+    public static final String DT_DRAWBRIDGE_PATH_FILENAME = "/paths/DT_DBRIDGE.xml";
+    public static final String DT_SALLYPORT_PATH_FILENAME = "/paths/DT_SPORT.xml";
+    
     public static PointPath ArmDrawbridgePath;
     public static PointPath ArmSallyportPath;
+    
+    public static PointPath DtDrawbridgePath;
+    public static PointPath DtSallyportPath;
     
     public static RobotMap getRobotMap() {
     	if( robotMap == null) {
@@ -50,6 +56,9 @@ public class RobotMap {
 	    
 	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
 	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);
+	    
+	    DtDrawbridgePath = PathLoader.loadPath(DT_DRAWBRIDGE_PATH_FILENAME);
+	    DtSallyportPath = PathLoader.loadPath(DT_SALLYPORT_PATH_FILENAME);
 	}
 
     // DriveTrain Constants
@@ -137,6 +146,10 @@ public class RobotMap {
     
     // Pneumatics Port Mapping Constants
     public static final int PCM_MAIN = 0;
+    
+    // Axis Camera
+    public static final String AXIS_CAMERA_HOST_NAME = "axis-camera";
+    public static final String AXIS_CAMERA_IP = "10.0.68.11";
   
 }
 

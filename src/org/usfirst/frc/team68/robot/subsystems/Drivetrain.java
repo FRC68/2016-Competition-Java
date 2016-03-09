@@ -25,6 +25,7 @@ public class Drivetrain extends Subsystem {
 	private static boolean useSquaredInputs = true;
 	private int absolutePositionLeftRear;
 	private int absolutePositionRightRear;
+	private boolean isPercentVbus = true;
 
 	private static Drivetrain driveTrain;
 	
@@ -130,11 +131,16 @@ public class Drivetrain extends Subsystem {
 		rightRear.setEncPosition(absolutePositionRightRear);
     }
     
+    public boolean isDrivetrainPercentVbus() {
+    	return isPercentVbus;
+    }
+    
     public void setModePercentVbus() {
 		leftRear.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
     	leftRear.set(0);
 		rightRear.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
     	rightRear.set(0);
+    	isPercentVbus = true;
     }
     
     public void setModePosition() {
@@ -142,6 +148,15 @@ public class Drivetrain extends Subsystem {
     	leftRear.set(0);
 		rightRear.changeControlMode(CANTalon.TalonControlMode.Position);
     	rightRear.set(0);
+    	isPercentVbus = false;
+    }
+    
+    public void setPosition(double left, double right){
+    	if(this.isDrivetrainPercentVbus())
+    		return;
+    	
+    	leftRear.setPosition(left);
+    	rightRear.setPosition(right);
     }
 
 }

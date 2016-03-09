@@ -58,7 +58,7 @@ public class Intake extends Subsystem {
 	}
     
     public void intakeWithXboxJoysticks (double leftXboxJoystickValue, double rightXboxJoystickValue) {
-    	if (true/*beamBreak.get() == false*/){
+    	if (beamBreak.get() == false){
     		this.setIntakeSpeed(leftXboxJoystickValue);
     	} else {
     		this.setIntakeSpeed(0);

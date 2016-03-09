@@ -21,6 +21,7 @@ import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
 import org.usfirst.frc.team68.robot.subsystems.OffBoardCompressor;
 import org.usfirst.frc.team68.robot.subsystems.Shooter;
+import org.usfirst.frc.team68.robot.subsystems.Vision;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
+//	public static Vision vision;
 	
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static RobotMap robotMap;
@@ -58,6 +60,7 @@ public class Robot extends IterativeRobot {
     	shooter = Shooter.getShooter();
     	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
+//    	vision = Vision.getVision();
         chooser = new SendableChooser();
 //       chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());

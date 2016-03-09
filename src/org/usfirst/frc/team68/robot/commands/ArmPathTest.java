@@ -26,7 +26,7 @@ public class ArmPathTest extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	Robot.arm.setArmPoint(RobotMap.ArmDrawbridgePath.getPointAtPercent(percent), 5);
+    	Robot.arm.setArmPoint(RobotMap.ArmDrawbridgePath.getPointAtPercent(percent), 2);
     	
     	percent += 0.5;
     	if(percent >= 100)
