@@ -3,8 +3,6 @@ package org.usfirst.frc.team68.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team68.robot.Robot;
-
 /**
  *
  */
@@ -13,7 +11,7 @@ public class CancelCommand extends Command {
 
     public CancelCommand() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.shooter);
+    	//requires();
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +20,7 @@ public class CancelCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.openHood();
+    	// to do
     	isFinished = true;
     }
 

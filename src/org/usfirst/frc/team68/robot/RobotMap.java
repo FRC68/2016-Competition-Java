@@ -20,11 +20,19 @@ public class RobotMap {
     public static final String DT_DRAWBRIDGE_PATH_FILENAME = "/paths/DT_DBRIDGE.xml";
     public static final String DT_SALLYPORT_PATH_FILENAME = "/paths/DT_SPORT.xml";
     
+    public static final String DT_AUTON1_PATH_FILENAME = "/paths/DT_AUTON1.xml";
+    public static final String DT_AUTON2_PATH_FILENAME = "/paths/DT_AUTON2.xml";
+    public static final String DT_AUTON3_PATH_FILENAME = "/paths/DT_AUTON3.xml";
+    
     public static PointPath ArmDrawbridgePath;
     public static PointPath ArmSallyportPath;
     
     public static PointPath DtDrawbridgePath;
     public static PointPath DtSallyportPath;
+    
+    public static PointPath DtAuton1Path;
+    public static PointPath DtAuton2Path;
+    public static PointPath DtAuton3Path;
     
     public static RobotMap getRobotMap() {
     	if( robotMap == null) {

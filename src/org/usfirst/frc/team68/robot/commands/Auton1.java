@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Auton1 extends CommandGroup {
 
     public Auton1() {
-    	Robot.driveTrain.setModePosition();
+        addSequential(new DriveThePath());
     	
     } 
 }
