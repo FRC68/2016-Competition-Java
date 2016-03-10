@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Intake extends Subsystem {
 	private CANTalon intakeRoller;
 	private CANTalon intakeArm;
 	private static Intake intake;
+	private double intakeDesired;
 	
 	public static Intake getIntake() {
 		if (intake == null)  {
@@ -32,9 +34,15 @@ public class Intake extends Subsystem {
 		beamBreak = new DigitalInput(RobotMap.INTAKE_BEAM_BREAK);
 		intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
     	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
-    	intakeArm.reverseSensor(true);
-    	intakeArm.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	intakeArm.changeControlMode(CANTalon.TalonControlMode.Position);
+    	intakeArm.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	intakeArm.reverseSensor(false);
+    	// set closed loop gains for slot 0
+    	intakeArm.setProfile(RobotMap.IntakeArmPID.slot);
+    	intakeArm.setF(RobotMap.IntakeArmPID.f);
+    	intakeArm.setP(RobotMap.IntakeArmPID.p);
+    	intakeArm.setI(RobotMap.IntakeArmPID.i);
+    	intakeArm.setD(RobotMap.IntakeArmPID.d);
     	intakeArm.configEncoderCodesPerRev(RobotMap.INTAKE_ARM_ENCODER_COUNTS_PER_REV);
     	intakeArm.set(0);
     }
@@ -57,18 +65,22 @@ public class Intake extends Subsystem {
 	}
     
     public void intakeWithXboxJoysticks (double leftXboxJoystickValue, double rightXboxJoystickValue) {
-    	double currentPosition;
+    	double currentSetpoint;
     	double position;
-    	if (beamBreak.get() == false){
+    	
+    	if (beamBreak.get() == true){
     		this.setIntakeSpeed(leftXboxJoystickValue);
     	} else {
     		this.setIntakeSpeed(0);
     	}
-    	currentPosition = this.getIntakeArm();
-    	position = currentPosition + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
-    	if(!intakeArm.isFwdLimitSwitchClosed() || position <= currentPosition ) {
-        	this.setIntakeArm(position);
-    	}
+    	currentSetpoint = intakeArm.getSetpoint();
+    	intakeDesired += (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
+//    	if(!intakeArm.isFwdLimitSwitchClosed() || position <= currentPosition ) {
+     	this.setIntakeArm(intakeDesired);
+//    	}
+    	SmartDashboard.putNumber("Intake Arm Set: ", intakeArm.getSetpoint());
+    	SmartDashboard.putNumber("Intake Arm Position: ", intakeArm.getPosition());
+
 
     }
   

@@ -9,6 +9,8 @@ public class RobotMap {
 	
     private static RobotMap robotMap;
     public static PidProfile shooterPID;
+    public static PidProfile armPID;
+    public static PidProfile IntakeArmPID;
     public static PidProfile driveLeftPID;
     public static PidProfile driveRightPID;
     
@@ -40,17 +42,34 @@ public class RobotMap {
 	    shooterPID.i = 0.0001;
 	    shooterPID.d = 0.0001;
 	    
+	    //Arm PID - one profile for all three axes
+	    armPID = new PidProfile();
+	    armPID.slot = 0;
+	    armPID.f = 0.0;
+	    armPID.p = .5;
+	    armPID.i = 0.5;
+	    armPID.d = 0.0;
+	    
+	    //IntakeArm PID - one profile for all three axes
+	    IntakeArmPID = new PidProfile();
+	    IntakeArmPID.slot = 0;
+	    IntakeArmPID.f = 0.0;
+	    IntakeArmPID.p = 0.5;
+	    IntakeArmPID.i = 0.5;
+	    IntakeArmPID.d = 0.0;
+
+	    // Drive PID
 	    driveLeftPID = new PidProfile();
 	    driveLeftPID.slot = 0;
 	    driveLeftPID.f = 0.0;
-	    driveLeftPID.p = 0.0;
+	    driveLeftPID.p = 1.0;
 	    driveLeftPID.i = 0.0;
 	    driveLeftPID.d = 0.0;
 	    
 	    driveRightPID = new PidProfile();
 	    driveRightPID.slot = 0;
 	    driveRightPID.f = 0.0;
-	    driveRightPID.p = 0.0;
+	    driveRightPID.p = 1.0;
 	    driveRightPID.i = 0.0;
 	    driveRightPID.d = 0.0;
 	    
@@ -62,10 +81,10 @@ public class RobotMap {
 	}
 
     // DriveTrain Constants
-    public static final int DRIVE_LEFT_FRONT = 1;			// CAN bus ID 1
-    public static final int DRIVE_RIGHT_FRONT = 2;			// CAN bus ID 2
-    public static final int DRIVE_LEFT_REAR = 3;			// CAN bus ID 3
-    public static final int DRIVE_RIGHT_REAR = 4;			// CAN bus ID 4
+    public static final int DRIVE_LEFT_FRONT = 3;			// CAN bus ID 1
+    public static final int DRIVE_RIGHT_FRONT = 4;			// CAN bus ID 2
+    public static final int DRIVE_LEFT_REAR = 1;			// CAN bus ID 3
+    public static final int DRIVE_RIGHT_REAR = 2;			// CAN bus ID 4
     public static final int DRIVE_SHIFTER_PCM_A = 2;		// PCM ID 2
     public static final int DRIVE_SHIFTER_PCM_B = 3;		// PCM ID 3
     
@@ -112,7 +131,7 @@ public class RobotMap {
     public static final int INTAKE_ARM_MOTOR = 11;		// CAN bus ID 11
     public static final int INTAKE_BEAM_BREAK = 0;		// DIO port 0
     public static final int INTAKE_ARM_ENCODER_COUNTS_PER_REV = 1440;
-    public static final int INTAKE_ARM_GEAR_RATIO = 300;
+    public static final int INTAKE_ARM_GEAR_RATIO = 30;
     public static final double INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
     public static final double INTAKE_ARM_HOME = 0;
     public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
@@ -121,7 +140,7 @@ public class RobotMap {
     public static double[] intakePositions = {0, 20, 40, 90, 95};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually
     //position will be incremented by the resulting number of degrees per iteration (approx 20ms)
-    public static double INTAKE_JOYSTICK_MULT = 0.5;
+    public static final double INTAKE_JOYSTICK_MULT = 1.0;
     
 
     // Joystick Port Mapping Constants

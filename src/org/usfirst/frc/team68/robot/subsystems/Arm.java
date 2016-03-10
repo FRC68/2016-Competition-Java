@@ -36,6 +36,14 @@ public class Arm extends Subsystem {
 		motorBase.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		//motorShoulder.reverseSensor(true); //Maybe?
 		motorBase.changeControlMode(CANTalon.TalonControlMode.Position);
+		motorBase.configNominalOutputVoltage(+0.0F,-0.0F);
+		motorBase.configPeakOutputVoltage(+12.0f, 0.0f);
+    	// set closed loop gains for slot 0
+		motorBase.setProfile(RobotMap.armPID.slot);
+		motorBase.setF(RobotMap.armPID.f);
+		motorBase.setP(RobotMap.armPID.p);
+		motorBase.setI(RobotMap.armPID.i);
+		motorBase.setD(RobotMap.armPID.d);
 		motorBase.configEncoderCodesPerRev(RobotMap.ARM_ENCODER_COUNTS_PER_REV);
 		this.setBase(0);
 		
@@ -43,6 +51,15 @@ public class Arm extends Subsystem {
 		motorShoulder.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorShoulder.reverseSensor(true);
 		motorShoulder.changeControlMode(CANTalon.TalonControlMode.Position);
+		motorShoulder.configNominalOutputVoltage(+0.0F,-0.0F);
+		motorShoulder.configPeakOutputVoltage(+12.0f, 0.0f);
+    	// set closed loop gains for slot 0
+		motorShoulder.setProfile(RobotMap.armPID.slot);
+		motorShoulder.setF(RobotMap.armPID.f);
+		motorShoulder.setP(RobotMap.armPID.p);
+		motorShoulder.setI(RobotMap.armPID.i);
+		motorShoulder.setD(RobotMap.armPID.d);
+
 		motorShoulder.configEncoderCodesPerRev(RobotMap.ARM_ENCODER_COUNTS_PER_REV);
 		this.setShoulder(0);
 
@@ -50,6 +67,15 @@ public class Arm extends Subsystem {
 		motorElbow.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		motorElbow.changeControlMode(CANTalon.TalonControlMode.Position);
 		motorElbow.reverseOutput(true);
+		motorElbow.configNominalOutputVoltage(+0.0F,-0.0F);
+		motorElbow.configPeakOutputVoltage(+12.0f, 0.0f);
+    	// set closed loop gains for slot 0
+		motorElbow.setProfile(RobotMap.armPID.slot);
+		motorElbow.setF(RobotMap.armPID.f);
+		motorElbow.setP(RobotMap.armPID.p);
+		motorElbow.setI(RobotMap.armPID.i);
+		motorElbow.setD(RobotMap.armPID.d);
+
 		motorElbow.configEncoderCodesPerRev(RobotMap.ARM_ENCODER_COUNTS_PER_REV);
 		this.setElbow(0);
 	}

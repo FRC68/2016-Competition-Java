@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -148,6 +149,8 @@ public class Drivetrain extends Subsystem {
     	leftRear.set(0);
 		rightRear.changeControlMode(CANTalon.TalonControlMode.Position);
     	rightRear.set(0);
+    	leftRear.enable();
+    	rightRear.enable();
     	isPercentVbus = false;
     }
     
@@ -155,8 +158,10 @@ public class Drivetrain extends Subsystem {
     	if(this.isDrivetrainPercentVbus())
     		return;
     	
-    	leftRear.setPosition(left);
-    	rightRear.setPosition(right);
+    	leftRear.setSetpoint(left);
+    	rightRear.setSetpoint(right);
+    	SmartDashboard.putNumber("dtLSet", leftRear.getSetpoint());
+    	SmartDashboard.putNumber("dtRset", rightRear.getSetpoint());
     }
 
 }

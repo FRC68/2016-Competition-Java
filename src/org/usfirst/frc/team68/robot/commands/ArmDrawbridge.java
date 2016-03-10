@@ -2,6 +2,7 @@
 package org.usfirst.frc.team68.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
@@ -15,6 +16,7 @@ public class ArmDrawbridge extends Command {
     public ArmDrawbridge() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arm);
+        requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -35,7 +37,9 @@ public class ArmDrawbridge extends Command {
     			RobotMap.DtDrawbridgePath.getPointAtPercent(percent).x, 
     			RobotMap.DtDrawbridgePath.getPointAtPercent(percent).x);
     	
-    	Robot.arm.setArmPoint(RobotMap.ArmDrawbridgePath.getPointAtPercent(percent), 2);
+    	
+    	SmartDashboard.putNumber("reqPercent", RobotMap.DtDrawbridgePath.getPointAtPercent(percent).x);
+    	Robot.arm.setArmPoint(RobotMap.ArmDrawbridgePath.getPointAtPercent(percent), 10);
     	
     	percent += 0.5;
     	if(percent >= 100)
@@ -49,6 +53,7 @@ public class ArmDrawbridge extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.setModePercentVbus();
     }
 
     // Called when another command which requires one or more of the same

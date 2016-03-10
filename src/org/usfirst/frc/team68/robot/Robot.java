@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team68.robot.commands.ArmDrawbridge;
 import org.usfirst.frc.team68.robot.commands.ArmHome;
 import org.usfirst.frc.team68.robot.commands.ArmPathTest;
 import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
@@ -71,6 +72,7 @@ public class Robot extends IterativeRobot {
         
         SmartDashboard.putData("Arm Home", new ArmHome());
         SmartDashboard.putData("Arm Path Test", new ArmPathTest());
+        SmartDashboard.putData("DT path", new ArmDrawbridge());
         SmartDashboard.putData("Base Left", new ManualMoveBaseLeft());
         SmartDashboard.putData("Base Rigt", new ManualMoveBaseRight());
         SmartDashboard.putData("Shoulder Up", new ManualMoveShoulderUp());
