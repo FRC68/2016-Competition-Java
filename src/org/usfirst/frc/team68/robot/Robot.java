@@ -45,8 +45,6 @@ public class Robot extends IterativeRobot {
 	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
 //	public static Vision vision;
-	
-//	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static RobotMap robotMap;
 	public static OI oi;
 
@@ -109,20 +107,8 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	
-    	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+     	// schedule the autonomous command 
+         if (autonomousCommand != null) autonomousCommand.start();
     }
 
     /**
