@@ -21,7 +21,6 @@ public class Intake extends Subsystem {
 	private CANTalon intakeRoller;
 	private CANTalon intakeArm;
 	private static Intake intake;
-	private double intakeDesired;
 	
 	public static Intake getIntake() {
 		if (intake == null)  {
@@ -34,16 +33,11 @@ public class Intake extends Subsystem {
 		beamBreak = new DigitalInput(RobotMap.INTAKE_BEAM_BREAK);
 		intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
     	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
+    	intakeArm.reverseSensor(true);
+    	intakeArm.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
     	intakeArm.changeControlMode(CANTalon.TalonControlMode.Position);
-    	intakeArm.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	intakeArm.reverseSensor(false);
-    	// set closed loop gains for slot 0
-    	intakeArm.setProfile(RobotMap.IntakeArmPID.slot);
-    	intakeArm.setF(RobotMap.IntakeArmPID.f);
-    	intakeArm.setP(RobotMap.IntakeArmPID.p);
-    	intakeArm.setI(RobotMap.IntakeArmPID.i);
-    	intakeArm.setD(RobotMap.IntakeArmPID.d);
-    	intakeArm.configEncoderCodesPerRev(RobotMap.INTAKE_ARM_ENCODER_COUNTS_PER_REV);
+    	//intakeArm.configEncoderCodesPerRev(RobotMap.INTAKE_ARM_ENCODER_COUNTS_PER_REV);
+    	intakeArm.setPID(RobotMap.IntakeArmPID.p, RobotMap.IntakeArmPID.i, RobotMap.IntakeArmPID.d);
     	intakeArm.set(0);
     }
 
@@ -53,47 +47,56 @@ public class Intake extends Subsystem {
     }
     
     public void setIntakeSpeed(double speed) {
-    		intakeRoller.set(speed);
+    	intakeRoller.set(speed);
     }
     
     public double getIntakeSpeed() {
     	return intakeRoller.get();
     }
     
+    
     public double getSpeed() {
     	return intakeRoller.get();
 	}
     
-    public void intakeWithXboxJoysticks (double leftXboxJoystickValue, double rightXboxJoystickValue) {
-    	double currentSetpoint;
-    	double position;
+    public void intakeWithXboxJoystick (double speedXboxJoystickValue, double rightXboxJoystickValue) {
+    	double desiredPos;
     	
-    	if (beamBreak.get() == true){
-    		this.setIntakeSpeed(leftXboxJoystickValue);
+    	if (beamBreak.get() == true || speedXboxJoystickValue < 0){
+    		this.setIntakeSpeed (speedXboxJoystickValue);
     	} else {
-    		this.setIntakeSpeed(0);
+    		this.stopIntakeMotor(0);
     	}
-    	currentSetpoint = intakeArm.getSetpoint();
-    	intakeDesired += (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
-//    	if(!intakeArm.isFwdLimitSwitchClosed() || position <= currentPosition ) {
-     	this.setIntakeArm(intakeDesired);
-//    	}
-    	SmartDashboard.putNumber("Intake Arm Set: ", intakeArm.getSetpoint());
-    	SmartDashboard.putNumber("Intake Arm Position: ", intakeArm.getPosition());
-
-
+    	if(rightXboxJoystickValue != 0){
+    		desiredPos = this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
+    		if(!intakeRoller.isFwdLimitSwitchClosed() || desiredPos < this.getIntakeArm()){
+    			this.setIntakeArm(desiredPos) ;
+    		}else{
+    			intakeArm.setPosition(0);
+    			this.setIntakeArm(0);
+    		}
+    	}
+    	
+    	SmartDashboard.putNumber("Intake Arm Setpoint", intakeArm.getSetpoint());
+    	SmartDashboard.putNumber("Intake position", this.getIntakeArm());
+    	
     }
   
     public void manualIntakeArm (double rightXboxJoystickValue) {
     	
     }
     
+    public void stopIntakeMotor (double speed) {
+    	this.setIntakeSpeed(speed) ;
+    } 
+    
     public void setIntakeArm(double degrees) {
-        intakeArm.setSetpoint(MathUtil.degreesToRot(degrees)*RobotMap.INTAKE_ARM_GEAR_RATIO);
+    	SmartDashboard.putNumber("Intake Set from in here", degrees);
+    	intakeArm.setSetpoint(degrees);
     }
     
     public double getIntakeArm(){
-    	return MathUtil.rotToDegrees(intakeArm.getPosition()/RobotMap.INTAKE_ARM_GEAR_RATIO);
+    	return intakeArm.getPosition();
     }
     
     public void zeroIntakeArm(){

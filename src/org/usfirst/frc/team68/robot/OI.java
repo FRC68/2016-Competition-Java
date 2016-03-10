@@ -88,13 +88,10 @@ public class OI {
 		xboxLB.whenPressed(new CloseHood());
 		
 		xboxA = new JoystickButton(xboxController, RobotMap.XBOX_A);
-		//xboxA.whileHeld(new IntakePositionDownByArray());
+		xboxA.whenPressed(new IntakePositionDownByArray());
 		
 		xboxB = new JoystickButton(xboxController, RobotMap.XBOX_B);
-		//xboxB.whileHeld(new IntakePositionUpByArray());
-		
-		xboxX = new JoystickButton(xboxController, RobotMap.XBOX_X);
-		xboxX.whenPressed(new SetShooterSpeed(5800));
+		xboxB.whenPressed(new IntakePositionUpByArray());
 		
 		xboxY = new JoystickButton(xboxController, RobotMap.XBOX_Y);
 		xboxY.whenPressed(new ShootBoulder());

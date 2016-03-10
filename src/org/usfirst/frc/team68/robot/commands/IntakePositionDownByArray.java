@@ -6,6 +6,7 @@ import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Manual control of the intake
@@ -32,6 +33,7 @@ public class IntakePositionDownByArray extends Command {
     		index = 0;
     	
     	Robot.intake.setIntakeArm(RobotMap.intakePositions[index]);
+    	SmartDashboard.putNumber("Intake set to", RobotMap.intakePositions[index]);
     	
     	isFinished = true;
     }
