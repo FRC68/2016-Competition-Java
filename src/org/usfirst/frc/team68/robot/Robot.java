@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team68.robot.commands.ArmDrawbridge;
 import org.usfirst.frc.team68.robot.commands.ArmHome;
 import org.usfirst.frc.team68.robot.commands.ArmPathTest;
+import org.usfirst.frc.team68.robot.commands.Auton1;
+import org.usfirst.frc.team68.robot.commands.Auton2;
+import org.usfirst.frc.team68.robot.commands.Auton3;
 import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
 import org.usfirst.frc.team68.robot.commands.IntakeZero;
 import org.usfirst.frc.team68.robot.commands.ManualMoveBaseLeft;
@@ -63,12 +66,11 @@ public class Robot extends IterativeRobot {
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
 //    	vision = Vision.getVision();
         chooser = new SendableChooser();
-//       chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
+        chooser.addDefault("Auton One (Default) ", new Auton1());
+        chooser.addObject("Auton Two ", new Auton2());
+        chooser.addObject("Auton Three ", new Auton3());
         SmartDashboard.putData("Auto mode", chooser);
         oi = OI.getOI();
-        
-         //Wally was here
         
         SmartDashboard.putData("Arm Home", new ArmHome());
         SmartDashboard.putData("Arm Path Test", new ArmPathTest());
