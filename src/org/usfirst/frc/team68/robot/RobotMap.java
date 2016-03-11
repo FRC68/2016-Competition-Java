@@ -86,6 +86,11 @@ public class RobotMap {
 	    
 	    DtDrawbridgePath = PathLoader.loadPath(DT_DRAWBRIDGE_PATH_FILENAME);
 	    DtSallyportPath = PathLoader.loadPath(DT_SALLYPORT_PATH_FILENAME);
+	    
+	    DtAuton1Path = PathLoader.loadPath(DT_AUTON1_PATH_FILENAME);
+	    DtAuton2Path = PathLoader.loadPath(DT_AUTON2_PATH_FILENAME);
+	    DtAuton3Path = PathLoader.loadPath(DT_AUTON3_PATH_FILENAME);
+	    
 	}
 
     // DriveTrain Constants

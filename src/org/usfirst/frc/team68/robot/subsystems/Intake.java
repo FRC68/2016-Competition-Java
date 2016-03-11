@@ -72,8 +72,8 @@ public class Intake extends Subsystem {
     		if(!intakeRoller.isFwdLimitSwitchClosed() || desiredPos < this.getIntakeArm()){
     			this.setIntakeArm(desiredPos) ;
     		}else{
-    			intakeArm.setPosition(0);
-    			this.setIntakeArm(0);
+   			intakeArm.setPosition(0);
+   			this.setIntakeArm(0);
     		}
     	}
     	

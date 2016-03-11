@@ -25,6 +25,7 @@ import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
 import org.usfirst.frc.team68.robot.subsystems.OffBoardCompressor;
 import org.usfirst.frc.team68.robot.subsystems.Shooter;
+import org.usfirst.frc.team68.robot.subsystems.USBCamera;
 import org.usfirst.frc.team68.robot.subsystems.Vision;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -45,6 +46,7 @@ public class Robot extends IterativeRobot {
 	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
 //	public static Vision vision;
+	public static USBCamera usbCamera;
 	public static RobotMap robotMap;
 	public static OI oi;
 
@@ -63,6 +65,7 @@ public class Robot extends IterativeRobot {
     	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
 //    	vision = Vision.getVision();
+    	usbCamera = USBCamera.getUSBCamera();
         chooser = new SendableChooser();
         chooser.addDefault("Auton One (Default) ", new Auton1());
         chooser.addObject("Auton Two ", new Auton2());
