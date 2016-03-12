@@ -70,14 +70,14 @@ public class RobotMap {
 	    driveLeftPID = new PidProfile();
 	    driveLeftPID.slot = 0;
 	    driveLeftPID.f = 0.0;
-	    driveLeftPID.p = 1.0;
+	    driveLeftPID.p = 0.1;
 	    driveLeftPID.i = 0.0;
 	    driveLeftPID.d = 0.0;
 	    
 	    driveRightPID = new PidProfile();
 	    driveRightPID.slot = 0;
 	    driveRightPID.f = 0.0;
-	    driveRightPID.p = 1.0;
+	    driveRightPID.p = 0.1;
 	    driveRightPID.i = 0.0;
 	    driveRightPID.d = 0.0;
 	    
@@ -100,6 +100,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_REAR = 2;			// CAN bus ID 4
     public static final int DRIVE_SHIFTER_PCM_A = 2;		// PCM ID 2
     public static final int DRIVE_SHIFTER_PCM_B = 3;		// PCM ID 3
+    
+    public static final double DRIVE_RECLAIM = 0.5;
     
     //Shooter Constants
     public static final int SHOOTER_PRIMARY_MOTOR = 5;  	// CAN bus ID 5
@@ -145,15 +147,17 @@ public class RobotMap {
     public static final int INTAKE_BEAM_BREAK = 0;		// DIO port 0
     public static final int INTAKE_ARM_ENCODER_COUNTS_PER_REV = 1440;
     public static final int INTAKE_ARM_GEAR_RATIO = 10;
+    public static final double INTAKE_ON_SPEED = 0.75;
     public static final double INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
     public static final double INTAKE_ARM_HOME = 0;
     public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
     public static final int INTAKE_BOULDER_FEED_SPEED = 1;
     //Intake position array (in degrees) these are the predefined points 
-    public static double[] intakePositions = {-12, -9.2, -4.5, 0};
+    public static double[] intakePositions = {-12.5, -10.8, -4.5, 0};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually
     //position will be incremented by the resulting number of degrees per iteration (approx 20ms)
-    public static final double INTAKE_JOYSTICK_MULT = 5.0;
+    public static final double INTAKE_JOYSTICK_MULT = 4.5;
+    public static final double INTAKE_ARM_DEADBAND = 0.3;
     public static final double INTAKE_ARM_UP_MAX = 95;
     
 
@@ -172,13 +176,21 @@ public class RobotMap {
     public static final int XBOX_Y = 4;
     public static final int XBOX_LB = 5;
     public static final int XBOX_RB = 6;
+    public static final int XBOX_BACK = 7;
+    public static final int XBOX_START = 8;
+    public static final int XBOX_RJB = 9;
+    public static final int XBOX_LJB = 10;
     // Axis
     public static final int XBOX_LY = 1;
     public static final int XBOX_RY = 5;
+    public static final int XBOX_LT = 2;
 
     
     // Pneumatics Port Mapping Constants
     public static final int PCM_MAIN = 0;
+    public static final int AIR_PRESSURE_SENSOR = 1;
+    public static final double AIR_FULL = 0.92;
+    public static final double AIR_EMPTY = 0.35;
     
     // Axis Camera
     public static final String AXIS_CAMERA_HOST_NAME = "axis-camera";

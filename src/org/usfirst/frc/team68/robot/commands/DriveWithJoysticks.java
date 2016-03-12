@@ -2,8 +2,10 @@
 package org.usfirst.frc.team68.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team68.robot.Robot;
+import org.usfirst.frc.team68.robot.RobotMap;
 
 /**
  *
@@ -23,7 +25,10 @@ public class DriveWithJoysticks extends Command {
     protected void execute() {
     	if(Robot.driveTrain.isDrivetrainPercentVbus()) {
         	Robot.driveTrain.tankDrive(Robot.oi.getLeftJoystickValue(), Robot.oi.getRightJoystickValue());	
+    	} else if((Robot.oi.getLeftJoystickValue() > RobotMap.DRIVE_RECLAIM) || (Robot.oi.getRightJoystickValue() > RobotMap.DRIVE_RECLAIM) ){
+    		Robot.driveTrain.setModePercentVbus();
     	}
+    	SmartDashboard.putString("Gear:", Robot.driveTrain.getGear()?"High":"Low");
     }
 
     // Make this return true when this Command no longer needs to run execute()

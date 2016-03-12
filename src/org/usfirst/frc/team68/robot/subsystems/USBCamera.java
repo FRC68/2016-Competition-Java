@@ -32,7 +32,7 @@ public class USBCamera extends Subsystem {
         server = CameraServer.getInstance();
         server.setQuality(50);
         //the camera name can be found through the roborio web interface
-        server.startAutomaticCapture("cam3");
+        server.startAutomaticCapture("cam0");
 	}
     
     public void initDefaultCommand() {

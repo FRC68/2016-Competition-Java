@@ -23,6 +23,7 @@ public class Drivetrain extends Subsystem {
 	private CANTalon rightRear;
 	private RobotDrive drive;
 	private DoubleSolenoid driveShifter;
+	private boolean gear = false;
 	private static boolean useSquaredInputs = true;
 	private int absolutePositionLeftRear;
 	private int absolutePositionRightRear;
@@ -46,9 +47,9 @@ public class Drivetrain extends Subsystem {
 		
 		leftRear.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		leftRear.reverseSensor(false);
-		leftRear.configNominalOutputVoltage(+0.0F,-0.0F);
-		leftRear.configPeakOutputVoltage(+12.0f, 0.0f);
-		leftRear.setAllowableClosedLoopErr(0);  // always servo
+		//leftRear.configNominalOutputVoltage(+0.0F,-0.0F);
+		//leftRear.configPeakOutputVoltage(+12.0f, 0.0f);
+		//leftRear.setAllowableClosedLoopErr(0);  // always servo
     	// set closed loop gains for slot 0
 		leftRear.setProfile(RobotMap.driveLeftPID.slot);
     	leftRear.setF(RobotMap.driveLeftPID.f);
@@ -58,9 +59,9 @@ public class Drivetrain extends Subsystem {
     	
 		rightRear.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		rightRear.reverseSensor(false);
-		rightRear.configNominalOutputVoltage(+0.0F,-0.0F);
-		rightRear.configPeakOutputVoltage(+12.0f, 0.0f);
-		rightRear.setAllowableClosedLoopErr(0);  // always servo
+		//rightRear.configNominalOutputVoltage(+0.0F,-0.0F);
+		//rightRear.configPeakOutputVoltage(+12.0f, 0.0f);
+		//rightRear.setAllowableClosedLoopErr(0);  // always servo
     	// set closed loop gains for slot 0
 		rightRear.setProfile(RobotMap.driveRightPID.slot);
 		rightRear.setF(RobotMap.driveRightPID.f);
@@ -103,14 +104,32 @@ public class Drivetrain extends Subsystem {
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
     	drive.tankDrive(leftSpeed, rightSpeed, useSquaredInputs);
+    	SmartDashboard.putNumber("dtRpos", rightRear.getPosition());
+    	SmartDashboard.putNumber("dtLpos", leftRear.getPosition());
+    }
+    
+    public void zeroEncoders(){
+    	leftRear.setPosition(0);
+    	rightRear.setPosition(0);
+    }
+    
+    public boolean getGear(){
+    	return gear;
+    }
+    
+    public void setPower(double power){
+    	leftRear.set(power);
+    	rightRear.set(power);
     }
     
     public void setShifterHigh() {
     	driveShifter.set(Value.kForward);
+    	gear = true;
     }
     
     public void setShifterLow() {
     	driveShifter.set(Value.kReverse);
+    	gear = false;
     }
     
     public void shift() {
@@ -163,5 +182,14 @@ public class Drivetrain extends Subsystem {
     	SmartDashboard.putNumber("dtLSet", leftRear.getSetpoint());
     	SmartDashboard.putNumber("dtRset", rightRear.getSetpoint());
     }
-
+    
+    public double getPositionLeft(){
+    	SmartDashboard.putNumber("dtLpos", leftRear.getPosition());
+    	return leftRear.getPosition();
+    	
+    }
+    
+    public double getPositionRight(){
+    	return rightRear.getPosition();
+    }
 }

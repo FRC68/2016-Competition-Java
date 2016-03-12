@@ -1,19 +1,25 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
+import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Robot;
-import org.usfirst.frc.team68.robot.subsystems.Intake;
+import org.usfirst.frc.team68.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Manual control of the intake
+ *
  */
-public class IntakeWithXboxJoystick extends Command {
+public class SetDrivePower extends Command {
+
+	private boolean isFinished = false;
+	private double drivePower;
 	
-    public IntakeWithXboxJoystick() {
+    public SetDrivePower(double power) {
+    	drivePower = power;
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.intake);
+        requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -21,14 +27,12 @@ public class IntakeWithXboxJoystick extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-        Robot.intake.intakeWithXboxJoystick(Robot.oi.getRightXboxJoystickValue(), Robot.oi.getRightXboxJoystickButton(), Robot.oi.getLeftXboxTriggerValue(), Robot.oi.getLeftBumper());
+    protected void execute(){
+    	Robot.driveTrain.setPower(drivePower);
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	// This command should always run, so always return false
-        return false;
+        return isFinished;
     }
 
     // Called once after isFinished returns true

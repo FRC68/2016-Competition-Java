@@ -2,6 +2,7 @@
 package org.usfirst.frc.team68.robot.subsystems;
 
 import org.usfirst.frc.team68.robot.MathUtil;
+import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
 import org.usfirst.frc.team68.robot.commands.IntakeWithXboxJoystick;
 
@@ -32,6 +33,7 @@ public class Intake extends Subsystem {
 	private Intake() {
 		beamBreak = new DigitalInput(RobotMap.INTAKE_BEAM_BREAK);
 		intakeRoller = new CANTalon(RobotMap.INTAKE_ROLLER_MOTOR);
+		intakeRoller.enableBrakeMode(true);
     	intakeArm = new CANTalon(RobotMap.INTAKE_ARM_MOTOR);
     	intakeArm.reverseSensor(true);
     	intakeArm.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
@@ -59,17 +61,20 @@ public class Intake extends Subsystem {
     	return intakeRoller.get();
 	}
     
-    public void intakeWithXboxJoystick (double speedXboxJoystickValue, double rightXboxJoystickValue) {
+    public void intakeWithXboxJoystick (double rightXboxJoystickValue, boolean rightJSPush, double leftTrigger, boolean leftBumper) {
     	double desiredPos;
     	
-    	if (beamBreak.get() == true || speedXboxJoystickValue < 0){
-    		this.setIntakeSpeed (speedXboxJoystickValue);
+    	rightXboxJoystickValue *= -1;
+    	if (leftTrigger > 0){
+    		this.setIntakeSpeed (RobotMap.INTAKE_ON_SPEED);
+    	} else if((beamBreak.get() && leftBumper) || Robot.oi.getXboxBack()){
+    		this.setIntakeSpeed(-1*RobotMap.INTAKE_ON_SPEED);
     	} else {
     		this.stopIntakeMotor(0);
     	}
-    	if(rightXboxJoystickValue != 0){
+    	if(!MathUtil.withinThresh(rightXboxJoystickValue, 0, RobotMap.INTAKE_ARM_DEADBAND)){
     		desiredPos = this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
-    		if(!intakeRoller.isFwdLimitSwitchClosed() || desiredPos < this.getIntakeArm()){
+    		if(!intakeRoller.isFwdLimitSwitchClosed() || desiredPos < this.getIntakeArm() || rightJSPush){
     			this.setIntakeArm(desiredPos) ;
     		}else{
    			intakeArm.setPosition(0);
@@ -79,7 +84,6 @@ public class Intake extends Subsystem {
     	
     	SmartDashboard.putNumber("Intake Arm Setpoint", intakeArm.getSetpoint());
     	SmartDashboard.putNumber("Intake position", this.getIntakeArm());
-    	
     }
   
     public void manualIntakeArm (double rightXboxJoystickValue) {

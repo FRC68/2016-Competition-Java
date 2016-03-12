@@ -12,6 +12,8 @@ import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
 import org.usfirst.frc.team68.robot.commands.OpenHood;
 import org.usfirst.frc.team68.robot.commands.SetShooterSpeed;
 import org.usfirst.frc.team68.robot.commands.ShootBoulder;
+import org.usfirst.frc.team68.robot.commands.ShooterPrep;
+import org.usfirst.frc.team68.robot.commands.ShooterStop;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -61,6 +63,9 @@ public class OI {
 	private Button xboxY;
 	private Button xboxRB;
 	private Button xboxLB;
+	private Button xboxSTART;
+	private Button xboxBACK;
+	
 	
 	private static OI oi;
 	
@@ -81,21 +86,40 @@ public class OI {
 		rightTrigger = new JoystickButton(rightJoy, RobotMap.JOYSTICK_TRIGGER);
 		rightTrigger.whenPressed(new DriveShiftHigh());
 		
-		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
-		xboxRB.whenPressed(new OpenHood());
-		
-		xboxLB = new JoystickButton(xboxController, RobotMap.XBOX_LB);
-		xboxLB.whenPressed(new CloseHood());
-		
 		xboxA = new JoystickButton(xboxController, RobotMap.XBOX_A);
 		xboxA.whenPressed(new IntakePositionDownByArray());
 		
 		xboxB = new JoystickButton(xboxController, RobotMap.XBOX_B);
 		xboxB.whenPressed(new IntakePositionUpByArray());
 		
-		xboxY = new JoystickButton(xboxController, RobotMap.XBOX_Y);
-		xboxY.whenPressed(new ShootBoulder());
+		xboxSTART = new JoystickButton(xboxController, RobotMap.XBOX_START);
+		xboxSTART.whenPressed(new ShooterPrep());
+		
+		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
+		xboxRB.whenPressed(new ShooterStop());
+		
 
+	}
+	
+	public boolean getRightXboxJoystickButton(){
+		return xboxController.getRawButton(RobotMap.XBOX_RJB);
+	}
+	public boolean getLeftXboxJoystickButton(){
+		return xboxController.getRawButton(RobotMap.XBOX_LJB);
+	}
+	public boolean getLeftBumper(){
+		return xboxController.getRawButton(RobotMap.XBOX_LB);
+	}
+	public boolean getXboxBack(){
+		return xboxController.getRawButton(RobotMap.XBOX_BACK);
+	}
+	
+	public double getLeftXboxTriggerValue(){
+		double leftAxis;
+		leftAxis = xboxController.getRawAxis(RobotMap.XBOX_LT);
+		// Allow for up to 10% of joystick noise
+		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
+    	return leftAxis;
 	}
 	
 	public double getLeftXboxJoystickValue() {
