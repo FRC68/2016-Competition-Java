@@ -8,9 +8,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class Auton1 extends CommandGroup {
 
     public Auton1() {
-        addSequential(new SetDrivePower(0.75));
-        addSequential(new WaitCommand(2));
-        addSequential(new SetDrivePower(0));
+    	addSequential(new DriveAtSpeed(-.6,8)); 
         
     	
     } 

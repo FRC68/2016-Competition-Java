@@ -8,6 +8,6 @@ public class ShooterPrep extends CommandGroup {
 
     public ShooterPrep() {
         addSequential(new OpenHood());
-        addSequential(new SetShooterSpeed(5800));
+        addSequential(new SetShooterSpeed(5500));
     } 
 }

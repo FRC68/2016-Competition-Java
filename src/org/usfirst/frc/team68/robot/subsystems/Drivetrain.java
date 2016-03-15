@@ -104,8 +104,6 @@ public class Drivetrain extends Subsystem {
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
     	drive.tankDrive(leftSpeed, rightSpeed, useSquaredInputs);
-    	SmartDashboard.putNumber("dtRpos", rightRear.getPosition());
-    	SmartDashboard.putNumber("dtLpos", leftRear.getPosition());
     }
     
     public void zeroEncoders(){
@@ -118,7 +116,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public void setPower(double power){
-    	leftRear.set(power);
+    	leftRear.set(power*-1);
     	rightRear.set(power);
     }
     

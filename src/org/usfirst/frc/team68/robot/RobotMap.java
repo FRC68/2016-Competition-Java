@@ -46,9 +46,9 @@ public class RobotMap {
 	    shooterPID = new PidProfile();
 	    shooterPID.slot = 0;
 	    shooterPID.f = 0.0;
-	    shooterPID.p = .2;
-	    shooterPID.i = 0.0001;
-	    shooterPID.d = 0.0001;
+	    shooterPID.p = .1;
+	    shooterPID.i = 0.00007;
+	    shooterPID.d = 0.00005;
 	    
 	    //Arm PID - one profile for all three axes
 	    armPID = new PidProfile();
@@ -153,10 +153,10 @@ public class RobotMap {
     public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
     public static final int INTAKE_BOULDER_FEED_SPEED = 1;
     //Intake position array (in degrees) these are the predefined points 
-    public static double[] intakePositions = {-12.5, -10.8, -4.5, 0};
+    public static double[] intakePositions = {-11.5, -9.8, -3.5, 0};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually
     //position will be incremented by the resulting number of degrees per iteration (approx 20ms)
-    public static final double INTAKE_JOYSTICK_MULT = 4.5;
+    public static final double INTAKE_JOYSTICK_MULT = 3.5;
     public static final double INTAKE_ARM_DEADBAND = 0.3;
     public static final double INTAKE_ARM_UP_MAX = 95;
     
@@ -165,7 +165,7 @@ public class RobotMap {
     public static final int LEFT_JOYSTICK = 0;			// USB port 0
     public static final int RIGHT_JOYSTICK = 1;			// USB port 1
     public static final int JOYSTICK_Y = 1;				// This works for both joysticks
-    public static final int JOYSTICK_TRIGGER = 2;		// This works for both joysticks
+    public static final int JOYSTICK_TRIGGER = 1;		// This works for both joysticks
     
     // xBoxController Button & Axis Mapping Constants
     // Buttons

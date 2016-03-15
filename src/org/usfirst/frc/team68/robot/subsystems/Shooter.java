@@ -34,11 +34,15 @@ public class Shooter extends Subsystem {
     	followerMotor = new CANTalon(RobotMap.SHOOTER_FOLLOWER_MOTOR);
     	followerMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
     	followerMotor.set(primaryMotor.getDeviceID());
+    	
+    	primaryMotor.enableBrakeMode(false);
+    	followerMotor.enableBrakeMode(false);
+    	
     	primaryMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	primaryMotor.reverseSensor(false);
     	primaryMotor.configNominalOutputVoltage(+0.0F,-0.0F);
     	primaryMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-    	primaryMotor.setVoltageRampRate(3);
+    	primaryMotor.setVoltageRampRate(8);
     	// set closed loop gains for slot 0
     	primaryMotor.setProfile(RobotMap.shooterPID.slot);
     	primaryMotor.setF(RobotMap.shooterPID.f);
@@ -62,13 +66,16 @@ public class Shooter extends Subsystem {
     public double getSpeed() {
     	return primaryMotor.get();
     }
+    public double getSetpoint(){
+    	return primaryMotor.getSetpoint();
+    }
     
     public double getVoltage() {
     	return primaryMotor.getOutputVoltage();
     }
     
     public double getWattage() {
-    	return primaryMotor.getOutputVoltage() * primaryMotor.getOutputCurrent();
+    	return (primaryMotor.getOutputVoltage() * primaryMotor.getOutputCurrent()) + (followerMotor.getOutputVoltage() * followerMotor.getOutputCurrent());
     }
 
 

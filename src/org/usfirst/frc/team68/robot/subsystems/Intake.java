@@ -72,6 +72,10 @@ public class Intake extends Subsystem {
     	} else {
     		this.stopIntakeMotor(0);
     	}
+    	
+    	SmartDashboard.putString("BALL:", beamBreak.get()?"NOT DETECTED":"DETECTED");
+    	
+    	
     	if(!MathUtil.withinThresh(rightXboxJoystickValue, 0, RobotMap.INTAKE_ARM_DEADBAND)){
     		desiredPos = this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
     		if(!intakeRoller.isFwdLimitSwitchClosed() || desiredPos < this.getIntakeArm() || rightJSPush){
@@ -81,9 +85,7 @@ public class Intake extends Subsystem {
    			this.setIntakeArm(0);
     		}
     	}
-    	
-    	SmartDashboard.putNumber("Intake Arm Setpoint", intakeArm.getSetpoint());
-    	SmartDashboard.putNumber("Intake position", this.getIntakeArm());
+    	SmartDashboard.putNumber("Intake position", -1*this.getIntakeArm());
     }
   
     public void manualIntakeArm (double rightXboxJoystickValue) {

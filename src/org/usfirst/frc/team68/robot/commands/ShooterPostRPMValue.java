@@ -28,12 +28,14 @@ public class ShooterPostRPMValue extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
-    	double currentSpeed;
+    	double currentSpeed, setpoint;
     	double currentVoltage;
     	double currentWattage;
     	//temporary shooting speed threshold is 2% 
     	//maybe add a RobotMap constant?
     	currentSpeed = Robot.shooter.getSpeed();
+    	setpoint = Robot.shooter.getSetpoint();
+    	SmartDashboard.putString("Shoot", (MathUtil.withinThresh(currentSpeed, setpoint, 100) && setpoint != 0)?"CLEAR TO SHOOT":"NOT READY" );
     	SmartDashboard.putNumber("Shooter RPM: ", currentSpeed);
     	currentVoltage = Robot.shooter.getVoltage();
     	SmartDashboard.putNumber("Shooter Voltage: ", currentVoltage);
