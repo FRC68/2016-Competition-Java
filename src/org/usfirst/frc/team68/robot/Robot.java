@@ -66,6 +66,8 @@ public class Robot extends IterativeRobot {
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
 //    	vision = Vision.getVision();
     	usbCamera = USBCamera.getUSBCamera();
+    	// Make it possible for the drivers to select which auton to run
+    	// directly from the SmartDashboard
         chooser = new SendableChooser();
         chooser.addDefault("Auton One (Default) ", new Auton1());
         chooser.addObject("Auton Two ", new Auton2());
