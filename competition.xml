@@ -1,0 +1,126 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Shooter Current Speed: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="722"/>
+	</widget>
+	<widget field="Intake set to" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="699"/>
+	</widget>
+	<widget field="Intake Set from in here" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="676"/>
+	</widget>
+	<widget field="Shoot" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="409" y="240"/>
+		<width>239</width>
+		<height>91</height>
+		<property name="Font Size" value="30"/>
+	</widget>
+	<widget field="Shooter RPM: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="13" y="340"/>
+	</widget>
+	<widget field="Intake position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="3" y="2"/>
+		<width>315</width>
+		<height>254</height>
+		<property name="Upper Limit" value="12.0"/>
+		<property name="Lower Limit" value="-12.0"/>
+	</widget>
+	<widget field="Shooter Wattage: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="0" y="645"/>
+		<width>298</width>
+		<property name="Foreground" value="255.0.51.255"/>
+		<property name="Maximum" value="960.0"/>
+	</widget>
+	<widget field="BALL:" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="5" y="268"/>
+		<width>334</width>
+		<height>66</height>
+		<property name="Font Size" value="40"/>
+	</widget>
+	<widget field="Gear:" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1346" y="292"/>
+		<property name="Font Size" value="40"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="1341" y="247"/>
+		<width>59</width>
+		<height>42</height>
+		<property name="Text" value="AIR"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="654" y="-2"/>
+		<width>675</width>
+		<height>588</height>
+		<property name="Size" value="160x120"/>
+	</static-widget>
+	<widget field="Elbow Setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1474" y="847"/>
+	</widget>
+	<widget field="Shoulder Setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1457" y="792"/>
+	</widget>
+	<widget field="Base Setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1481" y="736"/>
+		<height>22</height>
+	</widget>
+	<widget field="Elbow Angle: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1480" y="819"/>
+		<height>22</height>
+	</widget>
+	<widget field="Shoulder Angle: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1462" y="764"/>
+		<height>22</height>
+	</widget>
+	<widget field="Base Angle: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1486" y="710"/>
+	</widget>
+	<widget field="Shooter Voltage: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1443" y="586"/>
+	</widget>
+	<widget field="Elbow Up" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1317" y="826"/>
+	</widget>
+	<widget field="Zero Intake" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1264" y="634"/>
+	</widget>
+	<widget field="Elbow Down" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1300" y="854"/>
+	</widget>
+	<widget field="Shoulder Up" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1303" y="797"/>
+	</widget>
+	<widget field="DT path" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1165" y="795"/>
+	</widget>
+	<widget field="Intake Down" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1259" y="664"/>
+	</widget>
+	<widget field="Shoulder Down" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1287" y="766"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1486" y="411"/>
+	</widget>
+	<widget field="Base Rigt" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1321" y="732"/>
+	</widget>
+	<widget field="Arm Path Test" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1144" y="825"/>
+	</widget>
+	<widget field="Arm Home" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1152" y="856"/>
+	</widget>
+	<widget field="Base Left" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1322" y="703"/>
+	</widget>
+	<widget field="AIR" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="1333" y="2"/>
+		<width>377</width>
+		<height>245</height>
+		<property name="Upper Limit" value="105.0"/>
+		<property name="Lower Limit" value="-5.0"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
