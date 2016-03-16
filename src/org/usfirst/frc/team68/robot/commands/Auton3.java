@@ -6,6 +6,6 @@ public class Auton3 extends CommandGroup {
 
     public Auton3() {
     	
-    	
     } 
+    
 }
