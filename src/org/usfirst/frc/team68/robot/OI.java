@@ -10,6 +10,7 @@ import org.usfirst.frc.team68.robot.commands.ManualMoveElbowUp;
 import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderDown;
 import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
 import org.usfirst.frc.team68.robot.commands.OpenHood;
+import org.usfirst.frc.team68.robot.commands.SetDriveMultiplierHigh;
 import org.usfirst.frc.team68.robot.commands.SetShooterSpeed;
 import org.usfirst.frc.team68.robot.commands.ShootBoulder;
 import org.usfirst.frc.team68.robot.commands.ShooterPrep;
@@ -56,7 +57,9 @@ public class OI {
 	private Joystick xboxController;
 	
 	private Button leftTrigger;
+	private Button leftJoyB2;
 	private Button rightTrigger;
+	private Button rightJoyB2;
 	private Button xboxA;
 	private Button xboxB;
 	private Button xboxX;
@@ -85,6 +88,11 @@ public class OI {
 		leftTrigger.whenPressed(new DriveShiftLow());
 		rightTrigger = new JoystickButton(rightJoy, RobotMap.JOYSTICK_TRIGGER);
 		rightTrigger.whenPressed(new DriveShiftHigh());
+		
+		leftJoyB2 = new JoystickButton(leftJoy, RobotMap.JOYSTICK_BUTTON2);
+		leftJoyB2.whenPressed(new SetDriveMultiplierHigh());
+		rightJoyB2 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON2);
+		rightJoyB2.whenPressed(new SetDriveMultiplierHigh());
 		
 		xboxA = new JoystickButton(xboxController, RobotMap.XBOX_A);
 		xboxA.whenPressed(new IntakePositionDownByArray());

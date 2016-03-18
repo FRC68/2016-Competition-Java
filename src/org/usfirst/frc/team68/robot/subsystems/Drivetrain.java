@@ -28,6 +28,7 @@ public class Drivetrain extends Subsystem {
 	private int absolutePositionLeftRear;
 	private int absolutePositionRightRear;
 	private boolean isPercentVbus = true;
+	private double highGearMultiplier = 1;
 
 	private static Drivetrain driveTrain;
 	
@@ -103,6 +104,10 @@ public class Drivetrain extends Subsystem {
     }
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
+    	if(gear == true){
+    		leftSpeed*=highGearMultiplier;
+    		rightSpeed*=highGearMultiplier;
+    	}
     	drive.tankDrive(leftSpeed, rightSpeed, useSquaredInputs);
     }
     
@@ -113,6 +118,10 @@ public class Drivetrain extends Subsystem {
     
     public boolean getGear(){
     	return gear;
+    }
+    
+    public void setHighGearMultiplier(double value) {
+    	highGearMultiplier = value;
     }
     
     public void setPower(double power){

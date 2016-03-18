@@ -100,6 +100,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_REAR = 2;			// CAN bus ID 4
     public static final int DRIVE_SHIFTER_PCM_A = 2;		// PCM ID 2
     public static final int DRIVE_SHIFTER_PCM_B = 3;		// PCM ID 3
+    public static final double DRIVE_MULT_MED = .75;
+    public static final double DRIVE_MULT_HIGH = 1.0;
     
     public static final double DRIVE_RECLAIM = 0.5;
     
@@ -166,6 +168,7 @@ public class RobotMap {
     public static final int RIGHT_JOYSTICK = 1;			// USB port 1
     public static final int JOYSTICK_Y = 1;				// This works for both joysticks
     public static final int JOYSTICK_TRIGGER = 1;		// This works for both joysticks
+    public static final int JOYSTICK_BUTTON2 = 2;		// This works for both joysticks
     
     // xBoxController Button & Axis Mapping Constants
     // Buttons
