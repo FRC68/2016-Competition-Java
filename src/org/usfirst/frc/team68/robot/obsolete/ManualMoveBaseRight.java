@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team68.robot.commands;
+package org.usfirst.frc.team68.robot.obsolete;
 
 import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ManualMoveElbowDown extends Command {
+public class ManualMoveBaseRight extends Command {
 
 	private boolean isFinished = false;
 	
-    public ManualMoveElbowDown() {
+    public ManualMoveBaseRight() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.arm);
+//        requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class ManualMoveElbowDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.setElbow(Robot.arm.getElbow()-5);
+//    	Robot.arm.setBase(Robot.arm.getBase()+5);
     	isFinished = true;
     }
 

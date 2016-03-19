@@ -9,13 +9,13 @@ public class RobotMap {
 	
     private static RobotMap robotMap;
     public static PidProfile shooterPID;
-    public static PidProfile armPID;
+//    public static PidProfile armPID;
     public static PidProfile IntakeArmPID;
     public static PidProfile driveLeftPID;
     public static PidProfile driveRightPID;
     
-    public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
-    public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
+//    public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
+//    public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
     
     public static final String DT_DRAWBRIDGE_PATH_FILENAME = "/paths/DT_DBRIDGE.xml";
     public static final String DT_SALLYPORT_PATH_FILENAME = "/paths/DT_SPORT.xml";
@@ -51,12 +51,12 @@ public class RobotMap {
 	    shooterPID.d = 0.00005;
 	    
 	    //Arm PID - one profile for all three axes
-	    armPID = new PidProfile();
-	    armPID.slot = 0;
-	    armPID.f = 0.0;
-	    armPID.p = .5;
-	    armPID.i = 0.5;
-	    armPID.d = 0.0;
+//	    armPID = new PidProfile();
+//	    armPID.slot = 0;
+//	    armPID.f = 0.0;
+//	    armPID.p = .5;
+//	    armPID.i = 0.5;
+//	    armPID.d = 0.0;
 	    
 	    //IntakeArm PID - one profile for all three axes
 	    IntakeArmPID = new PidProfile();
@@ -81,8 +81,8 @@ public class RobotMap {
 	    driveRightPID.i = 0.0;
 	    driveRightPID.d = 0.0;
 	    
-	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
-	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);
+//	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
+//	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);
 	    
 	    DtDrawbridgePath = PathLoader.loadPath(DT_DRAWBRIDGE_PATH_FILENAME);
 	    DtSallyportPath = PathLoader.loadPath(DT_SALLYPORT_PATH_FILENAME);
@@ -114,7 +114,7 @@ public class RobotMap {
     public static final double SHOOTER_SHOOTING_SPEED = 5800;
     public static final double SHOOTER_SPEED_THRESHOLD = .02;  // 2% Threshold
     
-  //Shooter RPM values
+    //Shooter RPM values
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
       
     //Climber Constants
@@ -123,29 +123,29 @@ public class RobotMap {
     public static final int LATCH_REVERSE = 5;
           
     //Arm Constants
-    public static final int ARM_BASE_MOTOR = 0;  			// CAN bus ID 
-    public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
-    public static final int ARM_ELBOW_MOTOR = 9;			// CAN bus ID 9
-    public static final double ARM_BASE_GEAR_RATIO = 1;
-    public static final double ARM_SHOULDER_GEAR_RATIO = 2;
-    public static final double ARM_ELBOW_GEAR_RATIO = 2; 
-    public static final double ARM_SHOULDER_LENGTH = 24;
-    public static final double ARM_ELBOW_LENGTH = 21.5;
-    public static final int ARM_ENCODER_COUNTS_PER_REV = 1440;
-    public static final double ARM_BASE_HOME = 0;
-    public static final double ARM_BASE_HOME_THRESHOLD = 1;
-
-    //Timeout
-    public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
-    //IN DEGREES!
-    public static final double ELBOW_CLEARENCE_F_SHOULDER = 5;
-    public static final double SHOULDER_CLEARENCE_F_BASE = 80;
-    public static final double BASE_MIN_SAFETY_ANGLE = -90;
-    public static final double BASE_MAX_SAFETY_ANGLE = 90;
-    public static final double SHOULDER_MIN_SAFETY_ANGLE = -1;
-    public static final double SHOULDER_MAX_SAFETY_ANGLE = 120;
-    public static final double ELBOW_MIN_SAFETY_ANGLE = -1;
-    public static final double ELBOW_MAX_SAFETY_ANGLE = 360;
+//    public static final int ARM_BASE_MOTOR = 0;  			// CAN bus ID 
+//    public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
+//    public static final int ARM_ELBOW_MOTOR = 9;			// CAN bus ID 9
+//    public static final double ARM_BASE_GEAR_RATIO = 1;
+//    public static final double ARM_SHOULDER_GEAR_RATIO = 2;
+//    public static final double ARM_ELBOW_GEAR_RATIO = 2; 
+//    public static final double ARM_SHOULDER_LENGTH = 24;
+//    public static final double ARM_ELBOW_LENGTH = 21.5;
+//    public static final int ARM_ENCODER_COUNTS_PER_REV = 1440;
+//    public static final double ARM_BASE_HOME = 0;
+//    public static final double ARM_BASE_HOME_THRESHOLD = 1;
+//
+//    //Timeout
+//    public static final int ARM_SETARMPOINT_ITERATION_MAX = 10000;
+//    //IN DEGREES!
+//    public static final double ELBOW_CLEARENCE_F_SHOULDER = 5;
+//    public static final double SHOULDER_CLEARENCE_F_BASE = 80;
+//    public static final double BASE_MIN_SAFETY_ANGLE = -90;
+//    public static final double BASE_MAX_SAFETY_ANGLE = 90;
+//    public static final double SHOULDER_MIN_SAFETY_ANGLE = -1;
+//    public static final double SHOULDER_MAX_SAFETY_ANGLE = 120;
+//    public static final double ELBOW_MIN_SAFETY_ANGLE = -1;
+//    public static final double ELBOW_MAX_SAFETY_ANGLE = 360;
 
     
     //Intake Constants

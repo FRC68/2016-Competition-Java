@@ -1,33 +1,21 @@
 
 package org.usfirst.frc.team68.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
-import org.usfirst.frc.team68.robot.commands.ArmDrawbridge;
-import org.usfirst.frc.team68.robot.commands.ArmHome;
-import org.usfirst.frc.team68.robot.commands.ArmPathTest;
 import org.usfirst.frc.team68.robot.commands.Auton1;
 import org.usfirst.frc.team68.robot.commands.Auton2;
 import org.usfirst.frc.team68.robot.commands.Auton3;
 import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
 import org.usfirst.frc.team68.robot.commands.IntakeZero;
-import org.usfirst.frc.team68.robot.commands.ManualMoveBaseLeft;
-import org.usfirst.frc.team68.robot.commands.ManualMoveBaseRight;
-import org.usfirst.frc.team68.robot.commands.ManualMoveElbowDown;
-import org.usfirst.frc.team68.robot.commands.ManualMoveElbowUp;
-import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderDown;
-import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
-import org.usfirst.frc.team68.robot.subsystems.Arm;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
 import org.usfirst.frc.team68.robot.subsystems.OffBoardCompressor;
 import org.usfirst.frc.team68.robot.subsystems.Shooter;
 import org.usfirst.frc.team68.robot.subsystems.USBCamera;
-import org.usfirst.frc.team68.robot.subsystems.Vision;
 
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -43,7 +31,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain driveTrain;
 	public static Intake intake;
 	public static Shooter shooter;
-	public static Arm arm;
+//	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
 //	public static Vision vision;
 	public static USBCamera usbCamera;
@@ -62,7 +50,7 @@ public class Robot extends IterativeRobot {
     	driveTrain = Drivetrain.getDrive();
     	intake = Intake.getIntake();
     	shooter = Shooter.getShooter();
-    	arm = Arm.getArm();
+//    	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
 //    	vision = Vision.getVision();
     	usbCamera = USBCamera.getUSBCamera();
@@ -75,15 +63,15 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         oi = OI.getOI();
         
-        SmartDashboard.putData("Arm Home", new ArmHome());
-        SmartDashboard.putData("Arm Path Test", new ArmPathTest());
-        SmartDashboard.putData("DT path", new ArmDrawbridge());
-        SmartDashboard.putData("Base Left", new ManualMoveBaseLeft());
-        SmartDashboard.putData("Base Rigt", new ManualMoveBaseRight());
-        SmartDashboard.putData("Shoulder Up", new ManualMoveShoulderUp());
-        SmartDashboard.putData("Shoulder Down", new ManualMoveShoulderDown());
-        SmartDashboard.putData("Elbow Down", new ManualMoveElbowDown());
-        SmartDashboard.putData("Elbow Up", new ManualMoveElbowUp());
+//        SmartDashboard.putData("Arm Home", new ArmHome());
+//        SmartDashboard.putData("Arm Path Test", new ArmPathTest());
+//        SmartDashboard.putData("DT path", new ArmDrawbridge());
+//        SmartDashboard.putData("Base Left", new ManualMoveBaseLeft());
+//        SmartDashboard.putData("Base Rigt", new ManualMoveBaseRight());
+//        SmartDashboard.putData("Shoulder Up", new ManualMoveShoulderUp());
+//        SmartDashboard.putData("Shoulder Down", new ManualMoveShoulderDown());
+//        SmartDashboard.putData("Elbow Down", new ManualMoveElbowDown());
+//        SmartDashboard.putData("Elbow Up", new ManualMoveElbowUp());
         SmartDashboard.putData("Intake Down", new IntakeManualDown());
         SmartDashboard.putData("Zero Intake", new IntakeZero());
     }

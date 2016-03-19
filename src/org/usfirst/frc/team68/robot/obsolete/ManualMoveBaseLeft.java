@@ -1,24 +1,21 @@
 
-package org.usfirst.frc.team68.robot.commands;
+package org.usfirst.frc.team68.robot.obsolete;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team68.robot.MathUtil;
-import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class SetArmSafeForShooting extends Command {
+public class ManualMoveBaseLeft extends Command {
 
 	private boolean isFinished = false;
 	
-    public SetArmSafeForShooting() {
+    public ManualMoveBaseLeft() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.arm);
+//        requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -27,12 +24,8 @@ public class SetArmSafeForShooting extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double currentPosition = Robot.arm.getBase();
-        if( MathUtil.withinThresh(currentPosition, RobotMap.ARM_BASE_HOME, RobotMap.ARM_BASE_HOME_THRESHOLD)) {
-        	isFinished = true;
-        } else {
-        	Robot.arm.setBase(RobotMap.ARM_BASE_HOME);
-        }
+//    	Robot.arm.setBase(Robot.arm.getBase()-5);
+    	isFinished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()

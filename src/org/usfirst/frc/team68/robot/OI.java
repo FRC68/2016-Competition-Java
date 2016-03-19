@@ -1,18 +1,10 @@
 package org.usfirst.frc.team68.robot;
 
-import org.usfirst.frc.team68.robot.commands.CloseHood;
 import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
 import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
 import org.usfirst.frc.team68.robot.commands.IntakePositionDownByArray;
 import org.usfirst.frc.team68.robot.commands.IntakePositionUpByArray;
-import org.usfirst.frc.team68.robot.commands.ManualMoveElbowDown;
-import org.usfirst.frc.team68.robot.commands.ManualMoveElbowUp;
-import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderDown;
-import org.usfirst.frc.team68.robot.commands.ManualMoveShoulderUp;
-import org.usfirst.frc.team68.robot.commands.OpenHood;
 import org.usfirst.frc.team68.robot.commands.SetDriveMultiplierHigh;
-import org.usfirst.frc.team68.robot.commands.SetShooterSpeed;
-import org.usfirst.frc.team68.robot.commands.ShootBoulder;
 import org.usfirst.frc.team68.robot.commands.ShooterPrep;
 import org.usfirst.frc.team68.robot.commands.ShooterStop;
 

@@ -1,22 +1,21 @@
 
-package org.usfirst.frc.team68.robot.commands;
+package org.usfirst.frc.team68.robot.obsolete;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team68.robot.MathUtil;
-import org.usfirst.frc.team68.robot.Point;
 import org.usfirst.frc.team68.robot.Robot;
 
 /**
  *
  */
-public class ArmHome extends Command {
+public class ArmWriteAnglestoDash extends Command {
+	boolean isFinished = false;
 
-	private boolean isDone = false;
-    public ArmHome() {
+    public ArmWriteAnglestoDash() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.arm);
+//    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -25,17 +24,17 @@ public class ArmHome extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Point xyz = new Point();
-    	xyz.x = 0;
-    	xyz.y = 1;
-    	xyz.z = 0;
-    	Robot.arm.setArmPoint(xyz, 5);
-    	isDone=true;
+//    	SmartDashboard.putNumber("Base Angle: ", Robot.arm.getBase());
+//    	SmartDashboard.putNumber("Shoulder Angle: ", Robot.arm.getShoulder());
+//    	SmartDashboard.putNumber("Elbow Angle: ", Robot.arm.getElbow());
+//    	SmartDashboard.putNumber("Base Setpoint", MathUtil.rotToDegrees(Robot.arm.motorBase.getSetpoint()));
+//    	SmartDashboard.putNumber("Shoulder Setpoint", MathUtil.rotToDegrees(Robot.arm.motorShoulder.getSetpoint()));
+//    	SmartDashboard.putNumber("Elbow Setpoint", MathUtil.rotToDegrees(Robot.arm.motorElbow.getSetpoint()));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isDone;
+        return isFinished;
     }
 
     // Called once after isFinished returns true

@@ -1,41 +1,36 @@
 
-package org.usfirst.frc.team68.robot.commands;
-
-import edu.wpi.first.wpilibj.command.Command;
+package org.usfirst.frc.team68.robot.obsolete;
 
 import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
  *
  */
-public class ArmPathTest extends Command {
-	private static double percent = 0.0;
-	private static boolean isDone = false;
-    public ArmPathTest() {
+public class ManualMoveShoulderDown extends Command {
+
+	private boolean isFinished = false;
+	
+    public ManualMoveShoulderDown() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.arm);
+//        requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	percent = 0.0;
-    	isDone = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	Robot.arm.setArmPoint(RobotMap.ArmDrawbridgePath.getPointAtPercent(percent), 10);
-    	
-    	percent += 5;
-    	if(percent >= 100)
-    		isDone = true;
+//    	Robot.arm.setShoulder(Robot.arm.getShoulder()-1);
+    	isFinished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isDone;
+        return isFinished;
     }
 
     // Called once after isFinished returns true
