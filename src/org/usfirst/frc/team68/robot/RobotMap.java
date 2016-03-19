@@ -113,12 +113,17 @@ public class RobotMap {
     public static final int SHOOTER_FEED_DELAY = 2;
     public static final double SHOOTER_SHOOTING_SPEED = 5800;
     public static final double SHOOTER_SPEED_THRESHOLD = .02;  // 2% Threshold
-        
-    //Shooter RPM values
+    
+  //Shooter RPM values
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
-        
+      
+    //Climber Constants
+    public static final int CLIMBER_WINCH_MOTOR = 7 ;  	// CAN bus ID 7
+    public static final int LATCH_FORWARD = 4;
+    public static final int LATCH_REVERSE = 5;
+          
     //Arm Constants
-    public static final int ARM_BASE_MOTOR = 7;  			// CAN bus ID 7
+    public static final int ARM_BASE_MOTOR = 0;  			// CAN bus ID 
     public static final int ARM_SHOULDER_MOTOR = 8; 		// CAN bus ID 8
     public static final int ARM_ELBOW_MOTOR = 9;			// CAN bus ID 9
     public static final double ARM_BASE_GEAR_RATIO = 1;
