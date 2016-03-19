@@ -28,7 +28,7 @@ public class Drivetrain extends Subsystem {
 	private int absolutePositionLeftRear;
 	private int absolutePositionRightRear;
 	private boolean isPercentVbus = true;
-	private double highGearMultiplier = 1;
+	private double highGearMultiplier = RobotMap.DRIVE_MULT_HIGH;
 
 	private static Drivetrain driveTrain;
 	
