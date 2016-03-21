@@ -4,7 +4,10 @@ import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
 import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
 import org.usfirst.frc.team68.robot.commands.IntakePositionDownByArray;
 import org.usfirst.frc.team68.robot.commands.IntakePositionUpByArray;
+import org.usfirst.frc.team68.robot.commands.OpenClimberLatch;
+import org.usfirst.frc.team68.robot.commands.SetClimberWinchSpeed;
 import org.usfirst.frc.team68.robot.commands.SetDriveMultiplierHigh;
+import org.usfirst.frc.team68.robot.commands.SetDriveMultiplierMedium;
 import org.usfirst.frc.team68.robot.commands.ShooterPrep;
 import org.usfirst.frc.team68.robot.commands.ShooterStop;
 
@@ -52,6 +55,9 @@ public class OI {
 	private Button leftJoyB2;
 	private Button rightTrigger;
 	private Button rightJoyB2;
+	private Button rightJoyB4;			// Winch Down
+	private Button rightJoyB5;			// Winch Up
+	private Button rightJoyB8;			// Open Climber Latch (Both 8&9 must be pressed to release)
 	private Button xboxA;
 	private Button xboxB;
 	private Button xboxX;
@@ -84,7 +90,13 @@ public class OI {
 		leftJoyB2 = new JoystickButton(leftJoy, RobotMap.JOYSTICK_BUTTON2);
 		leftJoyB2.whenPressed(new SetDriveMultiplierHigh());
 		rightJoyB2 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON2);
-		rightJoyB2.whenPressed(new SetDriveMultiplierHigh());
+		rightJoyB2.whenPressed(new SetDriveMultiplierMedium());
+		rightJoyB4 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON4);
+		rightJoyB4.whenPressed(new SetClimberWinchSpeed(RobotMap.CLIMBER_WINCH_SPEED*-1));
+		rightJoyB5 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON5);
+		rightJoyB5.whenPressed(new SetClimberWinchSpeed(RobotMap.CLIMBER_WINCH_SPEED));
+		rightJoyB8 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON8);
+		rightJoyB8.whenPressed(new OpenClimberLatch());
 		
 		xboxA = new JoystickButton(xboxController, RobotMap.XBOX_A);
 		xboxA.whenPressed(new IntakePositionDownByArray());
@@ -98,7 +110,10 @@ public class OI {
 		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
 		xboxRB.whenPressed(new ShooterStop());
 		
-
+	}
+	
+	public boolean getRightJoystickButton9(){
+		return rightJoy.getRawButton(RobotMap.JOYSTICK_BUTTON9);
 	}
 	
 	public boolean getRightXboxJoystickButton(){

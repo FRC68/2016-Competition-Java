@@ -13,6 +13,7 @@ public class RobotMap {
     public static PidProfile IntakeArmPID;
     public static PidProfile driveLeftPID;
     public static PidProfile driveRightPID;
+    public static PidProfile climberPID;
     
 //    public static final String ARM_DRAWBRIDGE_PATH_FILENAME = "/paths/ARM_DBRIDGE.xml";
 //    public static final String ARM_SALLYPORT_PATH_FILENAME = "/paths/ARM_SPORT.xml";
@@ -81,6 +82,14 @@ public class RobotMap {
 	    driveRightPID.i = 0.0;
 	    driveRightPID.d = 0.0;
 	    
+	    //Climber PID
+	    climberPID = new PidProfile();
+	    climberPID.slot = 0;
+	    climberPID.f = 0.0;
+	    climberPID.p = .5;
+	    climberPID.i = 0.5;
+	    climberPID.d = 0.0;
+	    
 //	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
 //	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);
 	    
@@ -119,8 +128,9 @@ public class RobotMap {
       
     //Climber Constants
     public static final int CLIMBER_WINCH_MOTOR = 7 ;  	// CAN bus ID 7
-    public static final int LATCH_FORWARD = 4;
-    public static final int LATCH_REVERSE = 5;
+    public static final int CLIMBER_LATCH_FORWARD = 4;
+    public static final int CLIMBER_LATCH_REVERSE = 5;
+    public static final double CLIMBER_WINCH_SPEED = 1500;
           
     //Arm Constants
 //    public static final int ARM_BASE_MOTOR = 0;  			// CAN bus ID 
@@ -174,6 +184,10 @@ public class RobotMap {
     public static final int JOYSTICK_Y = 1;				// This works for both joysticks
     public static final int JOYSTICK_TRIGGER = 1;		// This works for both joysticks
     public static final int JOYSTICK_BUTTON2 = 2;		// This works for both joysticks
+    public static final int JOYSTICK_BUTTON4 = 4;		// This works for both joysticks
+    public static final int JOYSTICK_BUTTON5 = 5;		// This works for both joysticks
+    public static final int JOYSTICK_BUTTON8 = 8;		// This works for both joysticks
+    public static final int JOYSTICK_BUTTON9 = 9;		// This works for both joysticks
     
     // xBoxController Button & Axis Mapping Constants
     // Buttons

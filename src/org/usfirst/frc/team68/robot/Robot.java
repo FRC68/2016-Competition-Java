@@ -6,6 +6,7 @@ import org.usfirst.frc.team68.robot.commands.Auton2;
 import org.usfirst.frc.team68.robot.commands.Auton3;
 import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
 import org.usfirst.frc.team68.robot.commands.IntakeZero;
+import org.usfirst.frc.team68.robot.subsystems.Climber;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
 import org.usfirst.frc.team68.robot.subsystems.OffBoardCompressor;
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain driveTrain;
 	public static Intake intake;
 	public static Shooter shooter;
+	public static Climber climber;
 //	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
 //	public static Vision vision;
@@ -50,6 +52,7 @@ public class Robot extends IterativeRobot {
     	driveTrain = Drivetrain.getDrive();
     	intake = Intake.getIntake();
     	shooter = Shooter.getShooter();
+    	climber = Climber.getClimber();
 //    	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
 //    	vision = Vision.getVision();
