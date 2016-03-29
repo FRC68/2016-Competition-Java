@@ -63,21 +63,26 @@ public class Intake extends Subsystem {
     
     public void intakeWithXboxJoystick (double rightXboxJoystickValue, boolean rightJSPush, double leftTrigger, boolean leftBumper) {
     	double desiredPos;
+    	double mult;
     	
     	rightXboxJoystickValue *= -1;
     	if (leftTrigger > 0){
-    		this.setIntakeSpeed (RobotMap.INTAKE_ON_SPEED);
+    		this.setIntakeSpeed (RobotMap.INTAKE_OUT_SPEED);
     	} else if((beamBreak.get() && leftBumper) || Robot.oi.getXboxBack()){
-    		this.setIntakeSpeed(-1*RobotMap.INTAKE_ON_SPEED);
+    		this.setIntakeSpeed(-1*RobotMap.INTAKE_IN_SPEED);
     	} else {
     		this.stopIntakeMotor(0);
     	}
     	
     	SmartDashboard.putString("BALL:", beamBreak.get()?"NOT DETECTED":"DETECTED");
     	
+    	if(this.getIntakeArm() > -2)
+    		mult = RobotMap.INTAKE_JOYSTICK_MULT_SLOW;
+    	else
+    		mult = RobotMap.INTAKE_JOYSTICK_MULT;
     	
     	if(!MathUtil.withinThresh(rightXboxJoystickValue, 0, RobotMap.INTAKE_ARM_DEADBAND)){
-    		desiredPos = this.getIntakeArm() + (rightXboxJoystickValue * RobotMap.INTAKE_JOYSTICK_MULT);
+    		desiredPos = this.getIntakeArm() + (rightXboxJoystickValue * mult);
     		if(!intakeRoller.isFwdLimitSwitchClosed() || desiredPos < this.getIntakeArm() || rightJSPush){
     			this.setIntakeArm(desiredPos) ;
     		}else{

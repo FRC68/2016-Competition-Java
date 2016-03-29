@@ -2,17 +2,16 @@
 package org.usfirst.frc.team68.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team68.robot.Robot;
-import org.usfirst.frc.team68.robot.RobotMap;
 
 /**
  *
  */
-public class DriveWithJoysticks extends Command {
+public class DrivetrainMidOn extends Command {
+	boolean isFinished = false;
 
-    public DriveWithJoysticks() {
+    public DrivetrainMidOn() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.driveTrain);
     }
@@ -23,18 +22,13 @@ public class DriveWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.driveTrain.isDrivetrainPercentVbus()) {
-        	Robot.driveTrain.tankDrive(Robot.oi.getLeftJoystickValue(), Robot.oi.getRightJoystickValue());	
-    	} else if((Robot.oi.getLeftJoystickValue() > RobotMap.DRIVE_RECLAIM) || (Robot.oi.getRightJoystickValue() > RobotMap.DRIVE_RECLAIM) ){
-    		Robot.driveTrain.setModePercentVbus();
-    	}
-    	SmartDashboard.putString("Gear:", Robot.driveTrain.getGear()?"High":"Low");
-    	SmartDashboard.putString("Reduction:", Robot.driveTrain.getMid()?"On":"Off");
+    	Robot.driveTrain.midOn();
+    	isFinished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isFinished;
     }
 
     // Called once after isFinished returns true

@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 //	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
 //	public static Vision vision;
-	public static USBCamera usbCamera;
+	//public static USBCamera usbCamera;
 	public static RobotMap robotMap;
 	public static OI oi;
 
@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 //    	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
 //    	vision = Vision.getVision();
-    	usbCamera = USBCamera.getUSBCamera();
+    	//usbCamera = USBCamera.getUSBCamera();
     	// Make it possible for the drivers to select which auton to run
     	// directly from the SmartDashboard
         chooser = new SendableChooser();

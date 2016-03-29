@@ -1,21 +1,24 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
-import org.usfirst.frc.team68.robot.Robot;
-import org.usfirst.frc.team68.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class SetDriveMultiplierMedium extends Command {
+import org.usfirst.frc.team68.robot.MathUtil;
+import org.usfirst.frc.team68.robot.Robot;
+import org.usfirst.frc.team68.robot.RobotMap;
+import org.usfirst.frc.team68.robot.subsystems.Intake;
 
+/**
+ * Manual control of the intake
+ */
+public class IntakePositionArrayIndex extends Command {
 	private boolean isFinished = false;
+	private int index = 0;
 	
-    public SetDriveMultiplierMedium() {
+    public IntakePositionArrayIndex(int i) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.driveTrain);
+        requires(Robot.intake);
+        index = i;
     }
 
     // Called just before this Command runs the first time
@@ -23,10 +26,12 @@ public class SetDriveMultiplierMedium extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute(){
-    	Robot.driveTrain.setHighGearMultiplier(RobotMap.DRIVE_MULT_MED);
+    protected void execute() {
+    	Robot.intake.setIntakeArm(RobotMap.intakePositions[index]);
+    	
     	isFinished = true;
     }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return isFinished;

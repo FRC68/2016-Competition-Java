@@ -24,11 +24,11 @@ public class Drivetrain extends Subsystem {
 	private RobotDrive drive;
 	private DoubleSolenoid driveShifter;
 	private boolean gear = false;
+	private boolean mid = false;
 	private static boolean useSquaredInputs = true;
 	private int absolutePositionLeftRear;
 	private int absolutePositionRightRear;
 	private boolean isPercentVbus = true;
-	private double highGearMultiplier = RobotMap.DRIVE_MULT_HIGH;
 
 	private static Drivetrain driveTrain;
 	
@@ -77,6 +77,11 @@ public class Drivetrain extends Subsystem {
 		rightFront = new CANTalon(RobotMap.DRIVE_RIGHT_FRONT);
 		rightFront.changeControlMode(CANTalon.TalonControlMode.Follower);
     	rightFront.set(rightRear.getDeviceID());
+    	
+    	leftFront.enableBrakeMode(false);
+    	leftRear.enableBrakeMode(false);
+    	rightFront.enableBrakeMode(false);
+    	leftFront.enableBrakeMode(false);
 
 		// Create the drive train. The configuration on each side is Master/Follower
     	// so we will create the drive with only the master speed controllers
@@ -104,9 +109,9 @@ public class Drivetrain extends Subsystem {
     }
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
-    	if(gear == true){
-    		leftSpeed*=highGearMultiplier;
-    		rightSpeed*=highGearMultiplier;
+    	if(mid && gear){
+    		leftSpeed*=RobotMap.DRIVE_MULT;
+    		rightSpeed*=RobotMap.DRIVE_MULT;
     	}
     	drive.tankDrive(leftSpeed, rightSpeed, useSquaredInputs);
     }
@@ -120,8 +125,16 @@ public class Drivetrain extends Subsystem {
     	return gear;
     }
     
-    public void setHighGearMultiplier(double value) {
-    	highGearMultiplier = value;
+    public boolean getMid(){
+    	return mid;
+    }
+    
+    public void midOn(){
+    	mid = true;
+    }
+    
+    public void midOff(){
+    	mid = false;
     }
     
     public void setPower(double power){
@@ -132,6 +145,7 @@ public class Drivetrain extends Subsystem {
     public void setShifterHigh() {
     	driveShifter.set(Value.kForward);
     	gear = true;
+    	mid = true;
     }
     
     public void setShifterLow() {

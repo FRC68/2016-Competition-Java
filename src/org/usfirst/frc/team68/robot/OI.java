@@ -2,12 +2,13 @@ package org.usfirst.frc.team68.robot;
 
 import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
 import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
+import org.usfirst.frc.team68.robot.commands.DrivetrainMidOff;
+import org.usfirst.frc.team68.robot.commands.DrivetrainMidOn;
+import org.usfirst.frc.team68.robot.commands.IntakePositionArrayIndex;
 import org.usfirst.frc.team68.robot.commands.IntakePositionDownByArray;
 import org.usfirst.frc.team68.robot.commands.IntakePositionUpByArray;
 import org.usfirst.frc.team68.robot.commands.OpenClimberLatch;
 import org.usfirst.frc.team68.robot.commands.SetClimberWinchSpeed;
-import org.usfirst.frc.team68.robot.commands.SetDriveMultiplierHigh;
-import org.usfirst.frc.team68.robot.commands.SetDriveMultiplierMedium;
 import org.usfirst.frc.team68.robot.commands.ShooterPrep;
 import org.usfirst.frc.team68.robot.commands.ShooterStop;
 
@@ -88,9 +89,9 @@ public class OI {
 		rightTrigger.whenPressed(new DriveShiftHigh());
 		
 		leftJoyB2 = new JoystickButton(leftJoy, RobotMap.JOYSTICK_BUTTON2);
-		leftJoyB2.whenPressed(new SetDriveMultiplierHigh());
+		leftJoyB2.whenPressed(new DrivetrainMidOn());
 		rightJoyB2 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON2);
-		rightJoyB2.whenPressed(new SetDriveMultiplierMedium());
+		rightJoyB2.whenPressed(new DrivetrainMidOff());
 		rightJoyB4 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON4);
 		rightJoyB4.whenPressed(new SetClimberWinchSpeed(RobotMap.CLIMBER_WINCH_SPEED*-1));
 		rightJoyB5 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON5);
@@ -99,10 +100,18 @@ public class OI {
 		rightJoyB8.whenPressed(new OpenClimberLatch());
 		
 		xboxA = new JoystickButton(xboxController, RobotMap.XBOX_A);
-		xboxA.whenPressed(new IntakePositionDownByArray());
+		xboxA.whenPressed(new IntakePositionArrayIndex(1));
 		
 		xboxB = new JoystickButton(xboxController, RobotMap.XBOX_B);
-		xboxB.whenPressed(new IntakePositionUpByArray());
+		xboxB.whenPressed(new IntakePositionArrayIndex(2));
+		
+		xboxX = new JoystickButton(xboxController, RobotMap.XBOX_X);
+		xboxX.whenPressed(new IntakePositionArrayIndex(0));
+		
+		xboxY = new JoystickButton(xboxController, RobotMap.XBOX_Y);
+		xboxY.whenPressed(new IntakePositionArrayIndex(3));
+		
+		
 		
 		xboxSTART = new JoystickButton(xboxController, RobotMap.XBOX_START);
 		xboxSTART.whenPressed(new ShooterPrep());

@@ -109,8 +109,7 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_REAR = 2;			// CAN bus ID 4
     public static final int DRIVE_SHIFTER_PCM_A = 2;		// PCM ID 2
     public static final int DRIVE_SHIFTER_PCM_B = 3;		// PCM ID 3
-    public static final double DRIVE_MULT_MED = .75;
-    public static final double DRIVE_MULT_HIGH = 1.0;
+    public static final double DRIVE_MULT = .85;
     
     public static final double DRIVE_RECLAIM = 0.5;
     
@@ -120,7 +119,7 @@ public class RobotMap {
     public static final int HOOD_FORWARD = 0;
     public static final int HOOD_REVERSE = 1;
     public static final int SHOOTER_FEED_DELAY = 2;
-    public static final double SHOOTER_SHOOTING_SPEED = 5800;
+    public static final double SHOOTER_SHOOTING_SPEED = 5500;
     public static final double SHOOTER_SPEED_THRESHOLD = .02;  // 2% Threshold
     
     //Shooter RPM values
@@ -164,16 +163,18 @@ public class RobotMap {
     public static final int INTAKE_BEAM_BREAK = 0;		// DIO port 0
     public static final int INTAKE_ARM_ENCODER_COUNTS_PER_REV = 1440;
     public static final int INTAKE_ARM_GEAR_RATIO = 10;
-    public static final double INTAKE_ON_SPEED = 0.75;
+    public static final double INTAKE_IN_SPEED = 0.75;
+    public static final double INTAKE_OUT_SPEED = 1;
     public static final double INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
     public static final double INTAKE_ARM_HOME = 0;
     public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
     public static final int INTAKE_BOULDER_FEED_SPEED = 1;
     //Intake position array (in degrees) these are the predefined points 
-    public static double[] intakePositions = {-11.5, -9.8, -3.5, 0};
+    public static double[] intakePositions = {-10, -8.1, -3.5, 0};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually
     //position will be incremented by the resulting number of degrees per iteration (approx 20ms)
     public static final double INTAKE_JOYSTICK_MULT = 3.5;
+    public static final double INTAKE_JOYSTICK_MULT_SLOW = 0.25;
     public static final double INTAKE_ARM_DEADBAND = 0.3;
     public static final double INTAKE_ARM_UP_MAX = 95;
     
@@ -200,8 +201,8 @@ public class RobotMap {
     public static final int XBOX_RB = 6;
     public static final int XBOX_BACK = 7;
     public static final int XBOX_START = 8;
-    public static final int XBOX_RJB = 9;
-    public static final int XBOX_LJB = 10;
+    public static final int XBOX_RJB = 10;
+    public static final int XBOX_LJB = 11;
     // Axis
     public static final int XBOX_LY = 1;
     public static final int XBOX_RY = 5;
