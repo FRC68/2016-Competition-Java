@@ -43,13 +43,23 @@ public class RobotMap {
     }
 
 	private RobotMap() {
-	    //Shooter PID
+	    //Shooter PID 6000RPM
+		/*
 	    shooterPID = new PidProfile();
 	    shooterPID.slot = 0;
 	    shooterPID.f = 0.0;
-	    shooterPID.p = .1;
-	    shooterPID.i = 0.00007;
-	    shooterPID.d = 0.00005;
+	    shooterPID.p = .40;
+	    shooterPID.i = 0.00001;
+	    shooterPID.d = 0.000000002;
+	    */
+		
+		//Shooter PID 5000RPM
+		shooterPID = new PidProfile();
+	    shooterPID.slot = 0;
+	    shooterPID.f = 0.0;
+	    shooterPID.p = .30;
+	    shooterPID.i = 0.000025;
+	    shooterPID.d = 0.0000000000;
 	    
 	    //Arm PID - one profile for all three axes
 //	    armPID = new PidProfile();
@@ -92,13 +102,14 @@ public class RobotMap {
 	    
 //	    ArmDrawbridgePath = PathLoader.loadPath(ARM_DRAWBRIDGE_PATH_FILENAME);
 //	    ArmSallyportPath = PathLoader.loadPath(ARM_SALLYPORT_PATH_FILENAME);
-	    
+	    /*
 	    DtDrawbridgePath = PathLoader.loadPath(DT_DRAWBRIDGE_PATH_FILENAME);
 	    DtSallyportPath = PathLoader.loadPath(DT_SALLYPORT_PATH_FILENAME);
 	    
 	    DtAuton1Path = PathLoader.loadPath(DT_AUTON1_PATH_FILENAME);
 	    DtAuton2Path = PathLoader.loadPath(DT_AUTON2_PATH_FILENAME);
 	    DtAuton3Path = PathLoader.loadPath(DT_AUTON3_PATH_FILENAME);
+	    */
 	    
 	}
 
@@ -119,8 +130,18 @@ public class RobotMap {
     public static final int HOOD_FORWARD = 0;
     public static final int HOOD_REVERSE = 1;
     public static final int SHOOTER_FEED_DELAY = 2;
-    public static final double SHOOTER_SHOOTING_SPEED = 5500;
+    
+    //new balls
+    //public static final double SHOOTER_SHOOTING_SPEED = 5200;
+    
+    //old
+    //public static final double SHOOTER_SHOOTING_SPEED = 6000;
+    
+    public static final double SHOOTER_SHOOTING_SPEED = 5000;
+    
     public static final double SHOOTER_SPEED_THRESHOLD = .02;  // 2% Threshold
+    
+    public static final int FLASHLIGH_SPIKE_PORT = 1;
     
     //Shooter RPM values
     public static double[] shooterRPM = {0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500};
@@ -170,7 +191,7 @@ public class RobotMap {
     public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
     public static final int INTAKE_BOULDER_FEED_SPEED = 1;
     //Intake position array (in degrees) these are the predefined points 
-    public static double[] intakePositions = {-10, -8.1, -3.5, 0};
+    public static double[] intakePositions = {-10, -8.40, -3.5, 0};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually
     //position will be incremented by the resulting number of degrees per iteration (approx 20ms)
     public static final double INTAKE_JOYSTICK_MULT = 3.5;
@@ -187,6 +208,7 @@ public class RobotMap {
     public static final int JOYSTICK_BUTTON2 = 2;		// This works for both joysticks
     public static final int JOYSTICK_BUTTON4 = 4;		// This works for both joysticks
     public static final int JOYSTICK_BUTTON5 = 5;		// This works for both joysticks
+    public static final int JOYSTICK_BUTTON7 = 7;
     public static final int JOYSTICK_BUTTON8 = 8;		// This works for both joysticks
     public static final int JOYSTICK_BUTTON9 = 9;		// This works for both joysticks
     
@@ -201,12 +223,13 @@ public class RobotMap {
     public static final int XBOX_RB = 6;
     public static final int XBOX_BACK = 7;
     public static final int XBOX_START = 8;
-    public static final int XBOX_RJB = 10;
-    public static final int XBOX_LJB = 11;
+    public static final int XBOX_RJB = 9;
+    public static final int XBOX_LJB = 10;
     // Axis
     public static final int XBOX_LY = 1;
     public static final int XBOX_RY = 5;
     public static final int XBOX_LT = 2;
+    public static final int XBOX_RT = 3;
 
     
     // Pneumatics Port Mapping Constants
@@ -218,6 +241,16 @@ public class RobotMap {
     // Axis Camera
     public static final String AXIS_CAMERA_HOST_NAME = "axis-camera";
     public static final String AXIS_CAMERA_IP = "10.0.68.11";
-  
+    
+    //GRIP
+    public static final double SCREENWIDTH = 320;
+    public static final double SCREENHEIGHT = 240;
+    public static final double DT_VIS_CENTER_P = 0.025;
+    public static final double DT_VIS_TURN_POWER_MAX = 0.4;
+    public static final double DT_VIS_TURN_POWER_MIN = 0.25;
+    
+    public static final double X_TAR = 260;
+    public static final double X_TOL = 10;
+    
 }
 

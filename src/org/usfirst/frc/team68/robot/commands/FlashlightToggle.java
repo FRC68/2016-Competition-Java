@@ -1,24 +1,19 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
-import org.usfirst.frc.team68.robot.MathUtil;
-import org.usfirst.frc.team68.robot.Robot;
-import org.usfirst.frc.team68.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team68.robot.Robot;
 
 /**
  *
  */
-public class ShooterStop extends Command {
+public class FlashlightToggle extends Command {
+	boolean isFinished = false;
 
-	private boolean isFinished = false;
-	private double currentSpeed = 0;
-	
-    public ShooterStop() {
+    public FlashlightToggle() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.shooter);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -26,11 +21,11 @@ public class ShooterStop extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute(){
-    		Robot.shooter.setSpeed(0);
-    		Robot.shooter.closeHood();
-    		isFinished = true;
+    protected void execute() {
+    	Robot.shooter.toggleFlashlight();
+    	isFinished = true;
     }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return isFinished;
@@ -38,7 +33,6 @@ public class ShooterStop extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	SmartDashboard.putNumber("Shooter Current Speed: ",currentSpeed);
     }
 
     // Called when another command which requires one or more of the same

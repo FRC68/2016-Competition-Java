@@ -12,12 +12,12 @@ import org.usfirst.frc.team68.robot.RobotMap;
 /**
  *
  */
-public class ShooterPostRPMValue extends Command {
+public class ShooterGeneral extends Command {
 
 	private boolean isFinished = false;
 	private double shootingSpeed;
 	
-    public ShooterPostRPMValue() {
+    public ShooterGeneral() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooter);
     }
@@ -36,6 +36,11 @@ public class ShooterPostRPMValue extends Command {
     	
     	//temporary shooting speed threshold is 2% 
     	//maybe add a RobotMap constant?
+    	SmartDashboard.putNumber("RT", Robot.oi.getRigthXboxTriggerValue());
+    	if(Robot.oi.getRigthXboxTriggerValue() > 0.12){
+    		Robot.shooter.openHood();
+    	}
+    	
     	currentSpeed = Robot.shooter.getSpeed();
     	setpoint = Robot.shooter.getSetpoint();
     	SmartDashboard.putString("Shoot", (MathUtil.withinThresh(currentSpeed, setpoint, 100) && intakeSafe && setpoint != 0)?"CLEAR TO SHOOT":"NOT READY" );
@@ -45,7 +50,7 @@ public class ShooterPostRPMValue extends Command {
     	SmartDashboard.putNumber("Shooter Voltage: ", currentVoltage);
     	currentWattage = Robot.shooter.getWattage();
     	SmartDashboard.putNumber("Shooter Wattage: ", currentWattage);
-
+    	
     	
     }
     // Make this return true when this Command no longer needs to run execute()

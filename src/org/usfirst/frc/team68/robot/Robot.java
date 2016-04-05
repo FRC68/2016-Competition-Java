@@ -4,10 +4,12 @@ package org.usfirst.frc.team68.robot;
 import org.usfirst.frc.team68.robot.commands.Auton1;
 import org.usfirst.frc.team68.robot.commands.Auton2;
 import org.usfirst.frc.team68.robot.commands.Auton3;
+import org.usfirst.frc.team68.robot.commands.FlashlightToggle;
 import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
 import org.usfirst.frc.team68.robot.commands.IntakeZero;
 import org.usfirst.frc.team68.robot.subsystems.Climber;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team68.robot.subsystems.GripInterface;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
 import org.usfirst.frc.team68.robot.subsystems.OffBoardCompressor;
 import org.usfirst.frc.team68.robot.subsystems.Shooter;
@@ -33,6 +35,7 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Shooter shooter;
 	public static Climber climber;
+	public static GripInterface gripInterface;
 //	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
 //	public static Vision vision;
@@ -53,6 +56,7 @@ public class Robot extends IterativeRobot {
     	intake = Intake.getIntake();
     	shooter = Shooter.getShooter();
     	climber = Climber.getClimber();
+    	gripInterface = GripInterface.getGrip();
 //    	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
 //    	vision = Vision.getVision();
@@ -75,8 +79,9 @@ public class Robot extends IterativeRobot {
 //        SmartDashboard.putData("Shoulder Down", new ManualMoveShoulderDown());
 //        SmartDashboard.putData("Elbow Down", new ManualMoveElbowDown());
 //        SmartDashboard.putData("Elbow Up", new ManualMoveElbowUp());
-        SmartDashboard.putData("Intake Down", new IntakeManualDown());
-        SmartDashboard.putData("Zero Intake", new IntakeZero());
+//        SmartDashboard.putData("Intake Down", new IntakeManualDown());
+ //       SmartDashboard.putData("Zero Intake", new IntakeZero());
+       SmartDashboard.putData("flashlight", new FlashlightToggle());
     }
 	
 	/**

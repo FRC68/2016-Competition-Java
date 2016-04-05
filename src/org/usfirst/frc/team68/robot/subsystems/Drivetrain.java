@@ -141,6 +141,10 @@ public class Drivetrain extends Subsystem {
     	leftRear.set(power*-1);
     	rightRear.set(power);
     }
+    public void setPowers(double powerL, double powerR){
+    	leftRear.set(powerL*-1);
+    	rightRear.set(powerR);
+    }
     
     public void setShifterHigh() {
     	driveShifter.set(Value.kForward);
@@ -211,6 +215,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public double getPositionRight(){
+    	SmartDashboard.putNumber("dtRpos", leftRear.getPosition());
     	return rightRear.getPosition();
     }
 }

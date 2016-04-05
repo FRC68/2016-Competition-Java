@@ -4,6 +4,8 @@ import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
 import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
 import org.usfirst.frc.team68.robot.commands.DrivetrainMidOff;
 import org.usfirst.frc.team68.robot.commands.DrivetrainMidOn;
+import org.usfirst.frc.team68.robot.commands.FlashlightToggle;
+import org.usfirst.frc.team68.robot.commands.IntakeBeamOveride;
 import org.usfirst.frc.team68.robot.commands.IntakePositionArrayIndex;
 import org.usfirst.frc.team68.robot.commands.IntakePositionDownByArray;
 import org.usfirst.frc.team68.robot.commands.IntakePositionUpByArray;
@@ -54,6 +56,7 @@ public class OI {
 	
 	private Button leftTrigger;
 	private Button leftJoyB2;
+	private Button leftJoyB7;
 	private Button rightTrigger;
 	private Button rightJoyB2;
 	private Button rightJoyB4;			// Winch Down
@@ -65,6 +68,7 @@ public class OI {
 	private Button xboxY;
 	private Button xboxRB;
 	private Button xboxLB;
+	private Button xboxLJB;
 	private Button xboxSTART;
 	private Button xboxBACK;
 	
@@ -90,6 +94,10 @@ public class OI {
 		
 		leftJoyB2 = new JoystickButton(leftJoy, RobotMap.JOYSTICK_BUTTON2);
 		leftJoyB2.whenPressed(new DrivetrainMidOn());
+				
+		leftJoyB7 = new JoystickButton(leftJoy, RobotMap.JOYSTICK_BUTTON7);
+		leftJoyB7.whenPressed(new IntakeBeamOveride());
+		
 		rightJoyB2 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON2);
 		rightJoyB2.whenPressed(new DrivetrainMidOff());
 		rightJoyB4 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON4);
@@ -119,6 +127,11 @@ public class OI {
 		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
 		xboxRB.whenPressed(new ShooterStop());
 		
+		xboxLJB = new JoystickButton(xboxController, RobotMap.XBOX_LJB);
+		xboxLJB.whenPressed(new FlashlightToggle());
+		
+		
+		
 	}
 	
 	public boolean getRightJoystickButton9(){
@@ -138,12 +151,22 @@ public class OI {
 		return xboxController.getRawButton(RobotMap.XBOX_BACK);
 	}
 	
+	public boolean getLeftJoyB7(){
+		return leftJoy.getRawButton(RobotMap.JOYSTICK_BUTTON7);
+	}
+	
 	public double getLeftXboxTriggerValue(){
 		double leftAxis;
 		leftAxis = xboxController.getRawAxis(RobotMap.XBOX_LT);
 		// Allow for up to 10% of joystick noise
 		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
     	return leftAxis;
+	}
+	
+	public double getRigthXboxTriggerValue(){
+		double rightAxis;
+		rightAxis = xboxController.getRawAxis(RobotMap.XBOX_RT);
+    	return rightAxis;
 	}
 	
 	public double getLeftXboxJoystickValue() {
@@ -165,14 +188,27 @@ public class OI {
     public double getLeftJoystickValue() {
 		double leftAxis;
 		leftAxis = leftJoy.getY();
+		/*
+		if(leftAxis < 0)
+			leftAxis = -Math.pow(leftAxis, 2);
+		else
+			leftAxis = Math.pow(leftAxis, 2);
+		*/
+		
 		// Allow for up to 10% of joystick noise
 		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
     	return leftAxis;
     }
     
     public double getRightJoystickValue() {
-		double rightAxis;
-		rightAxis = rightJoy.getY();
+		double rightAxis = rightJoy.getY();
+		/*
+		if(rightAxis < 0)
+			rightAxis = -Math.pow(rightAxis, 2);
+		else
+			rightAxis = Math.pow(rightAxis, 2);
+		*/
+		
 		// Allow for up to 10% of joystick noise
 		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
     	return rightAxis;

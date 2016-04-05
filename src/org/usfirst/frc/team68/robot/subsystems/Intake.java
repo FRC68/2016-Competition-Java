@@ -22,6 +22,7 @@ public class Intake extends Subsystem {
 	private CANTalon intakeRoller;
 	private CANTalon intakeArm;
 	private static Intake intake;
+	private boolean beamOverride = false;
 	
 	public static Intake getIntake() {
 		if (intake == null)  {
@@ -68,7 +69,7 @@ public class Intake extends Subsystem {
     	rightXboxJoystickValue *= -1;
     	if (leftTrigger > 0){
     		this.setIntakeSpeed (RobotMap.INTAKE_OUT_SPEED);
-    	} else if((beamBreak.get() && leftBumper) || Robot.oi.getXboxBack()){
+    	} else if(((beamBreak.get() || beamOverride) && leftBumper) || Robot.oi.getXboxBack()){
     		this.setIntakeSpeed(-1*RobotMap.INTAKE_IN_SPEED);
     	} else {
     		this.stopIntakeMotor(0);
@@ -85,11 +86,14 @@ public class Intake extends Subsystem {
     		desiredPos = this.getIntakeArm() + (rightXboxJoystickValue * mult);
     		if(!intakeRoller.isFwdLimitSwitchClosed() || desiredPos < this.getIntakeArm() || rightJSPush){
     			this.setIntakeArm(desiredPos) ;
-    		}else{
-   			intakeArm.setPosition(0);
-   			this.setIntakeArm(0);
     		}
     	}
+    	
+    	if(intakeRoller.isFwdLimitSwitchClosed()){
+    		intakeArm.setPosition(0);
+   			this.setIntakeArm(0);
+    	}
+    	
     	SmartDashboard.putNumber("Intake position", -1*this.getIntakeArm());
     }
   
@@ -108,6 +112,12 @@ public class Intake extends Subsystem {
     
     public double getIntakeArm(){
     	return intakeArm.getPosition();
+    }
+    
+    public void toggleOverride(){
+    	beamOverride = !beamOverride;
+
+    	SmartDashboard.putBoolean("Beam Override:",  beamOverride);
     }
     
     public void zeroIntakeArm(){

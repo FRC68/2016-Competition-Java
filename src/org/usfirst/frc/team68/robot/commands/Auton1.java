@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Auton1 extends CommandGroup {
 
     public Auton1() {
-    	addSequential(new DriveAtSpeed(-.6,8)); 
+    	addSequential(new DriveAtSpeed(-.9,3.5)); 
         
     	
     } 

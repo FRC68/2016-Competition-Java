@@ -2,13 +2,16 @@
 package org.usfirst.frc.team68.robot.subsystems;
 
 import org.usfirst.frc.team68.robot.RobotMap;
-import org.usfirst.frc.team68.robot.commands.ShooterPostRPMValue;
+import org.usfirst.frc.team68.robot.commands.ShooterGeneral;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,6 +22,8 @@ public class Shooter extends Subsystem {
     private CANTalon followerMotor;
     private static Shooter shooter;
     private DoubleSolenoid hood;
+    private Relay flashlight;
+    private edu.wpi.first.wpilibj.Relay.Value flashlightState = edu.wpi.first.wpilibj.Relay.Value.kOff;
     
     public static Shooter getShooter() {
     	if (shooter == null) {
@@ -51,11 +56,23 @@ public class Shooter extends Subsystem {
     	primaryMotor.setD(RobotMap.shooterPID.d);
     	hood = new DoubleSolenoid(RobotMap.HOOD_FORWARD, RobotMap.HOOD_REVERSE);
     	this.closeHood();
+    	
+    	flashlight = new Relay(0);
+    	flashlight.set(flashlightState);
     }
     
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        setDefaultCommand(new ShooterPostRPMValue());
+        // Set the default command for a subsystem here. 
+        setDefaultCommand(new ShooterGeneral());
+    }
+    
+    public void toggleFlashlight(){
+    	
+    	if(flashlightState == edu.wpi.first.wpilibj.Relay.Value.kOff) 
+    		flashlightState = edu.wpi.first.wpilibj.Relay.Value.kOn;
+    	else
+    		flashlightState = edu.wpi.first.wpilibj.Relay.Value.kOff;
+    	flashlight.set(flashlightState);
     	
     }
 

@@ -2,41 +2,48 @@
 package org.usfirst.frc.team68.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team68.robot.MathUtil;
 import org.usfirst.frc.team68.robot.Robot;
+import org.usfirst.frc.team68.robot.RobotMap;
+import org.usfirst.frc.team68.robot.subsystems.GripInterface;
 
 /**
  *
  */
-public class DriveDistance extends Command {
+public class AutoAlign extends Command {
 	boolean isFinished = false;
 	double timeout;
-	double left, right;
 
-    public DriveDistance(double dleft, double dright, double timeout) {
+    public AutoAlign(double timeoutIn) {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.driveTrain);
-    	setTimeout(timeout);
-    	left = dleft;
-    	right = dright;
+    	requires(Robot.gripInterface);
+    	timeout = timeoutIn;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.setModePosition();
-    	Robot.driveTrain.zeroEncoders();
+    	this.setTimeout(timeout);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.setPosition(left, -1*right);
-
-    	if(MathUtil.withinThresh(Robot.driveTrain.getPositionLeft(), left, 0.2) && MathUtil.withinThresh(Robot.driveTrain.getPositionRight(), -1*right, 0.2)){
-    	 isFinished = true;
-    	}
-
+    	double[] goal = Robot.gripInterface.getBestTarget();
+		double power = 0;
+		if(goal != null && !MathUtil.withinThresh(goal[0], RobotMap.X_TAR, RobotMap.X_TOL)){
+			power = GripInterface.getXerror(goal, RobotMap.X_TAR)*RobotMap.DT_VIS_CENTER_P;
+			if(power < RobotMap.DT_VIS_TURN_POWER_MIN)
+				power = RobotMap.DT_VIS_TURN_POWER_MIN;
+			else if(power > RobotMap.DT_VIS_TURN_POWER_MAX)
+				power = RobotMap.DT_VIS_TURN_POWER_MAX;
+			
+			Robot.driveTrain.setPowers(power, -1*power);
+		}else{
+			Robot.driveTrain.setPower(0);
+			isFinished = true;
+		}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -46,8 +53,6 @@ public class DriveDistance extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	SmartDashboard.putString("auto1", this.isRunning()?"running":"notRunning");
-    	Robot.driveTrain.setModePercentVbus();
     }
 
     // Called when another command which requires one or more of the same
