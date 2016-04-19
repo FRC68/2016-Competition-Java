@@ -57,8 +57,8 @@ public class RobotMap {
 		shooterPID = new PidProfile();
 	    shooterPID.slot = 0;
 	    shooterPID.f = 0.0;
-	    shooterPID.p = .30;
-	    shooterPID.i = 0.000025;
+	    shooterPID.p = .295;
+	    shooterPID.i = 0.0000255;
 	    shooterPID.d = 0.0000000000;
 	    
 	    //Arm PID - one profile for all three axes
@@ -112,6 +112,10 @@ public class RobotMap {
 	    */
 	    
 	}
+	
+	public static final double MATCH_TIME = 134;
+	
+	public static final int ENERGY_FULL = 370000;
 
     // DriveTrain Constants
     public static final int DRIVE_LEFT_FRONT = 3;			// CAN bus ID 1
@@ -137,7 +141,7 @@ public class RobotMap {
     //old
     //public static final double SHOOTER_SHOOTING_SPEED = 6000;
     
-    public static final double SHOOTER_SHOOTING_SPEED = 5000;
+    public static final double SHOOTER_SHOOTING_SPEED = 4300;
     
     public static final double SHOOTER_SPEED_THRESHOLD = .02;  // 2% Threshold
     
@@ -150,7 +154,7 @@ public class RobotMap {
     public static final int CLIMBER_WINCH_MOTOR = 7 ;  	// CAN bus ID 7
     public static final int CLIMBER_LATCH_FORWARD = 4;
     public static final int CLIMBER_LATCH_REVERSE = 5;
-    public static final double CLIMBER_WINCH_SPEED = 1500;
+    public static final double CLIMBER_WINCH_POWER = 1;
           
     //Arm Constants
 //    public static final int ARM_BASE_MOTOR = 0;  			// CAN bus ID 
@@ -184,14 +188,14 @@ public class RobotMap {
     public static final int INTAKE_BEAM_BREAK = 0;		// DIO port 0
     public static final int INTAKE_ARM_ENCODER_COUNTS_PER_REV = 1440;
     public static final int INTAKE_ARM_GEAR_RATIO = 10;
-    public static final double INTAKE_IN_SPEED = 0.75;
+    public static final double INTAKE_IN_SPEED = 1;
     public static final double INTAKE_OUT_SPEED = 1;
     public static final double INTAKE_ARM_SHOOTING_SAFETY_ANGLE = 0;
     public static final double INTAKE_ARM_HOME = 0;
     public static final double INTAKE_ARM_HOME_THRESHOLD = 1;
     public static final int INTAKE_BOULDER_FEED_SPEED = 1;
     //Intake position array (in degrees) these are the predefined points 
-    public static double[] intakePositions = {-10, -8.40, -3.5, 0};
+    public static double[] intakePositions = {-10, -7.90, -3.5, 0};
     //Intake joysitck multiplier  A value to multiply the analog value from the joystick by when controlling manually
     //position will be incremented by the resulting number of degrees per iteration (approx 20ms)
     public static final double INTAKE_JOYSTICK_MULT = 3.5;
@@ -208,6 +212,7 @@ public class RobotMap {
     public static final int JOYSTICK_BUTTON2 = 2;		// This works for both joysticks
     public static final int JOYSTICK_BUTTON4 = 4;		// This works for both joysticks
     public static final int JOYSTICK_BUTTON5 = 5;		// This works for both joysticks
+    public static final int JOYSTICK_BUTTON6 = 6;
     public static final int JOYSTICK_BUTTON7 = 7;
     public static final int JOYSTICK_BUTTON8 = 8;		// This works for both joysticks
     public static final int JOYSTICK_BUTTON9 = 9;		// This works for both joysticks
@@ -225,6 +230,8 @@ public class RobotMap {
     public static final int XBOX_START = 8;
     public static final int XBOX_RJB = 9;
     public static final int XBOX_LJB = 10;
+    //POV
+    public static final int XBOX_POV_D = 4;
     // Axis
     public static final int XBOX_LY = 1;
     public static final int XBOX_RY = 5;

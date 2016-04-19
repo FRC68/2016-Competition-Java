@@ -4,13 +4,9 @@ import org.usfirst.frc.team68.robot.commands.DriveShiftHigh;
 import org.usfirst.frc.team68.robot.commands.DriveShiftLow;
 import org.usfirst.frc.team68.robot.commands.DrivetrainMidOff;
 import org.usfirst.frc.team68.robot.commands.DrivetrainMidOn;
-import org.usfirst.frc.team68.robot.commands.FlashlightToggle;
 import org.usfirst.frc.team68.robot.commands.IntakeBeamOveride;
 import org.usfirst.frc.team68.robot.commands.IntakePositionArrayIndex;
-import org.usfirst.frc.team68.robot.commands.IntakePositionDownByArray;
-import org.usfirst.frc.team68.robot.commands.IntakePositionUpByArray;
 import org.usfirst.frc.team68.robot.commands.OpenClimberLatch;
-import org.usfirst.frc.team68.robot.commands.SetClimberWinchSpeed;
 import org.usfirst.frc.team68.robot.commands.ShooterPrep;
 import org.usfirst.frc.team68.robot.commands.ShooterStop;
 
@@ -71,6 +67,7 @@ public class OI {
 	private Button xboxLJB;
 	private Button xboxSTART;
 	private Button xboxBACK;
+	private Button xboxPOVd;
 	
 	
 	private static OI oi;
@@ -100,10 +97,6 @@ public class OI {
 		
 		rightJoyB2 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON2);
 		rightJoyB2.whenPressed(new DrivetrainMidOff());
-		rightJoyB4 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON4);
-		rightJoyB4.whenPressed(new SetClimberWinchSpeed(RobotMap.CLIMBER_WINCH_SPEED*-1));
-		rightJoyB5 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON5);
-		rightJoyB5.whenPressed(new SetClimberWinchSpeed(RobotMap.CLIMBER_WINCH_SPEED));
 		rightJoyB8 = new JoystickButton(rightJoy, RobotMap.JOYSTICK_BUTTON8);
 		rightJoyB8.whenPressed(new OpenClimberLatch());
 		
@@ -121,17 +114,30 @@ public class OI {
 		
 		
 		
+		
+		
 		xboxSTART = new JoystickButton(xboxController, RobotMap.XBOX_START);
 		xboxSTART.whenPressed(new ShooterPrep());
 		
 		xboxRB = new JoystickButton(xboxController, RobotMap.XBOX_RB);
 		xboxRB.whenPressed(new ShooterStop());
 		
-		xboxLJB = new JoystickButton(xboxController, RobotMap.XBOX_LJB);
-		xboxLJB.whenPressed(new FlashlightToggle());
 		
 		
-		
+	}
+	
+	public int getXboxPOVd(){
+		return xboxController.getPOV();
+	}
+	
+	public boolean getRightJoystickButton4(){
+		return rightJoy.getRawButton(RobotMap.JOYSTICK_BUTTON4);
+	}
+	public boolean getRightJoystickButton5(){
+		return rightJoy.getRawButton(RobotMap.JOYSTICK_BUTTON5);
+	}
+	public boolean getRightJoystickButton6(){
+		return rightJoy.getRawButton(RobotMap.JOYSTICK_BUTTON6);
 	}
 	
 	public boolean getRightJoystickButton9(){

@@ -1,26 +1,19 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
-import org.usfirst.frc.team68.robot.MathUtil;
-import org.usfirst.frc.team68.robot.Robot;
-import org.usfirst.frc.team68.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team68.robot.Robot;
 
 /**
  *
  */
-public class SetShooterSpeed extends Command {
+public class ShooterReverse extends Command {
+	boolean isFinished = false;
 
-	private boolean isFinished = false;
-	private double shootingSpeed;
-	private double currentSpeed = 0;
-	
-    public SetShooterSpeed(double speed) {
-    	shootingSpeed = speed;
+    public ShooterReverse() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.shooter);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -28,11 +21,11 @@ public class SetShooterSpeed extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute(){
-
-    	Robot.shooter.setSpeed(shootingSpeed);
+    protected void execute() {
+    	Robot.shooter.reverseShooter();
     	isFinished = true;
     }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return isFinished;

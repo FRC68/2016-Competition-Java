@@ -89,9 +89,9 @@ public class Intake extends Subsystem {
     		}
     	}
     	
-    	if(intakeRoller.isFwdLimitSwitchClosed()){
+    	if(intakeRoller.isFwdLimitSwitchClosed() && !(MathUtil.withinRange(0.1, -0.75, this.getIntakeArm()))){
     		intakeArm.setPosition(0);
-   			this.setIntakeArm(0);
+   			this.setIntakeArm(0); //A little dangerous to remove
     	}
     	
     	SmartDashboard.putNumber("Intake position", -1*this.getIntakeArm());

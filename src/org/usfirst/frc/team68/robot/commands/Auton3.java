@@ -7,9 +7,9 @@ public class Auton3 extends CommandGroup {
 
     public Auton3() {
     	
-    	addSequential(new IntakeManualPosition(-9.1));
+    	addSequential(new IntakeManualPosition(-9.5));
     	addSequential(new WaitCommand(3));
-    	addSequential(new DriveAtSpeed(-.9,4.5)); 
+    	addSequential(new DriveAtSpeed(-.85,3.5)); 
 
     	
     } 

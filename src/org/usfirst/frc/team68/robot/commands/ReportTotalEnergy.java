@@ -1,26 +1,20 @@
 
 package org.usfirst.frc.team68.robot.commands;
 
-import org.usfirst.frc.team68.robot.MathUtil;
-import org.usfirst.frc.team68.robot.Robot;
-import org.usfirst.frc.team68.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team68.robot.Robot;
+import org.usfirst.frc.team68.robot.RobotMap;
 
 /**
  *
  */
-public class SetShooterSpeed extends Command {
+public class ReportTotalEnergy extends Command {
 
-	private boolean isFinished = false;
-	private double shootingSpeed;
-	private double currentSpeed = 0;
-	
-    public SetShooterSpeed(double speed) {
-    	shootingSpeed = speed;
+    public ReportTotalEnergy() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.shooter);
+    	requires(Robot.pdpMonitor);
     }
 
     // Called just before this Command runs the first time
@@ -28,14 +22,16 @@ public class SetShooterSpeed extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute(){
-
-    	Robot.shooter.setSpeed(shootingSpeed);
-    	isFinished = true;
+    protected void execute() {
+    	SmartDashboard.putNumber("Total Energy Drawn:", Robot.pdpMonitor.getTotalEnergy());
+    	SmartDashboard.putNumber("Total Energy Drawn (line plot):", Robot.pdpMonitor.getTotalEnergy());
+    	SmartDashboard.putNumber("Voltage (line plot):", Robot.pdpMonitor.getVoltage());
+    	SmartDashboard.putNumber("Total Energy Remaining:", RobotMap.ENERGY_FULL - Robot.pdpMonitor.getTotalEnergy());
     }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isFinished;
+        return false;
     }
 
     // Called once after isFinished returns true

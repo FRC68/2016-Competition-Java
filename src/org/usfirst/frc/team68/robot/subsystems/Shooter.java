@@ -22,8 +22,7 @@ public class Shooter extends Subsystem {
     private CANTalon followerMotor;
     private static Shooter shooter;
     private DoubleSolenoid hood;
-    private Relay flashlight;
-    private edu.wpi.first.wpilibj.Relay.Value flashlightState = edu.wpi.first.wpilibj.Relay.Value.kOff;
+    private boolean reversed;
     
     public static Shooter getShooter() {
     	if (shooter == null) {
@@ -45,8 +44,8 @@ public class Shooter extends Subsystem {
     	
     	primaryMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	primaryMotor.reverseSensor(false);
-    	primaryMotor.configNominalOutputVoltage(+0.0F,-0.0F);
-    	primaryMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+    	//primaryMotor.configNominalOutputVoltage(+0.0F,-0.0F);
+    	//primaryMotor.configPeakOutputVoltage(+12.0f, 0.0f);
     	primaryMotor.setVoltageRampRate(8);
     	// set closed loop gains for slot 0
     	primaryMotor.setProfile(RobotMap.shooterPID.slot);
@@ -57,8 +56,6 @@ public class Shooter extends Subsystem {
     	hood = new DoubleSolenoid(RobotMap.HOOD_FORWARD, RobotMap.HOOD_REVERSE);
     	this.closeHood();
     	
-    	flashlight = new Relay(0);
-    	flashlight.set(flashlightState);
     }
     
     public void initDefaultCommand() {
@@ -66,15 +63,6 @@ public class Shooter extends Subsystem {
         setDefaultCommand(new ShooterGeneral());
     }
     
-    public void toggleFlashlight(){
-    	
-    	if(flashlightState == edu.wpi.first.wpilibj.Relay.Value.kOff) 
-    		flashlightState = edu.wpi.first.wpilibj.Relay.Value.kOn;
-    	else
-    		flashlightState = edu.wpi.first.wpilibj.Relay.Value.kOff;
-    	flashlight.set(flashlightState);
-    	
-    }
 
     public void setSpeed(double speed) {
     	primaryMotor.set(speed);
@@ -110,6 +98,21 @@ public class Shooter extends Subsystem {
     
     public void closeHood() {
     	hood.set(Value.kReverse);
+    }
+    
+    public void reverseShooter(){
+    	primaryMotor.reverseOutput(true);
+    	followerMotor.reverseOutput(true);
+    	reversed = true;
+    }
+    public void resetShooterDirection(){
+    	primaryMotor.reverseOutput(false);
+    	followerMotor.reverseOutput(false);
+    	reversed = false;
+    }
+    
+    public boolean getReversal(){
+    	return reversed;
     }
     
     public void reverseCurrentHoodPosition() {

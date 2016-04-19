@@ -3,6 +3,7 @@ package org.usfirst.frc.team68.robot.subsystems;
 
 import org.usfirst.frc.team68.robot.Robot;
 import org.usfirst.frc.team68.robot.RobotMap;
+import org.usfirst.frc.team68.robot.commands.SetClimberWinchPower;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -28,9 +29,9 @@ public class Climber extends Subsystem {
     
     private Climber() {
     	winchMotor = new CANTalon(RobotMap.CLIMBER_WINCH_MOTOR);
-    	winchMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
-    	this.setSpeed(0);
-    	
+    	winchMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    	this.setPower(0);
+    	/*
     	winchMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	winchMotor.reverseSensor(false);
     	winchMotor.configNominalOutputVoltage(+0.0F,-0.0F);
@@ -41,18 +42,21 @@ public class Climber extends Subsystem {
     	winchMotor.setP(RobotMap.climberPID.p);
     	winchMotor.setI(RobotMap.climberPID.i);
     	winchMotor.setD(RobotMap.climberPID.d);
+    	*/
     	latch = new DoubleSolenoid(RobotMap.CLIMBER_LATCH_FORWARD, RobotMap.CLIMBER_LATCH_REVERSE);
     	this.closeLatch();
     }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-       // setDefaultCommand(new );
+    	setDefaultCommand(new SetClimberWinchPower() );
     }
 
-    public void setSpeed(double speed) {
-    	winchMotor.set(speed);
+    public void setPower(double power) {
+    	winchMotor.set(power);
     }
+    
+    
     
     public double getSpeed() {
     	return winchMotor.get();

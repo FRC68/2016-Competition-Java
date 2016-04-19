@@ -28,6 +28,7 @@ public class ShooterStop extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
     		Robot.shooter.setSpeed(0);
+    		Robot.shooter.resetShooterDirection();
     		Robot.shooter.closeHood();
     		isFinished = true;
     }

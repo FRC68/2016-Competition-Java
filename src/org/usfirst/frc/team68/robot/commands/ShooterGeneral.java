@@ -29,6 +29,7 @@ public class ShooterGeneral extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
     	double currentSpeed, setpoint;
+		boolean reversal;
     	double currentVoltage;
     	double currentWattage;
     	
@@ -41,10 +42,25 @@ public class ShooterGeneral extends Command {
     		Robot.shooter.openHood();
     	}
     	
+    	
+    	
+    	reversal = Robot.shooter.getReversal();
     	currentSpeed = Robot.shooter.getSpeed();
     	setpoint = Robot.shooter.getSetpoint();
-    	SmartDashboard.putString("Shoot", (MathUtil.withinThresh(currentSpeed, setpoint, 100) && intakeSafe && setpoint != 0)?"CLEAR TO SHOOT":"NOT READY" );
+
+    	/*
+    	if( Robot.oi.getXboxPOVd() == 180){
+    		Robot.shooter.reverseShooter();
+    		Robot.shooter.setSpeed(RobotMap.SHOOTER_SHOOTING_SPEED);
+        	SmartDashboard.putNumber("POV", Robot.oi.getXboxPOVd());
+
+    	}
+    	*/
+    	
+    	SmartDashboard.putNumber("Shooter Setpoint", setpoint);
+    	SmartDashboard.putString("Shoot", (MathUtil.withinThresh(currentSpeed, setpoint, 100) && intakeSafe && setpoint != 0 && !reversal)?"CLEAR TO SHOOT":"NOT READY" );
     	SmartDashboard.putString("Intake is", intakeSafe? "SAFE" : "NOT SAFE");
+    	SmartDashboard.putString("reversed:", reversal?"Reversed!" : "Not reversed");
     	SmartDashboard.putNumber("Shooter RPM: ", currentSpeed);
     	currentVoltage = Robot.shooter.getVoltage();
     	SmartDashboard.putNumber("Shooter Voltage: ", currentVoltage);

@@ -4,16 +4,14 @@ package org.usfirst.frc.team68.robot;
 import org.usfirst.frc.team68.robot.commands.Auton1;
 import org.usfirst.frc.team68.robot.commands.Auton2;
 import org.usfirst.frc.team68.robot.commands.Auton3;
-import org.usfirst.frc.team68.robot.commands.FlashlightToggle;
-import org.usfirst.frc.team68.robot.commands.IntakeManualDown;
-import org.usfirst.frc.team68.robot.commands.IntakeZero;
 import org.usfirst.frc.team68.robot.subsystems.Climber;
+import org.usfirst.frc.team68.robot.subsystems.DriveCoachAssist;
 import org.usfirst.frc.team68.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team68.robot.subsystems.GripInterface;
 import org.usfirst.frc.team68.robot.subsystems.Intake;
 import org.usfirst.frc.team68.robot.subsystems.OffBoardCompressor;
+import org.usfirst.frc.team68.robot.subsystems.PDPMonitor;
 import org.usfirst.frc.team68.robot.subsystems.Shooter;
-import org.usfirst.frc.team68.robot.subsystems.USBCamera;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -35,6 +33,8 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Shooter shooter;
 	public static Climber climber;
+	public static PDPMonitor pdpMonitor;
+	public static DriveCoachAssist DCA;
 	public static GripInterface gripInterface;
 //	public static Arm arm;
 	public static OffBoardCompressor offBoardCompressor;
@@ -53,9 +53,11 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	robotMap = RobotMap.getRobotMap();
     	driveTrain = Drivetrain.getDrive();
+    	pdpMonitor = PDPMonitor.getMonitor();
     	intake = Intake.getIntake();
     	shooter = Shooter.getShooter();
     	climber = Climber.getClimber();
+    	DCA = DriveCoachAssist.getDCA();
     	gripInterface = GripInterface.getGrip();
 //    	arm = Arm.getArm();
     	offBoardCompressor = OffBoardCompressor.getOffBoardCompressor();
@@ -69,19 +71,6 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Auton Three ", new Auton3());
         SmartDashboard.putData("Auto mode", chooser);
         oi = OI.getOI();
-        
-//        SmartDashboard.putData("Arm Home", new ArmHome());
-//        SmartDashboard.putData("Arm Path Test", new ArmPathTest());
-//        SmartDashboard.putData("DT path", new ArmDrawbridge());
-//        SmartDashboard.putData("Base Left", new ManualMoveBaseLeft());
-//        SmartDashboard.putData("Base Rigt", new ManualMoveBaseRight());
-//        SmartDashboard.putData("Shoulder Up", new ManualMoveShoulderUp());
-//        SmartDashboard.putData("Shoulder Down", new ManualMoveShoulderDown());
-//        SmartDashboard.putData("Elbow Down", new ManualMoveElbowDown());
-//        SmartDashboard.putData("Elbow Up", new ManualMoveElbowUp());
-//        SmartDashboard.putData("Intake Down", new IntakeManualDown());
- //       SmartDashboard.putData("Zero Intake", new IntakeZero());
-       SmartDashboard.putData("flashlight", new FlashlightToggle());
     }
 	
 	/**
@@ -125,6 +114,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        DCA.zeroTimer();
     }
 
     /**
